@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/quark-parent/pom.xml" />
         <option value="$PROJECT_DIR$/quark-common/pom.xml" />
+        <option value="$PROJECT_DIR$/quark-admin/pom.xml" />
       </list>
     </option>
   </component>

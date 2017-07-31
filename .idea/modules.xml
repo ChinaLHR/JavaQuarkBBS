@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/JavaQuarkCommunity.iml" filepath="$PROJECT_DIR$/.idea/JavaQuarkCommunity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/quark-admin/quark-admin.iml" filepath="$PROJECT_DIR$/quark-admin/quark-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/quark-common/quark-common.iml" filepath="$PROJECT_DIR$/quark-common/quark-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/quark-parent/quark-parent.iml" filepath="$PROJECT_DIR$/quark-parent/quark-parent.iml" />
     </modules>

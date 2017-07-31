@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="quark-admin" />
         <module name="quark-common" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="quark-admin" target="1.8" />
       <module name="quark-common" target="1.8" />
       <module name="quark-parent" target="1.8" />
     </bytecodeTargetLevel>

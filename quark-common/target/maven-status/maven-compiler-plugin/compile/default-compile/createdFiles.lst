@@ -1,0 +1,4 @@
+com/quark/common/CommonApplication.class
+com/quark/common/dao/AdminUserDao.class
+com/quark/common/dao/PermissionDao.class
+com/quark/common/dao/RoleDao.class
