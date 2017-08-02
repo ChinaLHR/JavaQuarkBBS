@@ -1,8 +1,11 @@
 package com.quark.admin;
 
+import com.quark.common.CommonApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,8 +22,9 @@ public class AdminApplication {
         Properties properties = new Properties();
         InputStream in = AdminApplication.class.getClassLoader().getResourceAsStream("admin.properties");
         properties.load(in);
-        SpringApplication sa = new SpringApplication();
-        sa.setDefaultProperties(properties);
-        sa.run(args);
+        SpringApplication app = new SpringApplication(AdminApplication.class);
+        app.setDefaultProperties(properties);
+        app.run(args);
+//        SpringApplication.run(CommonApplication.class, args);
     }
 }

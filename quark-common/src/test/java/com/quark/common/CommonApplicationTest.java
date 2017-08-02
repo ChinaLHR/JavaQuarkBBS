@@ -7,9 +7,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 /**
  * Created by lhr on 17-7-30.
@@ -22,16 +24,14 @@ public class CommonApplicationTest {
     @Autowired
     private DataSource dataSource;
 
-//    @Autowired
-//    private AdminUserDao adminUserDao;
+    @Autowired
+    private AdminUserDao adminUserDao;
 
     @Test
     public void TestDataSource(){
-//        System.out.println(dataSource.getClass().getName());
-        AdminUser adminUser = new AdminUser();
-        adminUser.setPassword("666");
-        adminUser.setUsername("lhr");
-//        adminUserDao.save(adminUser);
-//        System.out.println(dataSource.getClass().getName());
+        System.out.println("===============");
+        List<AdminUser> all = adminUserDao.findAll();
+        System.out.println("===============");
+        List<AdminUser> users = adminUserDao.findAll();
     }
 }

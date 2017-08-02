@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.quark.common.CommonApplicationTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.58 sec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.573 sec

@@ -1,17 +1,22 @@
 package com.quark.common.entity;
 
-import org.omg.CORBA.INTERNAL;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by lhr on 17-7-31.
  */
+
 @Entity
 @Table(name = "quark_permission")
-public class Permission {
+public class Permission implements Serializable{
 
     @Id
     @GeneratedValue

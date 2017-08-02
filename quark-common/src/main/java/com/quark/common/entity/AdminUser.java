@@ -1,15 +1,23 @@
 package com.quark.common.entity;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
+
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by lhr on 17-7-31.
  */
+
 @Entity
 @Table(name = "quark_adminuser")
-public class AdminUser {
+public class AdminUser implements Serializable{
 
     @Id
     @GeneratedValue
