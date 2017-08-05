@@ -1,5 +1,6 @@
 package com.quark.common.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 
@@ -36,6 +37,7 @@ public class Permission implements Serializable{
     //排序
     private Integer sort;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "permissions")
     private Set<Role> roles = new HashSet<>();
 

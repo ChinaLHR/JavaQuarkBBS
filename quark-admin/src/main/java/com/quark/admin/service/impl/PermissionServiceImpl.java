@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.Set;
  * Created by lhr on 17-8-1.
  */
 @Service
+@Transactional
 public class PermissionServiceImpl  extends BaseServiceImpl<PermissionDao,Permission> implements PermissionService{
     @Autowired
     private AdminUserDao adminUserDao;

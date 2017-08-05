@@ -1,7 +1,8 @@
 package com.quark.common.entity;
 
-import org.hibernate.annotations.*;
-import org.hibernate.annotations.Cache;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.persistence.CascadeType;
@@ -27,6 +28,7 @@ public class AdminUser implements Serializable{
     private String username;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
 

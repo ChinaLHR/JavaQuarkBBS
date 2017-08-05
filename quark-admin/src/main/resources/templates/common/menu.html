@@ -1,9 +1,6 @@
-<div th:fragment="menu" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:fragment="menu">
 <div id="sidebar" >
     <ul id="menu">
-        <!-- <li><a href="usersPage"><i class="icon icon-home"></i> <span>用户管理</span></a> </li>
-         <li><a href="rolesPage"><i class="icon icon-signal"></i> <span>角色管理</span></a> </li>
-         <li><a href="resourcesPage"><i class="icon icon-inbox"></i> <span>资源管理</span></a> </li>-->
     </ul>
 </div>
     <script th:src="@{/js/jquery-1.11.2.min.js}"></script>
@@ -11,12 +8,12 @@
     $.ajax({
         cache: true,
         type: "POST",
-        url:'resources/loadMenu.do',
+        url:'permission/loadMenu.do',
         dataType:"json",
         success: function(data) {
             var html="";
             for(var i=0;i<data.length;i++){
-                html+="<li><a href='"+data[i].resurl+"'><i class='icon icon-home'></i> <span>"+data[i].name+"</span></a> </li>"
+                html+="<li><a href='"+data[i].perurl+"'><i class='icon icon-home'></i> <span>"+data[i].name+"</span></a> </li>"
              }
             $("#menu").append(html);
             //改变当前菜单样式

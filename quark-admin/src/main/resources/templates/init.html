@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/jquery.dataTables.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/matrix-style.css}" />
+    <link rel="stylesheet" th:href="@{/css/matrix-media.css}" />
+    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.png}">
+    <title>Quark后台管理系统</title>
+</head>
+<body>
+<div id="header">
+    <h1><a href="dashboard.html">Matrix Admin</a></h1>
+</div>
+<div th:include="common/top :: top"></div>
+<div th:include="common/menu :: menu"></div>
+<div id="content">
+    <div class="container">
+        <div class="starter-template" >
+            <h1>欢迎使用Quark社区管理系统</h1>
+        </div>
+
+    </div><!-- /.container -->
+</div>
+
+</body>
+</html>
