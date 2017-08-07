@@ -1,12 +1,8 @@
 package com.quark.common.entity;
 
-import org.hibernate.annotations.*;
-import org.hibernate.annotations.Cache;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,11 +27,14 @@ public class Role implements Serializable{
     //角色描述
     private String description;
 
+
     //角色与用户的关联关系
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private Set<AdminUser> adminUsers = new HashSet<>();
 
     //角色与权限的关联关系
+    @JsonIgnore
     @JoinTable(name = "quark_role_permission",
             joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "permissions_id",referencedColumnName = "id")})

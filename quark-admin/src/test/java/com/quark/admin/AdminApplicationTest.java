@@ -20,6 +20,8 @@ import java.util.List;
 
 /**
  * Created by lhr on 17-7-31.
+ * user.setUsername("lhr");
+ * user.setPassword("root");
  */
 @RunWith(SpringRunner.class)
 @TestPropertySource(locations = {"classpath:admin.properties"})
@@ -40,7 +42,8 @@ public class AdminApplicationTest {
 
     @Test
     public void testDataSource() {
-        List<Permission> permissions = permissionService.loadUserPermission(11);
+        List<Permission> permissions = permissionService.loadUserPermissionByType(3,1);
         permissions.forEach(p->System.out.println(p.getName()));
+
     }
 }

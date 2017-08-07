@@ -6,6 +6,7 @@ import com.quark.common.entity.AdminUser;
 /**
  * Created by lhr on 17-8-1.
  */
+
 public interface AdminUserService extends BaseService<AdminUser>{
 
     /**

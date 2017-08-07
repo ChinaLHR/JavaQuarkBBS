@@ -5,21 +5,15 @@ import com.quark.admin.service.PermissionService;
 import com.quark.admin.shiro.MyShiroRealm;
 import com.quark.common.entity.Permission;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.apache.shiro.cache.ehcache.EhCacheManager;
-import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
-import org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator;
-import org.apache.shiro.session.mgt.eis.SessionIdGenerator;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
-import org.omg.CORBA.TRANSACTION_MODE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -87,11 +81,11 @@ public class ShiroConfig {
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.html"页面
         shiroFilterFactoryBean.setLoginUrl("/login");
         // 登录成功后要跳转的链接
-        shiroFilterFactoryBean.setSuccessUrl("/admin");
+        shiroFilterFactoryBean.setSuccessUrl("/initPage");
         //未授权界面
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         //拦截器.
-        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/css/**", "anon");
@@ -160,10 +154,9 @@ public class ShiroConfig {
         RedisManager redisManager = new RedisManager();
         redisManager.setHost(host);
         redisManager.setPort(port);
-        redisManager.setPassword(password);
+//        redisManager.setPassword(password);
         redisManager.setExpire(1800);// 配置缓存过期时间
         redisManager.setTimeout(timeout);
-        // redisManager.setPassword(password);
         return redisManager;
     }
 

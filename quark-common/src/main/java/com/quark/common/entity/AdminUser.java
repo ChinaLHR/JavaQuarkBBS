@@ -1,13 +1,9 @@
 package com.quark.common.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,7 +32,7 @@ public class AdminUser implements Serializable{
     @Column(nullable = false)
     private Integer enable = 1;
 
-
+    @JsonIgnore
     @JoinTable(name = "quark_adminuser_role",
             joinColumns = {@JoinColumn(name = "adminuser_id",referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")})
@@ -81,5 +77,14 @@ public class AdminUser implements Serializable{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "AdminUser{" +
+                "Id=" + Id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", enable=" + enable;
     }
 }

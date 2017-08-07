@@ -60,9 +60,14 @@ public class PageController {
         }
     }
 
-    @RequestMapping(value = "/initPage")
+    @RequestMapping(value = {"/initPage",""})
     public String InitPage(){
         return "init";
+    }
+
+    @RequestMapping("/adminsPage")
+    public String AdminsPage(){
+        return "admin/admins";
     }
 
 

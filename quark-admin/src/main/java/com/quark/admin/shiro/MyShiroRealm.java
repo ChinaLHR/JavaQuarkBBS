@@ -2,7 +2,6 @@ package com.quark.admin.shiro;
 
 import com.quark.admin.service.AdminUserService;
 import com.quark.admin.service.PermissionService;
-import com.quark.common.dao.AdminUserDao;
 import com.quark.common.entity.AdminUser;
 import com.quark.common.entity.Permission;
 import org.apache.shiro.SecurityUtils;
@@ -15,9 +14,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by lhr on 17-8-1.
@@ -37,12 +34,15 @@ public class MyShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        AdminUser adminUser = (AdminUser) SecurityUtils.getSubject().getPrincipal();
-        List<Permission> PermissionList = permissionService.loadUserPermission(adminUser.getId());
+//        System.out.println( SecurityUtils.getSubject().getPrincipal().getClass().getName());
+//        AdminUser adminUser = (AdminUser) SecurityUtils.getSubject().getPrincipal();
+        Integer id = (Integer) principalCollection.getPrimaryPrincipal();
+
+        List<Permission> PermissionList = permissionService.loadUserPermission(id);
         // 权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        for(Permission resources: PermissionList){
-            info.addStringPermission(resources.getPerurl());
+        for(Permission p: PermissionList){
+            info.addStringPermission(p.getPerurl());
         }
 
         return info;
@@ -64,10 +64,10 @@ public class MyShiroRealm extends AuthorizingRealm {
             throw new LockedAccountException(); // 帐号锁定
         }
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                user, //用户
+                user.getId(), //用户
                 user.getPassword(), //密码
                 ByteSource.Util.bytes(username),
-                getName()  //realm name
+                getName() //realm name
         );
         // 把用户信息放在session里
         Session session = SecurityUtils.getSubject().getSession();

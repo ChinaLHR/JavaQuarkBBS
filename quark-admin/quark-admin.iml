@@ -47,7 +47,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.alibaba:jconsole:1.8.0">
         <CLASSES>
-          <root url="jar:///usr/lib/jdk1.8.0_45/lib/jconsole.jar!/" />
+          <root url="jar://D:/programmingtools/JDK8/lib/jconsole.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -56,7 +56,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.alibaba:tools:1.8.0">
         <CLASSES>
-          <root url="jar:///usr/lib/jdk1.8.0_45/lib/tools.jar!/" />
+          <root url="jar://D:/programmingtools/JDK8/lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -120,11 +120,11 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:4.3.10.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-devtools:1.5.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-spring:1.3.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-web:1.3.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-ehcache:1.2.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-core:1.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-core:1.3.2" level="project" />
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.9.3" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-web:1.3.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-ehcache:1.2.1" level="project" />
     <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache-core:2.5.0" level="project" />
     <orderEntry type="library" name="Maven: com.github.theborakompanioni:thymeleaf-extras-shiro:1.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.crazycake:shiro-redis:2.4.2.1-RELEASE" level="project" />
