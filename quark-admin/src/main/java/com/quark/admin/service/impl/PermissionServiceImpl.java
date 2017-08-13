@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,9 +50,12 @@ public class PermissionServiceImpl extends BaseServiceImpl<PermissionDao, Permis
             user.getRoles().stream()
                     .filter(role -> role.getPermissions().size() > 0)
                     .forEach(role -> {
-                        perlist.addAll(role.getPermissions().stream().filter(p -> p.getParentId() > 0&&p.getType()==type).collect(Collectors.toList()));
+                        perlist.addAll(role.getPermissions().stream().filter(p -> p.getParentId() > 0 && p.getType() == type)
+                                .sorted(Comparator.comparing(Permission::getSort))
+                                .collect(Collectors.toList()));
                     });
         }
+
         return perlist;
     }
 

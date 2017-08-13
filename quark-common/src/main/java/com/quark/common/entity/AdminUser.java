@@ -18,7 +18,7 @@ public class AdminUser implements Serializable{
 
     @Id
     @GeneratedValue
-    private Integer Id;
+    private Integer id;
 
     @Column(unique = true,nullable = false)
     private String username;
@@ -40,11 +40,11 @@ public class AdminUser implements Serializable{
     private Set<Role> roles = new HashSet<>();
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getUsername() {
@@ -82,7 +82,7 @@ public class AdminUser implements Serializable{
     @Override
     public String toString() {
         return "AdminUser{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", enable=" + enable;

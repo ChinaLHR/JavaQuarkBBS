@@ -1,14 +1,13 @@
-*\target
-!.mvn/wrapper/maven-wrapper.jar
-
-### STS ###
-.classpath
-.project
-.settings
-*.class
-
-### IntelliJ IDEA ###
-.idea
-*.iws
+.idea/  
+*.classpath  
+*.project  
+.settings  
+.project  
+.target  
+.classpath  
+**/.settings  
+**/.classpath  
+**/target/  
+target/  
+bin/
 *.iml
-*.ipr

@@ -13,4 +13,17 @@ public interface BaseService<T> {
     void delete(Object key);
     List<T> findAll();
 
+    /**
+     * 批量删除
+     * @param iterable
+     */
+    void deleteInBatch(Iterable<T> iterable);
+
+    /**
+     * 批量保存
+     * @param iterable
+     * @return
+     */
+    List<T> save(Iterable<T> iterable);
+
 }

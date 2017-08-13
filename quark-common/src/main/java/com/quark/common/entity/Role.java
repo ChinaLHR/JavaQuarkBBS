@@ -27,6 +27,9 @@ public class Role implements Serializable{
     //角色描述
     private String description;
 
+    //是否持有角色标志
+    @Transient
+    private Integer selected;
 
     //角色与用户的关联关系
     @JsonIgnore
@@ -79,5 +82,23 @@ public class Role implements Serializable{
 
     public void setPermissions(Set<Permission> permissions) {
         this.permissions = permissions;
+    }
+
+    public Integer getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Integer selected) {
+        this.selected = selected;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", selected=" + selected +
+                '}';
     }
 }

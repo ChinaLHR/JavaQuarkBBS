@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by lhr on 17-8-1.
  */
-public abstract class BaseServiceImpl<E extends JpaRepository,T> implements BaseService<T>{
+public class BaseServiceImpl<E extends JpaRepository,T> implements BaseService<T>{
 
     @Autowired
     protected E repository;
@@ -32,4 +32,16 @@ public abstract class BaseServiceImpl<E extends JpaRepository,T> implements Base
     public List<T> findAll() {
        return repository.findAll();
     }
+
+    @Override
+    public void deleteInBatch(Iterable<T> iterable) {
+        repository.deleteInBatch(iterable);
+    }
+
+    @Override
+    public List<T> save(Iterable<T> iterable) {
+        return repository.save(iterable);
+    }
+
+
 }

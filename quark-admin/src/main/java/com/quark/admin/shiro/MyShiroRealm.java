@@ -34,17 +34,12 @@ public class MyShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-//        System.out.println( SecurityUtils.getSubject().getPrincipal().getClass().getName());
-//        AdminUser adminUser = (AdminUser) SecurityUtils.getSubject().getPrincipal();
         Integer id = (Integer) principalCollection.getPrimaryPrincipal();
-
-        List<Permission> PermissionList = permissionService.loadUserPermission(id);
+        List<Permission> permissionList = permissionService.loadUserPermission(id);
         // 权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        for(Permission p: PermissionList){
-            info.addStringPermission(p.getPerurl());
-        }
 
+        permissionList.forEach(p->info.addStringPermission(p.getPerurl()));
         return info;
     }
 

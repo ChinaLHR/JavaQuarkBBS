@@ -78,6 +78,7 @@ public class ShiroConfig {
 
         // 设置 SecurityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
+
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.html"页面
         shiroFilterFactoryBean.setLoginUrl("/login");
         // 登录成功后要跳转的链接
@@ -86,7 +87,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         //拦截器.
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-
+        filterChainDefinitionMap.put("/favicon.ico","anon");//解决弹出favicon.ico下载
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
@@ -101,6 +102,8 @@ public class ShiroConfig {
                 filterChainDefinitionMap.put(p.getPerurl(), permission);
             }
         }
+
+
         //过滤链定义，从上向下顺序执行，一般将 /**放在最为下边
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

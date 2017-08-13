@@ -4,9 +4,8 @@ import com.quark.admin.service.AdminUserService;
 import com.quark.admin.service.PermissionService;
 import com.quark.admin.service.RoleService;
 import com.quark.admin.utils.PasswordHelper;
+import com.quark.common.dao.AdminUserDao;
 import com.quark.common.entity.AdminUser;
-import com.quark.common.entity.Permission;
-import com.quark.common.entity.Role;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
-import java.util.HashSet;
-import java.util.List;
 
 /**
  * Created by lhr on 17-7-31.
@@ -31,19 +28,42 @@ public class AdminApplicationTest {
     @Autowired
     DataSource dataSource;
 
-    @Autowired
+    @Autowired(required=true)
     AdminUserService adminUserService;
 
-    @Autowired
+    @Autowired(required=true)
     PermissionService permissionService;
 
-    @Autowired
+    @Autowired(required=true)
     RoleService roleService;
+
+    @Autowired
+    AdminUserDao dao;
 
     @Test
     public void testDataSource() {
-        List<Permission> permissions = permissionService.loadUserPermissionByType(3,1);
-        permissions.forEach(p->System.out.println(p.getName()));
+        for (int i = 20; i < 40; i++) {
+            AdminUser user = new AdminUser();
+            user.setEnable(1);
+            user.setUsername("测试"+i);
+            user.setPassword("123456");
+            PasswordHelper passwordHelper = new PasswordHelper();
+            passwordHelper.encryptPassword(user);
+            adminUserService.save(user);
+        }
 
+    }
+
+
+
+    @Test
+    public void testRole(){
+//        AdminUser user1 = new AdminUser();
+//        AdminUser user2 = new AdminUser();
+//        AdminUser user3 = new AdminUser();
+//        user1.setId(11);
+//        user2.setId(12);
+//        user3.setId(13);
+        adminUserService.saveAdminEnable(new Integer[]{11,12,13});
     }
 }
