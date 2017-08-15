@@ -10,20 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
 
 @RestController
-@RequestMapping("admins")
-public class AdminUserController extends BaseController{
+@RequestMapping("/admins")
+public class AdminUserController extends BaseController {
 
     @Autowired
     private AdminUserService adminUserService;
 
     /**
      * 翻页获取管理员
+     *
      * @param adminUser
      * @param draw:请求次数
      * @param start
@@ -32,20 +31,20 @@ public class AdminUserController extends BaseController{
      */
     @GetMapping
     public PageResult getAll(AdminUser adminUser, String draw,
-                                      @RequestParam(required = false, defaultValue = "1") int start,
-                                      @RequestParam(required = false, defaultValue = "10") int length) {
-        int pageNo = start/length;
+                             @RequestParam(required = false, defaultValue = "1") int start,
+                             @RequestParam(required = false, defaultValue = "10") int length) {
+        int pageNo = start / length;
         Page<AdminUser> page = adminUserService.findByPage(adminUser, pageNo, length);
-        PageResult<List<AdminUser>> result = new PageResult<>();
-        result.setDraw(draw);
-        result.setRecordsFiltered(page.getTotalElements());
-        result.setRecordsTotal(page.getTotalElements());
-        result.setData(page.getContent());
+        PageResult<List<AdminUser>> result = new PageResult<>(
+                draw,
+                page.getTotalElements(),
+                page.getTotalElements(),
+                page.getContent());
         return result;
     }
 
     @PostMapping("/add")
-    public QuarkAdminResult addAdmin(AdminUser adminUser){
+    public QuarkAdminResult addAdmin(AdminUser adminUser) {
 
         QuarkAdminResult result = restProcessor(() -> {
             if (adminUserService.findByUserName(adminUser.getUsername()) != null)
@@ -58,10 +57,10 @@ public class AdminUserController extends BaseController{
     }
 
     @PostMapping("/delete")
-    public QuarkAdminResult deleteAdmin(@RequestParam(value = "id[]") AdminUser[] id){
+    public QuarkAdminResult deleteAdmin(@RequestParam(value = "id[]") AdminUser[] id) {
 
         QuarkAdminResult result = restProcessor(() -> {
-            List<AdminUser> collect = Stream.of(id).collect(toList());
+            List<AdminUser> collect = Arrays.asList(id);
             adminUserService.deleteInBatch(collect);
             return QuarkAdminResult.ok();
         });
@@ -70,7 +69,7 @@ public class AdminUserController extends BaseController{
 
 
     @PostMapping("/saveAdminRoles")
-    public QuarkAdminResult saveAdminRoles(Integer uid, Integer[] id){
+    public QuarkAdminResult saveAdminRoles(Integer uid, Integer[] id) {
 
         QuarkAdminResult result = restProcessor(() -> {
             adminUserService.saveAdminRoles(uid, id);
@@ -80,7 +79,7 @@ public class AdminUserController extends BaseController{
     }
 
     @PostMapping("/saveAdminEnable")
-    public QuarkAdminResult saveAdminEnable(@RequestParam(value = "id[]") Integer[] id){
+    public QuarkAdminResult saveAdminEnable(@RequestParam(value = "id[]") Integer[] id) {
         QuarkAdminResult result = restProcessor(() -> {
             adminUserService.saveAdminEnable(id);
             return QuarkAdminResult.ok();

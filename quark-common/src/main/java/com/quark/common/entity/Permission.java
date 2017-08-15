@@ -28,10 +28,14 @@ public class Permission implements Serializable{
 
     //父权限
     @Column(nullable = false)
-    private Integer parentId;
+    private Integer parentid;
 
     //排序
     private Integer sort;
+
+    //是否选中
+    @Transient
+    private String checked;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "permissions")
@@ -69,12 +73,12 @@ public class Permission implements Serializable{
         this.type = type;
     }
 
-    public Integer getParentId() {
-        return parentId;
+    public Integer getParentid() {
+        return parentid;
     }
 
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
+    public void setParentid(Integer parentid) {
+        this.parentid = parentid;
     }
 
     public Integer getSort() {
@@ -91,5 +95,13 @@ public class Permission implements Serializable{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getChecked() {
+        return checked;
+    }
+
+    public void setChecked(String checked) {
+        this.checked = checked;
     }
 }

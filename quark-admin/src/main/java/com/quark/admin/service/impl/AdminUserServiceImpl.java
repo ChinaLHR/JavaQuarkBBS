@@ -15,10 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Stream;
+import java.util.*;
+
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Created by lhr on 17-8-1.
@@ -56,8 +55,6 @@ public class AdminUserServiceImpl extends BaseServiceImpl<AdminUserDao, AdminUse
                 Predicate predicate = criteriaBuilder.and(list.toArray(new Predicate[list.size()]));
                 return predicate;
             }
-
-
         };
 
         Page<AdminUser> page = repository.findAll(specification, pageable);
@@ -67,27 +64,29 @@ public class AdminUserServiceImpl extends BaseServiceImpl<AdminUserDao, AdminUse
 
     @Override
     public void saveAdmin(AdminUser entity) {
-            entity.setEnable(1);
-            PasswordHelper passwordHelper = new PasswordHelper();
-            passwordHelper.encryptPassword(entity);
-            save(entity);
+        entity.setEnable(1);
+        PasswordHelper passwordHelper = new PasswordHelper();
+        passwordHelper.encryptPassword(entity);
+        save(entity);
     }
 
     @Override
     public void saveAdminRoles(Integer uid, Integer[] roles) {
         AdminUser adminUser = findOne(uid);
-        Set<Role> roleSet = new HashSet<>();
-        Stream.of(roles).forEach(r -> {
-            roleSet.add(roleService.findOne(r));
-        });
-        adminUser.setRoles(roleSet);
+        if (roles == null) {
+            adminUser.setRoles(new HashSet<>());
+        }
+        else{
+            Set<Role> roleSet = roleService.findAll(Arrays.asList(roles)).stream().collect(toSet());
+            adminUser.setRoles(roleSet);
+        }
         save(adminUser);
     }
 
     @Override
     public void saveAdminEnable(Integer[] ids) {
-        Stream.of(ids).forEach(i->{
-            AdminUser adminUser = findOne(i);
+
+        findAll(Arrays.asList(ids)).forEach(adminUser -> {
             if (adminUser.getEnable() == 1) {
                 adminUser.setEnable(0);
             } else {

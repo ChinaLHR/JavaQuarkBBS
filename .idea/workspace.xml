@@ -6,40 +6,41 @@
   <component name="ChangeListManager">
     <list default="true" id="81a338a1-f481-4536-a613-387aea8ac13e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/controller/PageController.class" afterPath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/controller/PageController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/controller/PermissionController.class" afterPath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/controller/PermissionController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/service/PermissionService.class" afterPath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/service/PermissionService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/service/RoleService.class" afterPath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/service/RoleService.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/service/impl/AdminUserServiceImpl.class" afterPath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/service/impl/AdminUserServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/service/impl/PermissionServiceImpl.class" afterPath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/service/impl/PermissionServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/service/impl/RoleServiceImpl.class" afterPath="$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/service/impl/RoleServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/target/test-classes/com/quark/admin/AdminApplicationTest.class" afterPath="$PROJECT_DIR$/quark-admin/target/test-classes/com/quark/admin/AdminApplicationTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/target/classes/com/quark/common/Base/BaseService.class" afterPath="$PROJECT_DIR$/quark-common/target/classes/com/quark/common/Base/BaseService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/target/classes/com/quark/common/Base/BaseServiceImpl.class" afterPath="$PROJECT_DIR$/quark-common/target/classes/com/quark/common/Base/BaseServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/target/classes/com/quark/common/dao/AdminUserDao.class" afterPath="$PROJECT_DIR$/quark-common/target/classes/com/quark/common/dao/AdminUserDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/target/classes/com/quark/common/entity/AdminUser.class" afterPath="$PROJECT_DIR$/quark-common/target/classes/com/quark/common/entity/AdminUser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/target/classes/com/quark/common/entity/Role.class" afterPath="$PROJECT_DIR$/quark-common/target/classes/com/quark/common/entity/Role.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/target/classes/com/quark/common/entity/Permission.class" afterPath="$PROJECT_DIR$/quark-common/target/classes/com/quark/common/entity/Permission.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/target/test-classes/com/quark/common/CommonApplicationTest.class" afterPath="$PROJECT_DIR$/quark-common/target/test-classes/com/quark/common/CommonApplicationTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/config/ShiroConfig.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/config/ShiroConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/base/BaseController.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/base/BaseController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/AdminUserController.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/AdminUserController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/PageController.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/PageController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/AdminUserService.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/AdminUserService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/PermissionController.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/PermissionController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/RoleController.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/RoleController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/dto/PageResult.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/dto/PageResult.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/PermissionService.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/PermissionService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/RoleService.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/RoleService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/AdminUserServiceImpl.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/AdminUserServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/PermissionServiceImpl.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/PermissionServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/RoleServiceImpl.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/RoleServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/shiro/MyShiroRealm.java" afterPath="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/shiro/MyShiroRealm.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/resources/admin.properties" afterPath="$PROJECT_DIR$/quark-admin/src/main/resources/admin.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/resources/templates/admin/admins.html" afterPath="$PROJECT_DIR$/quark-admin/src/main/resources/templates/admin/admins.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/common.html" afterPath="$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/common.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/menu.html" afterPath="$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/menu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/main/resources/templates/init.html" afterPath="$PROJECT_DIR$/quark-admin/src/main/resources/templates/init.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/src/test/java/com/quark/admin/AdminApplicationTest.java" afterPath="$PROJECT_DIR$/quark-admin/src/test/java/com/quark/admin/AdminApplicationTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/target/classes/admin.properties" afterPath="$PROJECT_DIR$/quark-admin/target/classes/admin.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/target/classes/templates/admin/admins.html" afterPath="$PROJECT_DIR$/quark-admin/target/classes/templates/admin/admins.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/target/classes/templates/common/menu.html" afterPath="$PROJECT_DIR$/quark-admin/target/classes/templates/common/menu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-admin/target/classes/templates/init.html" afterPath="$PROJECT_DIR$/quark-admin/target/classes/templates/init.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/Base/BaseService.java" afterPath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/Base/BaseService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/Base/BaseServiceImpl.java" afterPath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/Base/BaseServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/dao/AdminUserDao.java" afterPath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/dao/AdminUserDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/dao/RoleDao.java" afterPath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/dao/RoleDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/AdminUser.java" afterPath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/AdminUser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/Role.java" afterPath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/Role.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/Permission.java" afterPath="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/Permission.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quark-common/src/test/java/com/quark/common/CommonApplicationTest.java" afterPath="$PROJECT_DIR$/quark-common/src/test/java/com/quark/common/CommonApplicationTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/quark-parent/target/" />
@@ -68,15 +69,50 @@
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="roles.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/quark-admin/src/main/resources/templates/role/roles.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="271" column="22" lean-forward="false" selection-start-line="271" selection-start-column="22" selection-end-line="271" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoleServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/RoleServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="155">
+              <caret line="60" column="14" lean-forward="false" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoleController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/RoleController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="74" column="21" lean-forward="false" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Enum" />
         <option value="Class" />
         <option value="Interface" />
+        <option value="HTML File" />
       </list>
     </option>
     <option name="SCHEME" value="Project" />
@@ -85,7 +121,6 @@
     <findStrings>
       <find>addUser()</find>
       <find>jedisPool注入</find>
-      <find>datatable</find>
       <find>aop</find>
       <find>session</find>
       <find>认证</find>
@@ -101,6 +136,17 @@
       <find>boxRoleForm</find>
       <find>checkbox</find>
       <find>changeEnable</find>
+      <find>roleService</find>
+      <find>datatable</find>
+      <find>enable</find>
+      <find>roleDesc</find>
+      <find>allotResources</find>
+      <find>rid</find>
+      <find>PermissionWithSelected</find>
+      <find>selectResources</find>
+      <find>treeDemo</find>
+      <find>saveRoleResources</find>
+      <find>saveRolePermission</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -118,32 +164,22 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/quark-common/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/resources/static/css/matrix-style.css" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/quark-parent/pom.xml" />
         <option value="$PROJECT_DIR$/quark-common/pom.xml" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/resources/templates/403.html" />
-        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/PermissionService.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/top.html" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/nav.html" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/shiro/ShiroService.java" />
-        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/PermissionController.java" />
         <option value="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/dao/PermissionDao.java" />
-        <option value="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/Permission.java" />
-        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/PageController.java" />
-        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/PermissionServiceImpl.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/resources/templates/init.html" />
-        <option value="$PROJECT_DIR$/quark-admin/src/main/resources/admin.properties" />
         <option value="$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar!/javax/persistence/criteria/Path.class" />
         <option value="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/dao/BaseJpaSpecificationDao.java" />
         <option value="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/AdminUser.java" />
         <option value="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/Base/BaseJpaSpecificationDao.java" />
-        <option value="$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/menu.html" />
-        <option value="$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/common.html" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/shiro/MyShiroRealm.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/enums/StateEnum.java" />
-        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/dto/PageResult.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/exception/RepeatNameException.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/dto/QuarkAdminResult.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/exception/SqlRunntimeExecption.java" />
@@ -151,24 +187,34 @@
         <option value="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/dao/RoleDao.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/config/ShiroConfig.java" />
         <option value="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/Role.java" />
-        <option value="$PROJECT_DIR$/quark-common/src/test/java/com/quark/common/CommonApplicationTest.java" />
-        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/RoleService.java" />
-        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/RoleServiceImpl.java" />
-        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/RoleController.java" />
         <option value="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/dao/AdminUserDao.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/exception/RepeatColumnExecption.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/enums/SqlErrorEnum.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/common/ControllerProcessor.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/common/RestProcessor.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/base/ResultProcessor.java" />
-        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/base/BaseController.java" />
-        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/AdminUserController.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/AdminUserService.java" />
-        <option value="$PROJECT_DIR$/quark-admin/src/test/java/com/quark/admin/AdminApplicationTest.java" />
-        <option value="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/Base/BaseServiceImpl.java" />
+        <option value="$PROJECT_DIR$/quark-common/src/test/java/com/quark/common/CommonApplicationTest.java" />
         <option value="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/Base/BaseService.java" />
+        <option value="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/Base/BaseServiceImpl.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/AdminUserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/resources/admin.properties" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/base/BaseController.java" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/PageController.java" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/dto/PageResult.java" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/AdminUserController.java" />
         <option value="$PROJECT_DIR$/quark-admin/src/main/resources/templates/admin/admins.html" />
+        <option value="$PROJECT_DIR$/quark-admin/src/test/java/com/quark/admin/AdminApplicationTest.java" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/PermissionService.java" />
+        <option value="$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/Permission.java" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/PermissionServiceImpl.java" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/PermissionController.java" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/menu.html" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/common.html" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/RoleService.java" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/RoleServiceImpl.java" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/RoleController.java" />
+        <option value="$PROJECT_DIR$/quark-admin/src/main/resources/templates/role/roles.html" />
       </list>
     </option>
   </component>
@@ -205,7 +251,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="46" />
     <option name="y" value="14" />
     <option name="width" value="1378" />
@@ -229,9 +275,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -268,13 +313,195 @@
             <path>
               <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
               <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
-              <item name="quark-parent" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="enums" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="exception" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="role" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaQuarkCommunity" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaQuarkCommunity" type="462c0819:PsiDirectoryNode" />
+              <item name="quark-common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -406,6 +633,31 @@
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.quark.common.CommonApplication" />
       <module name="quark-common" />
       <envs />
+    </configuration>
+    <configuration name="CommonApplicationTest.TestDataSource" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.quark.common.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="quark-common" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.quark.common" />
+      <option name="MAIN_CLASS_NAME" value="com.quark.common.CommonApplicationTest" />
+      <option name="METHOD_NAME" value="TestDataSource" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
@@ -806,29 +1058,6 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <configuration name="quark-admin [clean]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="clean" />
-              </list>
-            </option>
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$/quark-admin" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-    </configuration>
     <configuration name="quark-common [clean]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
       <MavenSettings>
         <option name="myGeneralSettings" />
@@ -856,18 +1085,18 @@
       <item index="0" class="java.lang.String" itemvalue="Spring Boot.CommonApplication" />
       <item index="1" class="java.lang.String" itemvalue="Spring Boot.AdminApplication" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.AdminApplicationTest.testDataSource" />
-      <item index="3" class="java.lang.String" itemvalue="Maven.quark-admin [clean]" />
-      <item index="4" class="java.lang.String" itemvalue="Maven.quark-common [clean]" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.AdminApplicationTest.testPage" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.AdminApplicationTest.testRole" />
+      <item index="3" class="java.lang.String" itemvalue="Maven.quark-common [clean]" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.AdminApplicationTest.testPage" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.AdminApplicationTest.testRole" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.CommonApplicationTest.TestDataSource" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.AdminApplicationTest.testRole" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.AdminApplicationTest.testPage" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.AdminApplicationTest.testDataSource" />
-        <item index="3" class="java.lang.String" itemvalue="Maven.quark-common [clean]" />
-        <item index="4" class="java.lang.String" itemvalue="Maven.quark-admin [clean]" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.AdminApplicationTest.testDataSource" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.AdminApplicationTest.testRole" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.CommonApplicationTest.TestDataSource" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.AdminApplicationTest.testPage" />
+        <item index="4" class="java.lang.String" itemvalue="Maven.quark-common [clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -918,22 +1147,17 @@
       <workItem from="1502537654544" duration="13284000" />
       <workItem from="1502588930654" duration="7037000" />
       <workItem from="1502601877133" duration="1411000" />
-      <workItem from="1502617144216" duration="8291000" />
+      <workItem from="1502617144216" duration="12097000" />
+      <workItem from="1502676567938" duration="3329000" />
+      <workItem from="1502680026024" duration="330000" />
+      <workItem from="1502711466124" duration="11643000" />
+      <workItem from="1502761363484" duration="4026000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AdminApplicationTest_testPage - 2017.08.12 at 22h 14m 12s.xml">
-      <configuration name="AdminApplicationTest.testPage" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AdminApplicationTest_testPage - 2017.08.12 at 22h 23m 31s.xml">
-      <configuration name="AdminApplicationTest.testPage" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AdminApplicationTest_testRole - 2017.08.12 at 22h 12m 09s.xml">
-      <configuration name="AdminApplicationTest.testRole" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AdminApplicationTest_testRole - 2017.08.13 at 10h 52m 02s.xml">
-      <configuration name="AdminApplicationTest.testRole" configurationId="JUnit" />
+    <history-entry file="AdminApplicationTest_testDataSource - 2017.08.14 at 22h 26m 04s.xml">
+      <configuration name="AdminApplicationTest.testDataSource" configurationId="JUnit" />
     </history-entry>
     <history-entry file="AdminApplicationTest_testRole - 2017.08.13 at 10h 53m 08s.xml">
       <configuration name="AdminApplicationTest.testRole" configurationId="JUnit" />
@@ -953,9 +1177,18 @@
     <history-entry file="AdminApplicationTest_testRole - 2017.08.13 at 21h 47m 01s.xml">
       <configuration name="AdminApplicationTest.testRole" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="AdminApplicationTest_testRole - 2017.08.13 at 22h 42m 01s.xml">
+      <configuration name="AdminApplicationTest.testRole" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AdminApplicationTest_testRole - 2017.08.14 at 10h 22m 03s.xml">
+      <configuration name="AdminApplicationTest.testRole" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CommonApplicationTest_TestDataSource - 2017.08.13 at 22h 18m 51s.xml">
+      <configuration name="CommonApplicationTest.TestDataSource" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182198000" />
+    <option name="totallyTimeSpent" value="205332000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -967,7 +1200,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.095826894" sideWeight="0.49707174" order="6" side_tool="false" content_ui="tabs" />
@@ -977,13 +1211,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37761194" sideWeight="0.30746704" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3161876" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.05564142" sideWeight="0.69253296" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921174" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36785161" sideWeight="0.69253296" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921174" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.05496183" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21785174" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2700454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3724884" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -991,8 +1225,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57187015" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57187015" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1025,11 +1259,11 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47449768" sideWeight="0.69253296" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921174" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4049459" sideWeight="0.69253296" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921174" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.05496183" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21785174" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18078668" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3724884" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921174" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1045,7 +1279,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="14" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1054,71 +1288,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/1.11.6.RELEASE/spring-data-jpa-1.11.6.RELEASE.jar!/org/springframework/data/jpa/repository/JpaSpecificationExecutor.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="13" column="17" lean-forward="false" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/Permission.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar!/javax/persistence/criteria/CriteriaBuilder.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="68" column="14" lean-forward="false" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/Base/BaseJpaSpecificationDao.java" />
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/shiro/ShiroService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/PermissionService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="20" column="23" lean-forward="false" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/resources/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/resources/templates/init.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="37" lean-forward="true" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="32" lean-forward="false" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/common.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.6.RELEASE/spring-data-commons-1.13.6.RELEASE.jar!/org/springframework/data/domain/Page.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1131,20 +1300,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="41" column="75" lean-forward="false" selection-start-line="41" selection-start-column="75" selection-end-line="41" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/enums/StateEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/dto/PageResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="15" column="32" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -1163,24 +1318,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/PageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="62" column="40" lean-forward="false" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/dao/PermissionDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="17" lean-forward="false" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/resources/admin.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -1234,31 +1375,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/Role.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/dto/QuarkAdminResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/RoleServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="33" column="40" lean-forward="false" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/dao/AdminUserDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1266,17 +1382,98 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/RoleService.java">
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/common/ControllerProcessor.java" />
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/common/RestProcessor.java" />
+    <entry file="file://$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/AdminApplication.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state relative-caret-position="-95">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/exception/RepeatColumnExecption.java">
+    <entry file="file://$PROJECT_DIR$/quark-common/src/test/java/com/quark/common/CommonApplicationTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="25" />
+        <state relative-caret-position="340">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/Base/BaseService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="26" column="9" lean-forward="false" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/Base/BaseServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="42" column="42" lean-forward="false" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
+          <folding>
+            <element signature="e#905#906#0" expanded="false" />
+            <element signature="e#956#957#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/resources/admin.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1632">
+          <caret line="256" column="104" lean-forward="false" selection-start-line="256" selection-start-column="104" selection-end-line="256" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/PageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="59" column="9" lean-forward="true" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
+          <folding>
+            <element signature="e#2179#2180#0" expanded="false" />
+            <element signature="e#2226#2227#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.6.RELEASE/spring-data-commons-1.13.6.RELEASE.jar!/org/springframework/data/domain/Sort.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="5" column="39" lean-forward="false" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/base/ResultProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="20" lean-forward="true" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/resources/templates/admin/admins.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="255" column="11" lean-forward="true" selection-start-line="251" selection-start-column="6" selection-end-line="255" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/base/BaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1288,10 +1485,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/PermissionServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/enums/StateEnum.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        <state relative-caret-position="34">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding>
+            <element signature="e#199#200#0" expanded="false" />
+            <element signature="e#227#228#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/dto/QuarkAdminResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/dto/PageResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="12" column="11" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1300,129 +1516,151 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="8" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/common/ControllerProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/common/RestProcessor.java">
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/exception/RepeatColumnExecption.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="22" selection-end-column="5" />
+        <state relative-caret-position="136">
+          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/RoleController.java">
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/AdminApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="21" column="38" lean-forward="false" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/base/ResultProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-common/src/test/java/com/quark/common/CommonApplicationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/base/BaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/AdminUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1">
-          <caret line="38" column="19" lean-forward="true" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/Base/BaseServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="e#896#897#0" expanded="true" />
-            <element signature="e#944#945#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/AdminUserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="87" column="48" lean-forward="false" selection-start-line="87" selection-start-column="48" selection-end-line="87" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/Base/BaseService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="82">
+          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/quark-admin/src/test/java/com/quark/admin/AdminApplicationTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="66" column="63" lean-forward="false" selection-start-line="66" selection-start-column="63" selection-end-line="66" selection-end-column="63" />
+        <state relative-caret-position="108">
+          <caret line="42" column="57" lean-forward="false" selection-start-line="42" selection-start-column="57" selection-end-line="42" selection-end-column="57" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="27" column="30" lean-forward="false" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/PermissionService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-common/src/main/java/com/quark/common/entity/Permission.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="99" column="32" lean-forward="false" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
+          <folding>
+            <element signature="e#1305#1306#0" expanded="false" />
+            <element signature="e#1336#1337#0" expanded="false" />
+            <element signature="e#1763#1764#0" expanded="false" />
+            <element signature="e#1809#1810#0" expanded="false" />
+            <element signature="e#1847#1848#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="24" lean-forward="false" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/PermissionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="21" column="48" lean-forward="true" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/PermissionServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="66" column="28" lean-forward="false" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/resources/templates/common/common.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="48" lean-forward="true" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/AdminUserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="85" column="38" lean-forward="false" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="38" />
+        <state relative-caret-position="85">
+          <caret line="59" column="84" lean-forward="false" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/AdminUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-37">
+          <caret line="26" column="76" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/RoleService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="31" column="14" lean-forward="false" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/AdminUserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-29">
+          <caret line="82" column="24" lean-forward="true" selection-start-line="74" selection-start-column="7" selection-end-line="82" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/service/impl/RoleServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="60" column="14" lean-forward="false" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/resources/templates/admin/admins.html">
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/java/com/quark/admin/controller/RoleController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="368" column="21" lean-forward="true" selection-start-line="368" selection-start-column="21" selection-end-line="368" selection-end-column="21" />
+        <state relative-caret-position="209">
+          <caret line="74" column="21" lean-forward="false" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
           <folding>
-            <element signature="n#style#0;n#button#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quark-admin/target/classes/com/quark/admin/AdminApplication.class">
+    <entry file="file://$PROJECT_DIR$/quark-admin/src/main/resources/templates/role/roles.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-95">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#925#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="175">
+          <caret line="271" column="22" lean-forward="false" selection-start-line="271" selection-start-column="22" selection-end-line="271" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>

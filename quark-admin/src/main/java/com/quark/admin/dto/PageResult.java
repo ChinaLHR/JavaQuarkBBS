@@ -52,4 +52,12 @@ public class PageResult<T> implements Serializable {
     public void setData(T data) {
         this.data = data;
     }
+
+    public PageResult(String draw, Long recordsTotal, Long recordsFiltered, T data) {
+        this.draw = draw;
+        this.recordsTotal = recordsTotal;
+        this.recordsFiltered = recordsFiltered;
+        this.data = data;
+    }
+
 }

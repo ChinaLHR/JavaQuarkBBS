@@ -60,7 +60,7 @@ public class PageController {
         }
     }
 
-    @RequestMapping(value = {"/initPage"})
+    @RequestMapping("/initPage")
     public String InitPage(){
         return "init";
     }
@@ -68,6 +68,16 @@ public class PageController {
     @RequestMapping("/adminsPage")
     public String AdminsPage(){
         return "admin/admins";
+    }
+
+    @RequestMapping("/permissionsPage")
+    public String PermissionPage(){
+        return "permission/permissions";
+    }
+
+    @RequestMapping("/rolesPage")
+    public String RolesPage(){
+        return "role/roles";
     }
 
 

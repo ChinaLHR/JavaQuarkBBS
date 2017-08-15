@@ -20,6 +20,13 @@ public interface BaseService<T> {
     void deleteInBatch(Iterable<T> iterable);
 
     /**
+     * 批量查找
+     * @param iterable
+     * @return
+     */
+    List<T> findAll(Iterable<Integer> iterable);
+
+    /**
      * 批量保存
      * @param iterable
      * @return

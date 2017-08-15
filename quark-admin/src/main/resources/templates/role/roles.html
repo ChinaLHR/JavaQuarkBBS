@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="common/common"></head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1><a href="dashboard.html">Matrix Admin</a></h1>
+</div>
+
+<!--top-Header-menu-->
+<div th:include="common/nav :: nav"></div>
+<div th:include="common/menu :: menu"></div>
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Tables</a> </div>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                        <h5>角色列表</h5>
+                    </div>
+                    <form class="form-inline">
+                        <button type="button" shiro:hasPermission="/roles/add" onclick="$('#addRole').modal();" class="btn btn-info" style="float: right; margin-right: 1px;">新增</button>
+                        <button type="button" shiro:hasPermission="/roles/delete" onclick="delById();" class="btn btn-info" style="float: right; margin-right: 1px;">删除</button>
+                        <button type="button" shiro:hasPermission="/roles/saveRolePermission" onclick="allotPermission();" class="btn btn-info" style="float: right; margin-right: 1px;">分配权限</button>
+                    </form>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table" id="datatable" >
+                            <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" class="checkall" />
+                                </th>
+                                <th>ID</th>
+                                <th>角色名称</th>
+                                <th>角色说明</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--分配权限-->
+<div class="modal fade bs-example-modal-sm"  id="selectResources" tabindex="-1" role="dialog" aria-labelledby="selectRoleLabel">
+    <div class="modal-dialog modal-sm" role="document" style="height: 600px; "  >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="selectRoleLabel">分配权限</h4>
+            </div>
+            <div class="modal-body">
+                <form id="boxRoleForm" >
+                    <ul id="treeDemo" class="ztree"></ul>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" onclick="saveRolePermission();" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--添加角色-->
+<div class="modal fade" id="addRole" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">添加角色</h4>
+            </div>
+            <div class="modal-body">
+                <form id="roleForm">
+                    <div class="form-group">
+                        <label class="control-label">角色名称:</label>
+                        <input type="text" class="form-control" name="name" id="roleName" placeholder="请输入角色名称"/>
+                        <label class="control-label">角色描述:</label>
+                        <input type="text" class="form-control" name="description" id="roleDesc" placeholder="请输入角色描述"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" onclick="addRole();" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/js/layer.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.ztree.core.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.ztree.excheck.js}"></script>
+<script type="text/javascript">
+    $(".checkall").click(function () {
+        var check = $(this).prop("checked");
+        $(".checkchild").prop("checked", check);
+    });
+    //翻页查询
+    var table;
+    $(document).ready(function() {
+        table = $('#datatable').DataTable( {
+            "searching" : false,
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            "serverSide": true,//开启服务器模式，使用服务器端处理配置datatable
+            "processing": true,//开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
+
+            "ajax": 'roles',
+            "columns": [
+                {
+                    "sClass": "text-center",
+                    "data": "id",
+                    "render": function (data, type, full, meta) {
+                        return '<input type="checkbox"  class="checkchild"  value="' + data + '" />';
+                    },
+                    "bSortable": false
+                },
+                { "data": "id" },
+                { "data": "name" },
+                { "data": "description" },
+            ],
+            columnDefs:[
+                { "orderable": false, "targets": 1 },
+                { "orderable": false, "targets": 2 },
+                { "orderable": false, "targets": 3 },
+            ],
+
+        } );
+    } );
+
+
+    function addRole() {
+        var roleName = $("#roleName").val();
+        if(roleDesc == "" || roleDesc == undefined || roleDesc == null){
+            return layer.msg('角色名称不能为空', function(){
+                //关闭后的操作
+            });
+        }
+
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url:'roles/add',
+            data:$('#roleForm').serialize(),// 你的formid
+            async: false,
+            success: function(data) {
+                if(data.status == 200){
+                    $('#addRole').modal('hide');
+                    layer.msg('保存成功');
+                    table.ajax.reload();
+                }else{
+                    $('#addRole').modal('hide');
+                    layer.msg(data.error);
+                }
+            }
+        });
+    }
+
+
+    function delById() {
+        //jQuery获取多选按钮的值
+        var id = [];
+        $(".checkchild:checked").each(function(){
+            id.push($(this).val());
+        });
+
+        if ($(".checkchild:checked").length < 1)
+        {
+            layer.msg('请选择一条数据');
+            return;
+        }
+
+        layer.confirm('您确定要删除这些角色吗？', {
+            btn: ['确认','取消'] //按钮
+        }, function(){
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url:'roles/delete',
+                data:{id:id},
+                async: false,
+                success: function(data) {
+                    if(data.status == 200){
+                        table.ajax.reload();
+                        layer.msg('删除成功');
+                    }else{
+                        layer.msg(data.error);
+                    }
+                }
+            });
+        });
+    }
+
+    //修改角色的权限
+    var roleId;
+    function allotPermission(){
+        var rid = $(".checkchild:checked").val();
+        if ($(".checkchild:checked").length < 1)
+        {
+            layer.msg('请选择一条数据');
+            return;
+        }
+        if ($(".checkchild:checked").length > 1)
+        {
+            layer.msg('一次只能修改一条数据');
+            return;
+        }
+        roleId = rid;
+        var setting = {
+            check: {
+                enable: true,
+                chkboxType:  { "Y" : "p", "N" : "s" }
+            },
+            data: {
+                simpleData: {
+                    enable: true,
+                    idKey: "id",
+                    pIdKey: "parentid",
+                }
+            }
+        };
+
+        $.ajax({
+            async:false,
+            type : "POST",
+            data:{roleId:roleId},
+            url: "permissions/PermissionWithSelected",
+            dataType:'json',
+            success: function(data){
+
+                $.fn.zTree.init($("#treeDemo"), setting, data.data);
+                var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                zTree.expandAll(true);
+                $('#selectResources').modal();
+            }
+        });
+
+    }
+
+    //保存角色权限
+    function saveRolePermission() {
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+            checkNode= zTree.getCheckedNodes(true);
+        var pers = new Array();
+        for(var i=0;i<checkNode.length;i++){
+            pers.push(checkNode[i].id);
+        }
+        $.ajax({
+            async:false,
+            type : "POST",
+            data:{roleid:roleId,pers:pers},
+            url: "roles/saveRolePermission",
+            success: function(data){
+                if(data.status == 200){
+                    $('#selectResources').modal('hide');
+                    layer.msg('保存成功');
+                }else{
+                    $('#selectResources').modal('hide');
+                    layer.msg(data.error);
+                }
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

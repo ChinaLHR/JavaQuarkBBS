@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,9 +30,11 @@ public class CommonApplicationTest {
 
     @Test
     public void TestDataSource(){
-        System.out.println("===============");
-        List<AdminUser> all = adminUserDao.findAll();
-        System.out.println("===============");
-        List<AdminUser> users = adminUserDao.findAll();
+        AdminUser user1 = new AdminUser();
+        AdminUser user2 = new AdminUser();
+        user1.setId(3);
+        user2.setId(11);
+        List<Integer> adminUsers = Arrays.asList(3, 11);
+        adminUserDao.findAll(adminUsers);
     }
 }

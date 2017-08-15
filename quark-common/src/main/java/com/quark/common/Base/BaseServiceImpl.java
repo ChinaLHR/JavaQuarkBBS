@@ -39,6 +39,11 @@ public class BaseServiceImpl<E extends JpaRepository,T> implements BaseService<T
     }
 
     @Override
+    public List<T> findAll(Iterable<Integer> iterable) {
+        return repository.findAll(iterable);
+    }
+
+    @Override
     public List<T> save(Iterable<T> iterable) {
         return repository.save(iterable);
     }

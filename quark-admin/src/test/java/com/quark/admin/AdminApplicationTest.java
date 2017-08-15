@@ -3,9 +3,7 @@ package com.quark.admin;
 import com.quark.admin.service.AdminUserService;
 import com.quark.admin.service.PermissionService;
 import com.quark.admin.service.RoleService;
-import com.quark.admin.utils.PasswordHelper;
 import com.quark.common.dao.AdminUserDao;
-import com.quark.common.entity.AdminUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,15 +40,7 @@ public class AdminApplicationTest {
 
     @Test
     public void testDataSource() {
-        for (int i = 20; i < 40; i++) {
-            AdminUser user = new AdminUser();
-            user.setEnable(1);
-            user.setUsername("测试"+i);
-            user.setPassword("123456");
-            PasswordHelper passwordHelper = new PasswordHelper();
-            passwordHelper.encryptPassword(user);
-            adminUserService.save(user);
-        }
+       System.out.println(dataSource.getClass().getName());
 
     }
 

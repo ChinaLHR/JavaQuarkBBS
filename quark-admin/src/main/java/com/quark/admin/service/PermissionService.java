@@ -24,5 +24,13 @@ public interface PermissionService extends BaseService<Permission>{
      * @return
      */
     List<Permission> loadUserPermissionByType(Integer id,Integer type);
-    List<Permission> findByPage(int pageNo, int pageSize);
+
+    /**
+     * 根据角色ID查询用户权限
+     * @param id
+     * @return
+     */
+    List<Permission> findPermissionsAndSelected(Integer id);
+
+
 }

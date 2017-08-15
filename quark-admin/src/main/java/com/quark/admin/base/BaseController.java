@@ -18,7 +18,7 @@ public class BaseController {
         try{
             result = processor.process();
         }catch (Exception e){
-            logger.error("Sql Error Log :"+e.getMessage());
+            logger.error("Error Log :"+e.getLocalizedMessage(),e);
             result = QuarkAdminResult.error(SqlErrorEnum.RUNTIMEERROR.getErrorMessage());
         }
 

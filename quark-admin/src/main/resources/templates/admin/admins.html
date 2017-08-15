@@ -235,13 +235,13 @@
             async: false,
             success: function(data) {
                 if(data.status == 200){
-                    layer.msg('保存成功');
                     $('#addAdmin').modal('hide');
+                    layer.msg('保存成功');
                     table.ajax.reload();
                 }else(data.status == 500)
                 {
-                    layer.msg(data.error);
                     $('#addAdmin').modal('hide');
+                    layer.msg(data.error);
                 }
             }
         });
@@ -329,11 +329,11 @@
             async: false,
             success: function(data) {
                 if(data.status == 200){
+                    $('#selectRole').modal('hide');
                     layer.msg('保存成功');
-                    $('#selectRole').modal('hide');
                 }else{
-                    layer.msg(data.error);
                     $('#selectRole').modal('hide');
+                    layer.msg(data.error);
                 }
             }
         })
