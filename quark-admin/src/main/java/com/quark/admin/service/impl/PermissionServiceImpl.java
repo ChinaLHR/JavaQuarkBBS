@@ -8,6 +8,9 @@ import com.quark.common.dao.PermissionDao;
 import com.quark.common.entity.AdminUser;
 import com.quark.common.entity.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -70,6 +73,15 @@ public class PermissionServiceImpl extends BaseServiceImpl<PermissionDao, Permis
             else p.setChecked("false");
         }
         return all;
+    }
+
+    @Override
+    public Page<Permission> findByPage(int pageNo, int length) {
+        Sort.Order order = new Sort.Order(Sort.Direction.ASC, "sort");
+        Sort sort = new Sort(order);
+        PageRequest pageRequest = new PageRequest(pageNo, length,sort);
+        Page<Permission> page = repository.findAll(pageRequest);
+        return page;
     }
 
 }

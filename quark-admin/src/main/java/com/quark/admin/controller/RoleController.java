@@ -25,11 +25,11 @@ public class RoleController extends BaseController {
     private RoleService roleService;
 
     @GetMapping
-    public PageResult getAll(Role role, String draw,
+    public PageResult getAll(String draw,
                              @RequestParam(required = false, defaultValue = "1") int start,
                              @RequestParam(required = false, defaultValue = "10") int length) {
         int pageNo = start / length;
-        Page<Role> page = roleService.findByPage(role, pageNo, length);
+        Page<Role> page = roleService.findByPage(pageNo, length);
         PageResult<List<Role>> result = new PageResult<>(
                 draw,
                 page.getTotalElements(),

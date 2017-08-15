@@ -21,12 +21,11 @@ public interface RoleService extends BaseService<Role> {
 
     /**
      * 翻页查询
-     * @param role
      * @param pageNo
      * @param length
      * @return
      */
-    Page<Role> findByPage(Role role, int pageNo, int length);
+    Page<Role> findByPage(int pageNo, int length);
 
     /**
      * 保存角色的权限

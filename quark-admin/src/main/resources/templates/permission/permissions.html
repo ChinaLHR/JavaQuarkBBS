@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="common/common"></head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1><a href="dashboard.html">Matrix Admin</a></h1>
+</div>
+
+<!--top-Header-menu-->
+<div th:include="common/nav :: nav"></div>
+<div th:include="common/menu :: menu"></div>
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Tables</a> </div>
+    </div>
+    <div class="container-fluid">
+        <hr>
+        <div class="row-fluid">
+            <div class="span12">
+
+                <div class="widget-box">
+                    <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                        <h5>资源列表</h5>
+                    </div>
+                    <form class="form-inline">
+                        <button type="button" shiro:hasPermission="/permissions/add" onclick="$('#permissionsModal').modal();" class="btn btn-info" style="float: right; margin-right: 1px;">新增</button>
+                        <button type="button" shiro:hasPermission="/permissions/delete" onclick="delById();" class="btn btn-info" style="float: right; margin-right: 1px;">删除</button>
+                        <button type="button" shiro:hasPermission="/test1" onclick="delById();" class="btn btn-info" style="float: right; margin-right: 1px;">测试</button>
+                    </form>
+                    <table class="table table-bordered data-table" id="datatable" >
+                        <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" class="checkall" />
+                            </th>
+                            <th>ID</th>
+                            <th>权限名称</th>
+                            <th>父权限</th>
+                            <th>权限链接</th>
+                            <th>权限类型</th>
+                            <th>排序</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--添加权限弹框-->
+<div class="modal fade" id="permissionsModal" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">添加权限</h4>
+            </div>
+            <div class="modal-body">
+                <form id="permissionsForm">
+                    <div class="form-group">
+                        <label  class="control-label">权限名称:</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="请输入权限名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">父权限ID:</label>
+                        <input type="text" class="form-control" id="parentid" name="parentid"  placeholder="请输入父权限ID">
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">权限链接:</label>
+                        <input type="text" class="form-control" id="perurl" name="perurl"  placeholder="请输入权限链接">
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">权限类型:</label>
+                        <select class="form-control" name="type" id="type" >
+                            <option value="1">菜单</option>
+                            <option value="2">按钮</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">排序:</label>
+                        <input type="text" class="form-control" id="sort" name="sort"  placeholder="请输入排序">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" onclick="addPermission();" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--end-Footer-part-->
+<script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}" th:sr></script>
+<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/js/layer.js}"></script>
+<script type="text/javascript">
+    var table;
+    $(".checkall").click(function () {
+        var check = $(this).prop("checked");
+        $(".checkchild").prop("checked", check);
+    });
+    $(document).ready(function() {
+        table = $('#datatable').DataTable( {
+            "searching" : false,
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            "serverSide": true,//开启服务器模式，使用服务器端处理配置datatable
+            "processing": true,//开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
+
+            "ajax": 'permissions',
+            "columns": [
+                {
+                    "sClass": "text-center",
+                    "data": "id",
+                    "render": function (data, type, full, meta) {
+                        return '<input type="checkbox"  class="checkchild"  value="' + data + '" />';
+                    },
+                    "bSortable": false
+                },
+                { "data": "id" },
+                { "data": "name" },
+                { "data": "parentid" },
+                { "data": "perurl" },
+                { "data": "type" },
+                { "data": "sort" },
+            ],
+            columnDefs:[
+                { "orderable": false, "targets": 1 },
+                { "orderable": false, "targets": 2 },
+                { "orderable": false, "targets": 3 },
+                { "orderable": false, "targets": 4 },
+                {
+                    "orderable": false,
+                    "render": function(data, type, row) {
+                        if(data==1){
+                            return "菜单";
+                        }else if(data==2){
+                            return "按钮";
+                        }else{
+                            return "其他";
+                        }
+                    },
+                    "targets": 5
+                },
+                { "orderable": false, "targets": 6 }
+            ],
+
+        } );
+
+
+
+    } );
+
+//    添加权限
+    function addPermission() {
+        var name = $("#name").val();
+        var parentId = $("#parentid").val();
+        var resUrl = $("#perurl").val();
+        var sort = $("#sort").val();
+
+        if(name == "" || name == undefined || name == null){
+            return layer.msg('权限名称不能为空', function(){
+
+            });
+        }
+        if(parentId == "" || parentId == undefined || parentId == null){
+            return layer.msg('父权限id不能为空', function(){
+
+            });
+        }
+        if(resUrl == "" || resUrl == undefined || resUrl == null){
+            return layer.msg('权限链接不能为空', function(){
+
+            });
+        }
+        if(sort == "" || sort == undefined || sort == null){
+            return layer.msg('权限排序不能为空', function(){
+
+            });
+        }
+
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url:'permissions/add',
+            data:$('#permissionsForm').serialize(),
+            async: false,
+            success: function(data) {
+                if(data.status == 200){
+                    $('#permissionsModal').modal('hide');
+                    table.ajax.reload();
+                    layer.msg('保存成功');
+                }else{
+                    $('#permissionsModal').modal('hide');
+                    layer.msg(data.error);
+                }
+            }
+        });
+    }
+//删除权限
+    function delById() {
+        //jQuery获取多选按钮的值
+        var id = [];
+        $(".checkchild:checked").each(function(){
+            id.push($(this).val());
+        });
+
+        if ($(".checkchild:checked").length < 1)
+        {
+            layer.msg('请选择一条数据');
+            return;
+        }
+        layer.confirm('您确定要删除该权限吗？', {
+            btn: ['确认','取消'] //按钮
+        }, function(){
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url:'permissions/delete',
+                data:{id:id},
+                async: false,
+                success: function(data) {
+                    if(data.status == 200){
+                        table.ajax.reload();
+                        layer.msg('删除成功');
+                    }else{
+                        layer.msg(data.error);
+                    }
+                }
+            });
+        });
+
+    }
+
+</script>
+
+</body>
+</html>

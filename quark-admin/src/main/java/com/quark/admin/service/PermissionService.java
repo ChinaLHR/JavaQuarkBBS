@@ -2,6 +2,7 @@ package com.quark.admin.service;
 
 import com.quark.common.Base.BaseService;
 import com.quark.common.entity.Permission;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -32,5 +33,11 @@ public interface PermissionService extends BaseService<Permission>{
      */
     List<Permission> findPermissionsAndSelected(Integer id);
 
-
+    /**
+     * 翻页查询
+     * @param pageNo
+     * @param length
+     * @return
+     */
+    Page<Permission> findByPage(int pageNo, int length);
 }
