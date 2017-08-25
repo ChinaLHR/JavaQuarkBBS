@@ -80,5 +80,8 @@ public class PageController {
         return "role/roles";
     }
 
-
+    @RequestMapping("/usersPage")
+    public String UsersPage(){
+        return "user/users";
+    }
 }

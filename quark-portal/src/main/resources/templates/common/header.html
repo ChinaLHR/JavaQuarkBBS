@@ -16,21 +16,6 @@
         </div>
 
         <div class="nav-user">
-            <!-- 未登入状态 -->
-            <!--<a class="unlogin" href="#"><i class="iconfont icon-touxiang"></i></a>-->
-            <!--<span><a th:href="@{/user/login}">登入</a><a th:href="@{/user/register}">注册</a></span>-->
-
-
-            <!-- 登入后的状态 -->
-
-            <!--<a class="avatar" th:href="@{/user/setting}">-->
-              <!--<img src="http://tp4.sinaimg.cn/1345566427/180/5730976522/0">-->
-              <!--<cite>LHR</cite>-->
-            <!--</a>-->
-            <!--<div class="nav">-->
-              <!--<a th:href="@{/user/setting}"><i class="iconfont icon-shezhi"></i>设置</a>-->
-              <!--<a th:href="@{/user/logout}"><i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了</a>-->
-            <!--</div>-->
 
         </div>
     </div>
@@ -73,7 +58,7 @@
                    deleteCookie();
                    location.href = "/index";
                }else{
-                   layer.msg(obj.error);
+                   layer.msg(obj.error,{icon:5});
                }
             });
 

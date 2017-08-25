@@ -40,7 +40,9 @@ public class RestApplicationTest {
 
     @Test
     public void testDataSource() {
-//        redisTemplate.delete();
+        for (int i = 30; i < 60; i++) {
+           userService.createUser(String.valueOf(i)+"tulin@gmail.com","图灵"+i+"号","123456");
+        }
     }
 
 }

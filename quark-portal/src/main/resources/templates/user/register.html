@@ -80,22 +80,28 @@
             var password = $("#L_pass").val();
             var repassword = $("#L_repass").val();
             if (password.length>16||password.length<6) {
-                layer.msg("密码请输入6到16个字符");
+                layer.msg("密码请输入6到16个字符",{icon:7});
                 return false;
             }
             if (password!==repassword){
-                layer.msg("两次不密码一致");
+                layer.msg("两次不密码一致",{icon:7});
                 return false;
             }
             $.post(quark_register_api, data.field,
                 function (data) {
                     if (data.status == 200) {
-                        location.href = "/user/login";
+//                        location.href = "/user/login";
+                        layer.msg("注册成功", {
+                            icon: 1,
+                            time: 2000 //2秒关闭
+                        }, function(){
+                            location.href = "/user/login";
+                        });
 
                     } else if (data.status == 400) {
-                        layer.msg(data.error);
+                        layer.msg(data.error,{icon:7});
                     } else {
-                        layer.msg(data.error);
+                        layer.msg(data.error,{icon:5});
                     }
                 }, "json");
 

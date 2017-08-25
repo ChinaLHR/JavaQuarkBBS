@@ -67,24 +67,23 @@
 
 
         form.on('submit(*)', function (data) {
-            var email = $("#email").val();
-            if (!email.match(/^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$|^1[3|4|5|7|8]\d{9}$/)) {
-                layer.msg("邮箱输入格式错误！");
-                return false;
-            }
+
             $.post(quark_login_api, data.field,
                 function (data) {
                     if (data.status == 200) {
-//                        layer.msg("登录成功："+ data.data);
                         //设置Cookie
                         setCookie(data.data)
-                        location.href = "/index";
-
+                        layer.msg("登录成功", {
+                            icon: 1,
+                            time: 2000 //2秒关闭
+                        }, function(){
+                            location.href = "/index";
+                        });
 
                     } else if (data.status == 400) {
-                        layer.msg(data.error);
+                        layer.msg(data.error,{icon:7});
                     } else {
-                        layer.msg(data.error);
+                        layer.msg(data.error,{icon:5});
                     }
                 }, "json");
 

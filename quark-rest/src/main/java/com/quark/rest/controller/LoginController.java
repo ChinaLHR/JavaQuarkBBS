@@ -62,7 +62,6 @@ public class LoginController extends BaseController {
                 return QuarkResult.warn("用户邮箱不存在，请重新输入");
             if (!loginUser.getPassword().equals(DigestUtils.md5DigestAsHex(password.getBytes())))
                 return QuarkResult.warn("用户密码错误，请重新输入");
-
             String token = userService.LoginUser(loginUser);
             return QuarkResult.ok(token);
         });
@@ -91,7 +90,6 @@ public class LoginController extends BaseController {
     @PostMapping("/logout")
     public QuarkResult logout(String token) {
         QuarkResult result = restProcessor(() -> {
-            System.out.println("logout:"+token);
             userService.LogoutUser(token);
             return QuarkResult.ok();
         });

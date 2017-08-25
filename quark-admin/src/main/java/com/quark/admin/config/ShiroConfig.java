@@ -87,7 +87,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         //拦截器.
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/favicon.ico","anon");//解决弹出favicon.ico下载
+        filterChainDefinitionMap.put("/favicon.png","anon");//解决弹出favicon.ico下载
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
