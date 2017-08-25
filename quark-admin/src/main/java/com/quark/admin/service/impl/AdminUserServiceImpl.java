@@ -3,7 +3,7 @@ package com.quark.admin.service.impl;
 import com.quark.admin.service.AdminUserService;
 import com.quark.admin.service.RoleService;
 import com.quark.admin.utils.PasswordHelper;
-import com.quark.common.Base.BaseServiceImpl;
+import com.quark.common.base.BaseServiceImpl;
 import com.quark.common.dao.AdminUserDao;
 import com.quark.common.entity.AdminUser;
 import com.quark.common.entity.Role;

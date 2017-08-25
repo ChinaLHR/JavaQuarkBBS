@@ -1,9 +1,9 @@
 package com.quark.admin.controller;
 
-import com.quark.admin.base.BaseController;
-import com.quark.admin.dto.PageResult;
-import com.quark.admin.dto.QuarkAdminResult;
 import com.quark.admin.service.RoleService;
+import com.quark.common.base.BaseController;
+import com.quark.common.dto.PageResult;
+import com.quark.common.dto.QuarkResult;
 import com.quark.common.entity.Permission;
 import com.quark.common.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,36 +40,36 @@ public class RoleController extends BaseController {
     }
 
     @PostMapping("/rolesWithSelected")
-    public QuarkAdminResult rolesWithSelected(Integer uid) {
-        QuarkAdminResult result = roleService.findRolesAndSelected(uid);
+    public QuarkResult rolesWithSelected(Integer uid) {
+        QuarkResult result = roleService.findRolesAndSelected(uid);
         return result;
     }
 
     @PostMapping("/add")
-    public QuarkAdminResult add(Role role) {
-        QuarkAdminResult result = restProcessor(() -> {
+    public QuarkResult add(Role role) {
+        QuarkResult result = restProcessor(() -> {
             roleService.save(role);
-            return QuarkAdminResult.ok();
+            return QuarkResult.ok();
         });
         return result;
     }
 
     @PostMapping("/delete")
-    public QuarkAdminResult delete(@RequestParam(value = "id[]") Role[] id){
-        QuarkAdminResult result = restProcessor(() -> {
+    public QuarkResult delete(@RequestParam(value = "id[]") Role[] id){
+        QuarkResult result = restProcessor(() -> {
             roleService.deleteInBatch(Arrays.asList(id));
-            return QuarkAdminResult.ok();
+            return QuarkResult.ok();
         });
 
         return result;
     }
 
     @PostMapping("/saveRolePermission")
-    public QuarkAdminResult saveRolePermission(Integer roleid, @RequestParam(value = "pers[]") Permission[] pers){
+    public QuarkResult saveRolePermission(Integer roleid, @RequestParam(value = "pers[]") Permission[] pers){
 
-        QuarkAdminResult result = restProcessor(() -> {
+        QuarkResult result = restProcessor(() -> {
             roleService.saveRolePermission(roleid, pers);
-            return QuarkAdminResult.ok();
+            return QuarkResult.ok();
         });
 
         return result;

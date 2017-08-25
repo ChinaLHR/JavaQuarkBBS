@@ -1,0 +1,82 @@
+<!--header fragment-->
+<div th:fragment="header" xmlns:th="http://www.thymeleaf.org">
+<div class="header">
+    <div class="main">
+        <a class="logo" href="/" title="Fly">Quark社区</a>
+        <div class="nav">
+            <a class="nav-this" href="#">
+                <i class="iconfont icon-wenda"></i>问答
+            </a>
+            <a class="nav-this" href="#">
+                <i class="iconfont icon-wenda"></i>标签
+            </a>
+            <a href="http://www.layui.com/" target="_blank">
+                <i class="iconfont icon-ui"></i>框架
+            </a>
+        </div>
+
+        <div class="nav-user">
+            <!-- 未登入状态 -->
+            <!--<a class="unlogin" href="#"><i class="iconfont icon-touxiang"></i></a>-->
+            <!--<span><a th:href="@{/user/login}">登入</a><a th:href="@{/user/register}">注册</a></span>-->
+
+
+            <!-- 登入后的状态 -->
+
+            <!--<a class="avatar" th:href="@{/user/setting}">-->
+              <!--<img src="http://tp4.sinaimg.cn/1345566427/180/5730976522/0">-->
+              <!--<cite>LHR</cite>-->
+            <!--</a>-->
+            <!--<div class="nav">-->
+              <!--<a th:href="@{/user/setting}"><i class="iconfont icon-shezhi"></i>设置</a>-->
+              <!--<a th:href="@{/user/logout}"><i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了</a>-->
+            <!--</div>-->
+
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script th:src="@{/js/jquery.cookie.js}"></script>
+<script th:src="@{/js/quark_api.js}"></script>
+<script type="text/javascript">
+    //获取用户信息渲染页面
+        var token =getCookie();
+        var htm;
+        $.get(quark_getUser_api+token,function (data) {
+            if (data.status == 200){
+                htm =  "<a class='avatar' href='/user/setting'>"+
+                    "<img src='http://tp4.sinaimg.cn/1345566427/180/5730976522/0'>"+
+                    "<cite>"+data.data.username+"</cite>"+
+                    "</a>"+
+                    "<div class='nav'>"+
+                    "<a href='/user/setting'><i class='iconfont icon-shezhi'></i>设置</a>"+
+                    "<a href='' onclick='logout()'><i class='iconfont icon-tuichu' style='top: 0; font-size: 22px;'></i>退了</a>"+
+                    "</div>";
+            }else{
+                htm ="<a class='unlogin' href='#'><i class='iconfont icon-touxiang'></i></a>"+
+                "<span><a href='/user/login'>登入</a><a href='/user/register'>注册</a></span>";
+            }
+
+            $(".nav-user").append(htm);
+        });
+
+//登出操作
+        function logout() {
+            var data = getCookie();
+
+            $.post(quark_logout_api,{
+                token:data
+            },function (obj) {
+               if (obj.status == 200){
+                   deleteCookie();
+                   location.href = "/index";
+               }else{
+                   layer.msg(obj.error);
+               }
+            });
+
+        }
+</script>
+</div>

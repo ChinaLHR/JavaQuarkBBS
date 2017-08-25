@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+</head>
+<body>
+
+<div th:include="common/header::header"></div>
+
+<div class="main layui-clear">
+
+    <div class="fly-panel fly-panel-user" pad20>
+        <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">登入</li>
+                <li><a th:href="@{/user/register}">注册</a></li>
+            </ul>
+            <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-form layui-form-pane">
+                        <form method="post">
+                            <div class="layui-form-item">
+                                <label for="email" class="layui-form-label">邮箱</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="email" name="email" required lay-verify="email"
+                                           autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="password" class="layui-form-label">密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" id="password" name="password" required lay-verify="required"
+                                           autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <button class="layui-btn" lay-filter="*" lay-submit>立即登录</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div th:include="common/footer::footer"></div>
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/layui/lay/dest/layui.all.js}"></script>
+<script th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script th:src="@{/js/jquery.cookie.js}"></script>
+<script th:src="@{/js/quark_api.js}"></script>
+<script>
+
+    layui.use(['form', 'layedit', 'laydate'], function () {
+
+
+        var form = layui.form(),
+            layer = layui.layer,
+            laydate = layui.laydate;
+
+
+        form.on('submit(*)', function (data) {
+            var email = $("#email").val();
+            if (!email.match(/^[a-z0-9._%-]+@([a-z0-9-]+\.)+[a-z]{2,4}$|^1[3|4|5|7|8]\d{9}$/)) {
+                layer.msg("邮箱输入格式错误！");
+                return false;
+            }
+            $.post(quark_login_api, data.field,
+                function (data) {
+                    if (data.status == 200) {
+//                        layer.msg("登录成功："+ data.data);
+                        //设置Cookie
+                        setCookie(data.data)
+                        location.href = "/index";
+
+
+                    } else if (data.status == 400) {
+                        layer.msg(data.error);
+                    } else {
+                        layer.msg(data.error);
+                    }
+                }, "json");
+
+            return false;
+        });
+    });
+
+</script>
+
+</body>
+</html>

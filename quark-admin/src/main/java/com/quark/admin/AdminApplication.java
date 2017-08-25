@@ -15,19 +15,6 @@ import java.util.Properties;
 @EnableCaching//缓存支持
 public class AdminApplication {
 
-//    @Bean
-//    public EmbeddedServletContainerCustomizer containerCustomizer() {
-//
-//        return (container -> {
-//            ErrorPage error403Page = new ErrorPage(HttpStatus.UNAUTHORIZED, "/403.html");
-//            ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/templates/404.html");
-//            ErrorPage error500Page = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html");
-//
-//            container.addErrorPages(error403Page, error404Page, error500Page);
-//        });
-//    }
-
-
     public static void main(String[] args) throws IOException {
         //更改properties配置文件名称,避免依赖冲突
         Properties properties = new Properties();

@@ -2,7 +2,7 @@ package com.quark.admin.service.impl;
 
 import com.quark.admin.service.PermissionService;
 import com.quark.admin.service.RoleService;
-import com.quark.common.Base.BaseServiceImpl;
+import com.quark.common.base.BaseServiceImpl;
 import com.quark.common.dao.AdminUserDao;
 import com.quark.common.dao.PermissionDao;
 import com.quark.common.entity.AdminUser;

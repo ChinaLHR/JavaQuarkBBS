@@ -1,7 +1,7 @@
 package com.quark.admin.service;
 
-import com.quark.admin.dto.QuarkAdminResult;
-import com.quark.common.Base.BaseService;
+import com.quark.common.base.BaseService;
+import com.quark.common.dto.QuarkResult;
 import com.quark.common.entity.Permission;
 import com.quark.common.entity.Role;
 import org.springframework.data.domain.Page;
@@ -17,7 +17,7 @@ public interface RoleService extends BaseService<Role> {
      * @param id
      * @return
      */
-    QuarkAdminResult findRolesAndSelected(Integer id);
+    QuarkResult findRolesAndSelected(Integer id);
 
     /**
      * 翻页查询

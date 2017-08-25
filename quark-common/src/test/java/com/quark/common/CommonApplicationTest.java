@@ -1,7 +1,6 @@
 package com.quark.common;
 
-import com.quark.common.dao.AdminUserDao;
-import com.quark.common.entity.AdminUser;
+import com.quark.common.dao.UserDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by lhr on 17-7-30.
@@ -25,16 +22,11 @@ public class CommonApplicationTest {
     private DataSource dataSource;
 
     @Autowired
-    private AdminUserDao adminUserDao;
+    private UserDao UserDao;
 
 
     @Test
     public void TestDataSource(){
-        AdminUser user1 = new AdminUser();
-        AdminUser user2 = new AdminUser();
-        user1.setId(3);
-        user2.setId(11);
-        List<Integer> adminUsers = Arrays.asList(3, 11);
-        adminUserDao.findAll(adminUsers);
+
     }
 }

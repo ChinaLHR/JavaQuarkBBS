@@ -1,10 +1,10 @@
 package com.quark.admin.controller;
 
-import com.quark.admin.base.BaseController;
-import com.quark.admin.dto.PageResult;
-import com.quark.admin.dto.QuarkAdminResult;
 import com.quark.admin.service.PermissionService;
 import com.quark.admin.shiro.ShiroService;
+import com.quark.common.base.BaseController;
+import com.quark.common.dto.PageResult;
+import com.quark.common.dto.QuarkResult;
 import com.quark.common.entity.Permission;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/permissions")
-public class PermissionController extends BaseController{
+public class PermissionController extends BaseController {
     @Autowired
     private PermissionService permissionService;
 
@@ -34,10 +34,10 @@ public class PermissionController extends BaseController{
     }
 
     @PostMapping("/PermissionWithSelected")
-    public QuarkAdminResult PermissionWithSelected(Integer roleId){
-        QuarkAdminResult result = restProcessor(() -> {
+    public QuarkResult PermissionWithSelected(Integer roleId){
+        QuarkResult result = restProcessor(() -> {
             List<Permission> data = permissionService.findPermissionsAndSelected(roleId);
-            return QuarkAdminResult.ok(data);
+            return QuarkResult.ok(data);
         });
 
         return result;
@@ -45,8 +45,8 @@ public class PermissionController extends BaseController{
 
     @GetMapping
     public PageResult getAll(String draw,
-                                         @RequestParam(required = false, defaultValue = "1") int start,
-                                         @RequestParam(required = false, defaultValue = "10") int length){
+                             @RequestParam(required = false, defaultValue = "1") int start,
+                             @RequestParam(required = false, defaultValue = "10") int length){
         int pageNo = start/length;
         Page<Permission> page = permissionService.findByPage(pageNo, length);
         PageResult<List<Permission>> result = new PageResult<>(
@@ -59,23 +59,23 @@ public class PermissionController extends BaseController{
     }
 
     @PostMapping("/add")
-    public QuarkAdminResult add(Permission permission) {
-        QuarkAdminResult result = restProcessor(() -> {
+    public QuarkResult add(Permission permission) {
+        QuarkResult result = restProcessor(() -> {
             permissionService.save(permission);
             //更新权限
             shiroService.updatePermission();
-            return QuarkAdminResult.ok();
+            return QuarkResult.ok();
         });
         return result;
     }
 
     @PostMapping("/delete")
-    public QuarkAdminResult delete(@RequestParam(value = "id[]") Permission[] id){
-        QuarkAdminResult result = restProcessor(() -> {
+    public QuarkResult delete(@RequestParam(value = "id[]") Permission[] id){
+        QuarkResult result = restProcessor(() -> {
             permissionService.deleteInBatch(Arrays.asList(id));
             //更新权限
             shiroService.updatePermission();
-            return QuarkAdminResult.ok();
+            return QuarkResult.ok();
         });
         return result;
     }

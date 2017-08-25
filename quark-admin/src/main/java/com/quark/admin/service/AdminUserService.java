@@ -1,6 +1,6 @@
 package com.quark.admin.service;
 
-import com.quark.common.Base.BaseService;
+import com.quark.common.base.BaseService;
 import com.quark.common.entity.AdminUser;
 import org.springframework.data.domain.Page;
 

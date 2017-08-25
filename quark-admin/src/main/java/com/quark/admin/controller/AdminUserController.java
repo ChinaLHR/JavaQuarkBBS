@@ -1,10 +1,10 @@
 package com.quark.admin.controller;
 
-import com.quark.admin.base.BaseController;
-import com.quark.admin.dto.PageResult;
-import com.quark.admin.dto.QuarkAdminResult;
 import com.quark.admin.enums.SqlErrorEnum;
 import com.quark.admin.service.AdminUserService;
+import com.quark.common.base.BaseController;
+import com.quark.common.dto.PageResult;
+import com.quark.common.dto.QuarkResult;
 import com.quark.common.entity.AdminUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -44,45 +44,45 @@ public class AdminUserController extends BaseController {
     }
 
     @PostMapping("/add")
-    public QuarkAdminResult addAdmin(AdminUser adminUser) {
+    public QuarkResult addAdmin(AdminUser adminUser) {
 
-        QuarkAdminResult result = restProcessor(() -> {
+        QuarkResult result = restProcessor(() -> {
             if (adminUserService.findByUserName(adminUser.getUsername()) != null)
-                return QuarkAdminResult.error(SqlErrorEnum.REPEATCOLUMN.getErrorMessage());
+                return QuarkResult.error(SqlErrorEnum.REPEATCOLUMN.getErrorMessage());
             adminUserService.saveAdmin(adminUser);
-            return QuarkAdminResult.ok();
+            return QuarkResult.ok();
         });
 
         return result;
     }
 
     @PostMapping("/delete")
-    public QuarkAdminResult deleteAdmin(@RequestParam(value = "id[]") AdminUser[] id) {
+    public QuarkResult deleteAdmin(@RequestParam(value = "id[]") AdminUser[] id) {
 
-        QuarkAdminResult result = restProcessor(() -> {
+        QuarkResult result = restProcessor(() -> {
             List<AdminUser> collect = Arrays.asList(id);
             adminUserService.deleteInBatch(collect);
-            return QuarkAdminResult.ok();
+            return QuarkResult.ok();
         });
         return result;
     }
 
 
     @PostMapping("/saveAdminRoles")
-    public QuarkAdminResult saveAdminRoles(Integer uid, Integer[] id) {
+    public QuarkResult saveAdminRoles(Integer uid, Integer[] id) {
 
-        QuarkAdminResult result = restProcessor(() -> {
+        QuarkResult result = restProcessor(() -> {
             adminUserService.saveAdminRoles(uid, id);
-            return QuarkAdminResult.ok();
+            return QuarkResult.ok();
         });
         return result;
     }
 
     @PostMapping("/saveAdminEnable")
-    public QuarkAdminResult saveAdminEnable(@RequestParam(value = "id[]") Integer[] id) {
-        QuarkAdminResult result = restProcessor(() -> {
+    public QuarkResult saveAdminEnable(@RequestParam(value = "id[]") Integer[] id) {
+        QuarkResult result = restProcessor(() -> {
             adminUserService.saveAdminEnable(id);
-            return QuarkAdminResult.ok();
+            return QuarkResult.ok();
         });
         return result;
     }
