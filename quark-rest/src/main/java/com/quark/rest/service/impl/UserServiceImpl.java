@@ -47,7 +47,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
         User user = new User();
         user.setEmail(email);
         user.setUsername(username);
-        user.setIcon("/");//设置默认图片
         user.setInitTime(new Date());
         user.setPassword(DigestUtils.md5DigestAsHex(password.getBytes()));
         repository.save(user);
@@ -74,4 +73,5 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
         RedisUtils<User> redisUtils = new RedisUtils<>(redisTemplate);
         redisUtils.deleteSet(token);
     }
+
 }

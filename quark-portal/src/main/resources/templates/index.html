@@ -16,26 +16,97 @@
         <div class="content">
             <div class="fly-tab fly-tab-index">
         <span>
-          <a href="jie/index.html">全部</a>
-          <a href="jie/index.html">未结帖</a>
-          <a href="jie/index.html">已采纳</a>
-          <a href="jie/index.html">精帖</a>
-          <a href="user/index.html">我的帖</a>
+          <a href="/index">全部帖</a>
+           <a href="/index?type=good">精品帖</a>
+           <a href="/index?type=top">置顶帖</a>
         </span>
-                <form action="http://cn.bing.com/search" class="fly-search">
+                <form action="/index" method="get" class="fly-search">
                     <i class="iconfont icon-sousuo"></i>
-                    <input class="layui-input" autocomplete="off" placeholder="搜索内容，回车跳转" type="text" name="q">
+                    <input class="layui-input" autocomplete="off" placeholder="搜索内容，回车跳转" type="text"
+                           name="search">
                 </form>
-                <a href="jie/add.html" class="layui-btn jie-add">发布问题</a>
+                <a th:href="@{/posts/add}" class="layui-btn jie-add">发布帖子</a>
             </div>
 
-
+            <ul class="fly-list">
+                <script id="posts" type="text/html">
+                    <ul>
+                        {{# layui.each(d.data, function(index, item){ }}
+                        <li class="fly-list-li">
+                            <a href="" class="fly-list-avatar">
+                                <img src="{{item.user.icon}}" alt="">
+                            </a>
+                            <h2 class="fly-tip">
+                                <a href="">{{ item.title }}</a>
+                                {{ item.top == true ? '<span class="fly-tip-stick">置顶</span>' :'' }}
+                                {{ item.good == true ? '<span class="fly-tip-jing">精帖</span>' : ''}}
+                            </h2>
+                            <p>
+                                <span><a href="#">{{ item.user.username }}</a></span>
+                                <span>{{item.initTime}} </span>
+                                <span>{{item.label.details}}</span>
+                                <span class="fly-list-hint">
+                                            <i class="iconfont" title="回答">&#xe60c;</i> {{ item.replyCount }}
+                                </span>
+                            </p>
+                        </li>
+                        {{# }); }} {{# if(d.total === 0){ }} {{# } }}
+                    </ul>
+                </script>
+                <div id="postss"></div>
+            </ul>
+            <div id="pager"></div>
         </div>
     </div>
 </div>
 <div th:include="common/footer::footer"></div>
 <script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script th:src="@{/js/quark_api.js}"></script>
 <script>
+
+    <!--根据url param 翻页获取信息-->
+    function loadPosts(laytpl, laypage, pageNo, renderpager) {
+        var type = $.getUrlParam('type');
+        var search = $.getUrlParam('search');
+        $.get(quark_posts_get, {
+            pageNo: pageNo,
+            length: 10,
+            type: type,
+            search: search
+        }, function (data) {
+            var posts = $("#posts").html();
+            laytpl(posts).render(data, function (html) {
+                $("#postss").html(html);
+            });
+
+            if (!renderpager) return;
+
+            laypage.render({
+                elem: 'pager'
+                , count: data.pageSize //总页数
+                , jump: function (obj, first) {
+                    //得到了当前页，用于向服务端请求对应数据
+                    if (!first) {
+                        loadPosts(laytpl, laypage, obj.curr, false);
+                    }
+                }
+            });
+        });
+    }
+
+    layui.use(['laypage', 'laytpl'], function () {
+        var laytpl = layui.laytpl;
+        var laypage = layui.laypage;
+
+        loadPosts(laytpl, laypage, 1, true);
+
+    });
+
+    function search() {
+        var value = $('#search').val();
+        alert(value)
+    }
 
 </script>
 

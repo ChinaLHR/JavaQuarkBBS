@@ -56,4 +56,5 @@ public interface UserService extends BaseService<User> {
      * @param token
      */
     void LogoutUser(String token);
+
 }

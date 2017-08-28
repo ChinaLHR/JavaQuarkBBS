@@ -1,7 +1,6 @@
 package com.quark.common.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.quark.common.utils.Constants;
 
 import javax.persistence.*;
@@ -22,9 +21,10 @@ public class Posts implements Serializable {
     @GeneratedValue
     private Integer id;
 
-    //标签Id
-    @Column(name = "label_id")
-    private Integer labelId;
+    //与标签的关系
+    @ManyToOne
+    @JoinColumn(nullable = false, name = "label_id")
+    private Label label;
 
     //标题
     @Column(unique = true, nullable = false)
@@ -48,7 +48,6 @@ public class Posts implements Serializable {
     //与用户的关联关系
     @ManyToOne
     @JoinColumn(nullable = false, name = "user_id")
-    @JsonIgnore
     private User user;
 
 
@@ -65,12 +64,12 @@ public class Posts implements Serializable {
         this.id = id;
     }
 
-    public Integer getLabelId() {
-        return labelId;
+    public Label getLabel() {
+        return label;
     }
 
-    public void setLabelId(Integer labelId) {
-        this.labelId = labelId;
+    public void setLabel(Label label) {
+        this.label = label;
     }
 
     public String getTitle() {
@@ -129,4 +128,18 @@ public class Posts implements Serializable {
         this.replyCount = replyCount;
     }
 
+    @Override
+    public String toString() {
+        return "Posts{" +
+                "id=" + id +
+                ", label=" + label +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", initTime=" + initTime +
+                ", top=" + top +
+                ", good=" + good +
+                ", user=" + user +
+                ", replyCount=" + replyCount +
+                '}';
+    }
 }

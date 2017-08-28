@@ -1,6 +1,5 @@
 package com.quark.admin.controller;
 
-import com.quark.admin.enums.SqlErrorEnum;
 import com.quark.admin.service.AdminUserService;
 import com.quark.common.base.BaseController;
 import com.quark.common.dto.PageResult;
@@ -48,7 +47,7 @@ public class AdminUserController extends BaseController {
 
         QuarkResult result = restProcessor(() -> {
             if (adminUserService.findByUserName(adminUser.getUsername()) != null)
-                return QuarkResult.error(SqlErrorEnum.REPEATCOLUMN.getErrorMessage());
+                return QuarkResult.error("用户名重复");
             adminUserService.saveAdmin(adminUser);
             return QuarkResult.ok();
         });

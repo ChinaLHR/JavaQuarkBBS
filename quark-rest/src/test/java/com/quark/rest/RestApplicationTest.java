@@ -1,6 +1,7 @@
 package com.quark.rest;
 
 import com.quark.common.dao.AdminUserDao;
+import com.quark.rest.service.PostsService;
 import com.quark.rest.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +34,9 @@ public class RestApplicationTest {
     DataSource dataSource;
 
     @Autowired
+    PostsService postsService;
+
+    @Autowired
     AdminUserDao dao;
 
     @Value( "${Redis_User_Key}" )
@@ -40,9 +44,10 @@ public class RestApplicationTest {
 
     @Test
     public void testDataSource() {
-        for (int i = 30; i < 60; i++) {
-           userService.createUser(String.valueOf(i)+"tulin@gmail.com","图灵"+i+"号","123456");
-        }
+//        Page<Posts> page = postsService.getPostsByPage("", 0, 20);
+//        List<Posts> content = page.getContent();
+//        System.out.println(content);
+
     }
 
 }

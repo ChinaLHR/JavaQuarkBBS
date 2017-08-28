@@ -52,18 +52,15 @@
 </div>
 <div th:include="common/footer::footer"></div>
 <script th:src="@{/layui/layui.js}"></script>
-<script th:src="@{/layui/lay/dest/layui.all.js}"></script>
 <script th:src="@{/js/jquery-1.11.2.min.js}"></script>
 <script th:src="@{/js/jquery.cookie.js}"></script>
 <script th:src="@{/js/quark_api.js}"></script>
 <script>
 
-    layui.use(['form', 'layedit', 'laydate'], function () {
+    layui.use(['form'], function () {
 
 
-        var form = layui.form(),
-            layer = layui.layer,
-            laydate = layui.laydate;
+        var form = layui.form;
 
 
         form.on('submit(*)', function (data) {
@@ -75,7 +72,7 @@
                         setCookie(data.data)
                         layer.msg("登录成功", {
                             icon: 1,
-                            time: 2000 //2秒关闭
+                            time: 1000 //1秒关闭
                         }, function(){
                             location.href = "/index";
                         });

@@ -18,9 +18,6 @@ public class UserServiceImpl implements UserService{
     @Value("${api_getUserByToken}")
     private String api_getUserByToken;
 
-    @Value("${cookie_name}")
-    private String cookieName;
-
     @Override
     public User getUserByApi(String token) {
         String s = HttpClientUtils.doGet(api_getUserByToken + token);

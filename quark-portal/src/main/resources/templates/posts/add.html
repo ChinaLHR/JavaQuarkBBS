@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>发布帖子</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+</head>
+<body>
+
+<div th:include="common/header::header"></div>
+
+<div class="main layui-clear">
+    <div class="fly-panel" pad20>
+        <h2 class="page-title">发布帖子</h2>
+
+        <div class="layui-form layui-form-pane">
+            <form method="post">
+                <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">标题</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="L_title" name="title" required lay-verify="required" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <div class="layui-input-block">
+                        <textarea id="L_content" name="content" placeholder="请输入内容" class="layui-textarea fly-editor"
+                                  style="height: 260px;"></textarea>
+                    </div>
+                    <label for="L_content" class="layui-form-label" style="top: -2px;">描述</label>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">标签选择框</label>
+                        <div class="layui-input-block">
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="" id="label_select" name="labelId">
+                                    <option value="">直接选择或搜索选择</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn" lay-filter="*" lay-submit>立即发布</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:include="common/footer::footer"></div>
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script th:src="@{/js/jquery.cookie.js}"></script>
+<script th:src="@{/js/quark_api.js}"></script>
+<script>
+    //添加option
+    $.get(quark_label_getall, function (data) {
+        var htm = "";
+        if (data.status == 200) {
+            for (var i = 0; i < data.data.length; i++) {
+                htm += "<option value='" + data.data[i].id + "'>" + data.data[i].name + "</option>"
+            }
+        } else {
+            layer.msg(data.error, {icon: 5});
+        }
+
+        $("#label_select").append(htm);
+    });
+
+    layui.use(['form', 'layedit'], function () {
+
+        var form = layui.form,
+            layedit = layui.layedit,
+            layer = layui.layer;
+
+        layedit.set({
+            uploadImage: {
+                url: quark_upload_api,
+                type: 'post' //默认post
+            }
+        });
+
+        var content = layedit.build('L_content'); //建立编辑器
+
+        form.on('submit(*)', function (data) {
+            var layeditval = layedit.getContent(content);
+            if (layeditval ==""|| layeditval == undefined || layeditval == null){
+                layer.msg("输入的内容不能为空",{icon:7});
+                return false;
+            }
+            $.post(quark_posts_add_api, {
+                    title: data.field.title,
+                    content:layedit.getContent(content),
+                    labelId:data.field.labelId,
+                    token:getCookie()
+                },
+                function (data) {
+                    if (data.status == 200) {
+                        layer.msg("发布成功", {
+                            icon: 1,
+                            time: 1000 //2秒关闭
+                        }, function(){
+                            location.href = "/index";
+                        });
+                    } else if (data.status == 400) {
+                        layer.msg(data.error, {icon: 7});
+                    } else {
+                        layer.msg(data.error, {icon: 5});
+                    }
+                }, "json");
+
+            return false;
+        });
+    });
+
+    //封装查询参数
+    function getData(data) {
+        var param = {};
+        param.title = data.title;
+        param.labelId = data.labelId;
+        param.token = getCookie();
+        return param;
+    }
+</script>
+
+</body>
+</html>

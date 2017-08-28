@@ -13,8 +13,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "quark_role")
-//@Cacheable
-//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "entityCache")
 public class Role implements Serializable{
 
     @Id

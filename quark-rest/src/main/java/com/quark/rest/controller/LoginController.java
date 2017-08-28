@@ -30,7 +30,7 @@ public class LoginController extends BaseController {
             @ApiImplicitParam(name = "username", value = "用户名称",dataType = "String"),
             @ApiImplicitParam(name = "password", value = "用户密码",dataType = "String")
     })
-    @PostMapping("/createUser")
+    @PostMapping
     public QuarkResult checkUserName(String email,String username,String password) {
         QuarkResult result = restProcessor(() -> {
             if (!userService.checkUserName(username))
@@ -69,7 +69,7 @@ public class LoginController extends BaseController {
     }
 
     @ApiOperation("获取用户的信息")
-    @GetMapping("/token/{token}")
+    @GetMapping("/{token}")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", value = "发送给用户的唯一令牌",dataType = "String"),
     })

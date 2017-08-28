@@ -2,16 +2,13 @@
 <div th:fragment="header" xmlns:th="http://www.thymeleaf.org">
 <div class="header">
     <div class="main">
-        <a class="logo" href="/" title="Fly">Quark社区</a>
+        <a class="logo" th:href="@{/index}" title="Fly">Quark社区</a>
         <div class="nav">
-            <a class="nav-this" href="#">
-                <i class="iconfont icon-wenda"></i>问答
+            <a class="nav-this" th:href="@{/index}">
+                <i class="iconfont icon-wenda"></i>社区
             </a>
             <a class="nav-this" href="#">
                 <i class="iconfont icon-wenda"></i>标签
-            </a>
-            <a href="http://www.layui.com/" target="_blank">
-                <i class="iconfont icon-ui"></i>框架
             </a>
         </div>
 
@@ -32,7 +29,7 @@
         $.get(quark_getUser_api+token,function (data) {
             if (data.status == 200){
                 htm =  "<a class='avatar' href='/user/setting'>"+
-                    "<img src='http://tp4.sinaimg.cn/1345566427/180/5730976522/0'>"+
+                    "<img src='"+data.data.icon+"'>"+
                     "<cite>"+data.data.username+"</cite>"+
                     "</a>"+
                     "<div class='nav'>"+

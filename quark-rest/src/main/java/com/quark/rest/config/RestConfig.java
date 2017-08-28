@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan(basePackages = "com.quark.common")
-@ComponentScan(basePackages = "com.quark.rest")
 public class RestConfig {
 
 }

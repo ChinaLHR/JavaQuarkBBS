@@ -56,5 +56,4 @@ public class RedisUtils<T> {
         return redisTemplate.hasKey(REDIS_USER_KEY+key);
     }
 
-    //TODO 添加对Redis数量的检查，达到一定数量时移除令牌
 }

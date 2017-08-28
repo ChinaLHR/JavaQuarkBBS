@@ -27,6 +27,6 @@ public class CommonApplicationTest {
 
     @Test
     public void TestDataSource(){
-
+        System.out.println(dataSource.getClass().getName());
     }
 }

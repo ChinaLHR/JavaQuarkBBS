@@ -14,4 +14,8 @@ public class Constants {
     public static final String COOKIE_NAME = "QUARK_TOKEN";
     public static final Integer COOKIE_TIME = 60*60*24;
 
+    //Upload常量
+    public static final String UPLOAD_PATH = "D:\\home\\images\\upload\\";
+    public static final String STATIC_URL ="http://127.0.0.1/images/upload/";
+
 }
