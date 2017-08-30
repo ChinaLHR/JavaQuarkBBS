@@ -6,6 +6,8 @@ var quark_register_api = "http://127.0.0.1:8081/user";
 var quark_upload_api = "http://127.0.0.1:8081/upload/image";
 var quark_posts_add_api = "http://127.0.0.1:8081/posts";
 var quark_posts_get = "http://127.0.0.1:8081/posts";
+var quark_posts_detail = "http://127.0.0.1:8081/posts/detail/";
+var quark_reply_add = "http://127.0.0.1:8081/reply";
 var quark_label_getall = "http://127.0.0.1:8081/label";
 
 

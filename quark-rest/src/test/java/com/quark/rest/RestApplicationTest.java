@@ -1,13 +1,16 @@
 package com.quark.rest;
 
 import com.quark.common.dao.AdminUserDao;
+import com.quark.common.entity.Reply;
 import com.quark.rest.service.PostsService;
+import com.quark.rest.service.ReplyService;
 import com.quark.rest.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -37,6 +40,9 @@ public class RestApplicationTest {
     PostsService postsService;
 
     @Autowired
+    ReplyService replyService;
+
+    @Autowired
     AdminUserDao dao;
 
     @Value( "${Redis_User_Key}" )
@@ -48,6 +54,8 @@ public class RestApplicationTest {
 //        List<Posts> content = page.getContent();
 //        System.out.println(content);
 
+        Page<Reply> page = replyService.getReplyByPage(2, 0, 10);
+        System.out.println(page.getContent());
     }
 
 }

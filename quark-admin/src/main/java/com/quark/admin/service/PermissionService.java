@@ -40,4 +40,6 @@ public interface PermissionService extends BaseService<Permission>{
      * @return
      */
     Page<Permission> findByPage(int pageNo, int length);
+
+
 }

@@ -37,7 +37,7 @@
                                 <img src="{{item.user.icon}}" alt="">
                             </a>
                             <h2 class="fly-tip">
-                                <a href="">{{ item.title }}</a>
+                                <a href="posts/detail?id={{item.id}}">{{ item.title }}</a>
                                 {{ item.top == true ? '<span class="fly-tip-stick">置顶</span>' :'' }}
                                 {{ item.good == true ? '<span class="fly-tip-jing">精帖</span>' : ''}}
                             </h2>
@@ -50,7 +50,9 @@
                                 </span>
                             </p>
                         </li>
-                        {{# }); }} {{# if(d.total === 0){ }} {{# } }}
+                        {{# }); }} {{# if(d.total === 0){ }}
+                        <li class="fly-none">没有任何帖子</li>
+                        {{# } }}
                     </ul>
                 </script>
                 <div id="postss"></div>
@@ -71,10 +73,15 @@
         var search = $.getUrlParam('search');
         $.get(quark_posts_get, {
             pageNo: pageNo,
-            length: 10,
+            length: 15,
             type: type,
             search: search
         }, function (data) {
+
+            if (data.status == 500){
+                layer.msg(data.error, {icon: 5});
+                return;
+            }
             var posts = $("#posts").html();
             laytpl(posts).render(data, function (html) {
                 $("#postss").html(html);
@@ -84,11 +91,13 @@
 
             laypage.render({
                 elem: 'pager'
+                ,limit:data.total
                 , count: data.pageSize //总页数
                 , jump: function (obj, first) {
                     //得到了当前页，用于向服务端请求对应数据
                     if (!first) {
                         loadPosts(laytpl, laypage, obj.curr, false);
+                        $('body').prop('scrollTop','0');
                     }
                 }
             });
@@ -103,10 +112,6 @@
 
     });
 
-    function search() {
-        var value = $('#search').val();
-        alert(value)
-    }
 
 </script>
 

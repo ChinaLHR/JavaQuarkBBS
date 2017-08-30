@@ -36,7 +36,7 @@ public class Posts implements Serializable {
 
     //发布时间
     @Column(nullable = false)
-    @JsonFormat(pattern = Constants.DATETIME_FORMAT)
+    @JsonFormat(pattern = Constants.DATETIME_FORMAT, timezone = "GMT+8")
     private Date initTime;
 
     //是否置顶
@@ -53,7 +53,7 @@ public class Posts implements Serializable {
 
     //回复数量
     @Column(name = "reply_count")
-    private int replyCount;
+    private int replyCount = 0;
 
 
     public Integer getId() {

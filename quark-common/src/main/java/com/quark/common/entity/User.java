@@ -43,7 +43,7 @@ public class User implements Serializable {
 
     // 注册时间
     @Column(nullable = false)
-    @JsonFormat(pattern = Constants.DATE_FORMAT)
+    @JsonFormat(pattern = Constants.DATE_FORMAT, timezone = "GMT+8")
     private Date initTime;
 
     //性别 0 ：男 1：女

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Java Quark 社区</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+</head>
+<body>
+
+<div th:include="common/header::header"></div>
+
+<div class="main layui-clear">
+    <div class="wrap">
+        <div class="content detail">
+            <script id="posts" type="text/html">
+                <div class="fly-panel detail-box">
+                    <h1>{{d.data.posts.title}}</h1>
+                    <div class="fly-tip fly-detail-hint" data-id="">
+                        {{ d.data.posts.top == true ? '<span class="fly-tip-stick">置顶</span>' :'' }}
+                        {{ d.data.posts.good == true ? '<span class="fly-tip-jing">精帖</span>' : ''}}
+                        <span>主题</span>
+                        <div class="fly-list-hint">
+                            <i class="iconfont" title="回答">&#xe60c;</i>{{d.data.posts.replyCount}}
+                        </div>
+                    </div>
+                    <div class="detail-about">
+                        <a class="jie-user" href="">
+                            <img src="{{ d.data.posts.user.icon}}" alt="">
+                            <cite>
+                                {{d.data.posts.user.username}}
+                                <em>发布时间：{{ d.data.posts.initTime}}</em>
+                            </cite>
+                        </a>
+                        <div class="detail-hits" data-id="">
+                            <span class="layui-btn layui-btn-mini jie-admin " type="collect" data-type="add">收藏</span>
+                            <!--<span class="layui-btn layui-btn-mini jie-admin  layui-btn-danger" type="collect" data-type="add">取消收藏</span>-->
+                        </div>
+                    </div>
+
+                    <div class="detail-body photos" style="margin-bottom: 20px;">
+                        {{ d.data.posts.content}}
+                    </div>
+                </div>
+
+
+                <div class="fly-panel detail-box" style="padding-top: 0;">
+                    <a name="comment"></a>
+                    <ul class="jieda photos" id="jieda">
+                        {{# layui.each(d.data.replys, function(index, item){ }}
+                        <li data-id="12" class="jieda-daan">
+                            <a name="item-121212121212"></a>
+                            <div class="detail-about detail-about-reply">
+                                <a class="jie-user" href="">
+                                    <img src="{{item.user.icon}}" alt="">
+                                    <cite>
+                                        <i>{{item.user.username}}</i>
+                                    </cite>
+                                </a>
+                                <div class="detail-hits">
+                                    <span>{{item.initTime}}</span>
+                                </div>
+                            </div>
+                            <div class="detail-body jieda-body">
+                                <p>{{item.content}}</p>
+                            </div>
+                            <div class="jieda-reply">
+                                <!--<span class="jieda-zan zanok" type="zan"><i class="iconfont icon-zan"></i><em>12</em></span>-->
+                                <span type="reply"><i class="iconfont icon-svgmoban53"></i>回复</span>
+                            </div>
+
+                        </li>
+
+                        {{# }); }} {{# if(d.total === 0){ }}
+                        <li class="fly-none">没有任何回答</li>
+                        {{# } }}
+                        <!--  -->
+                    </ul>
+
+
+                </div>
+
+            </script>
+
+            <div id="postss"></div>
+
+            <div id="pager"></div>
+            <div class="layui-form layui-form-pane">
+                <form method="post">
+                    <div class="layui-form-item layui-form-text">
+                        <div class="layui-input-block">
+                                <textarea id="L_content" name="content"
+                                          placeholder="我要回复" class="layui-textarea fly-editor"
+                                          style="height: 150px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <button class="layui-btn" lay-filter="*" lay-submit>提交回复</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div th:include="common/footer::footer"></div>
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script th:src="@{/js/jquery.cookie.js}"></script>
+<script th:src="@{/js/quark_api.js}"></script>
+<script>
+
+    var id = $.getUrlParam('id');
+    layui.use(['laypage', 'laytpl'], function () {
+        var laytpl = layui.laytpl,
+            laypage = layui.laypage;
+
+        loadRepaly(laytpl, laypage, 1, true);
+
+
+    });
+
+    layui.use(['form', 'layedit'], function () {
+        var form = layui.form,
+            layedit = layui.layedit,
+            layer = layui.layer;
+
+        layedit.set({
+            uploadImage: {
+                url: quark_upload_api,
+                type: 'post' //默认post
+            }
+        });
+
+        var content = layedit.build('L_content'); //建立编辑器
+        form.on('submit(*)', function () {
+            var layeditval = layedit.getContent(content);
+            if (layeditval ==""|| layeditval == undefined || layeditval == null){
+                layer.msg("输入的内容不能为空",{icon:7});
+                return false;
+            }
+            $.post(quark_reply_add, {
+                    content:layedit.getContent(content),
+                    postsId:id,
+                    token:getCookie()
+                },
+                function (data) {
+                    if (data.status == 200) {
+                        layer.msg("回复成功", {
+                            icon: 1,
+                            time: 1000 //2秒关闭
+                        }, function(){
+                            location.reload();
+                        });
+                    } else if (data.status == 400) {
+                        layer.msg(data.error, {icon: 7});
+                    } else {
+                        layer.msg(data.error, {icon: 5});
+                    }
+                }, "json");
+            return false;
+
+
+        });
+    });
+    <!--根据id 翻页获取信息-->
+    function loadRepaly(laytpl, laypage, pageNo, renderpager) {
+
+        $.get(quark_posts_detail + id, {
+            pageNo: pageNo,
+            length: 10
+        }, function (data) {
+
+            var posts = $("#posts").html();
+            laytpl(posts).render(data, function (html) {
+                $("#postss").html(html);
+            });
+
+            if (!renderpager) return;
+            laypage.render({
+                elem: 'pager'
+                , limit: data.total
+                , count: data.pageSize //总页数
+                , jump: function (obj, first) {
+                    //得到了当前页，用于向服务端请求对应数据
+                    if (!first) {
+                        loadRepaly(laytpl, laypage, obj.curr, false);
+                        $('body').prop('scrollTop', '0');
+                    }
+                }
+            });
+        });
+    }
+</script>
+</body>
+</html>

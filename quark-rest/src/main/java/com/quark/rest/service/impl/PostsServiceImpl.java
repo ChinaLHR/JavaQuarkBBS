@@ -37,7 +37,7 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao, Posts> implement
 
     @Transactional
     @Override
-    public void SavePosts(Posts posts, Integer labelId, User user) {
+    public void savePosts(Posts posts, Integer labelId, User user) {
         try {
             Label label = labelDao.findOne(labelId);
 

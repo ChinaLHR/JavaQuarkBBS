@@ -4,8 +4,10 @@ import com.quark.common.base.BaseController;
 import com.quark.common.dto.QuarkPageResult;
 import com.quark.common.dto.QuarkResult;
 import com.quark.common.entity.Posts;
+import com.quark.common.entity.Reply;
 import com.quark.common.entity.User;
 import com.quark.rest.service.PostsService;
+import com.quark.rest.service.ReplyService;
 import com.quark.rest.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -14,6 +16,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 /**
  * @Author LHR
@@ -29,6 +33,9 @@ public class PostsController extends BaseController {
 
     @Autowired
     private PostsService postsService;
+
+    @Autowired
+    private ReplyService replyService;
 
     @ApiOperation("发帖接口")
     @ApiImplicitParams({
@@ -48,7 +55,7 @@ public class PostsController extends BaseController {
             User user = userService.findOne(userbytoken.getId());
             if (user.getEnable() != 1) return QuarkResult.warn("用户处于封禁状态！");
 
-            postsService.SavePosts(posts, labelId, user);
+            postsService.savePosts(posts, labelId, user);
             return QuarkResult.ok();
         });
 
@@ -67,13 +74,41 @@ public class PostsController extends BaseController {
             @RequestParam(required = false, defaultValue = "") String search,
             @RequestParam(required = false, defaultValue = "") String type,
             @RequestParam(required = false, defaultValue = "1") int pageNo,
-            @RequestParam(required = false, defaultValue = "10") int length) {
+            @RequestParam(required = false, defaultValue = "20") int length) {
         try {
             if (!type.equals("good") && !type.equals("top") && !type.equals(""))
                 return QuarkPageResult.error("类型错误!");
             Page<Posts> page = postsService.getPostsByPage(type, search, pageNo - 1, length);
             return QuarkPageResult.ok(page.getContent(), page.getTotalElements(), page.getNumberOfElements());
         } catch (Exception e) {
+            logger.error("Error Log :" + e.getLocalizedMessage(), e);
+            return QuarkPageResult.error("服务器出现异常");
+        }
+    }
+
+
+    @ApiOperation("翻页帖子详情与回复接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "postsid", value = "帖子的id", dataType = "int"),
+            @ApiImplicitParam(name = "pageNo", value = "页码[从1开始]", dataType = "int"),
+            @ApiImplicitParam(name = "length", value = "返回结果数量[默认20]", dataType = "int")
+    })
+    @GetMapping("/detail/{postsid}")
+    public QuarkPageResult GetPostsDetail(
+            @PathVariable("postsid") Integer postsid,
+            @RequestParam(required = false, defaultValue = "1") int pageNo,
+            @RequestParam(required = false, defaultValue = "20") int length){
+        try {
+            HashMap<String, Object> map = new HashMap<>();
+            Posts posts = postsService.findOne(postsid);
+            if (posts == null) return QuarkPageResult.error("帖子不存在");
+            map.put("posts", posts);
+
+            Page<Reply> page = replyService.getReplyByPage(postsid, pageNo - 1, length);
+            map.put("replys", page.getContent());
+
+            return QuarkPageResult.ok(map, page.getTotalElements(), page.getNumberOfElements());
+        }catch (Exception e){
             logger.error("Error Log :" + e.getLocalizedMessage(), e);
             return QuarkPageResult.error("服务器出现异常");
         }

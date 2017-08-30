@@ -1,6 +1,7 @@
 package com.quark.common.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.quark.common.utils.Constants;
 
 import javax.persistence.*;
@@ -26,16 +27,16 @@ public class Reply implements Serializable {
     private String content;
 
     //回复时间
-    @JsonFormat(pattern = Constants.DATETIME_FORMAT)
+    @JsonFormat(pattern = Constants.DATETIME_FORMAT, timezone = "GMT+8")
     private Date initTime;
 
     //点赞个数
-    @Column(nullable = false)
-    private Integer up;
+    private Integer up = 0;
 
     //与话题的关联关系
     @ManyToOne
     @JoinColumn(nullable = false, name = "posts_id")
+    @JsonIgnore
     private Posts posts;
 
     //与用户的关联关系
@@ -89,5 +90,16 @@ public class Reply implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Reply{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", initTime=" + initTime +
+                ", up=" + up +
+                ", user=" + user +
+                '}';
     }
 }

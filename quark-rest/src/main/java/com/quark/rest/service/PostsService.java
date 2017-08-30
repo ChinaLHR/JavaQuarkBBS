@@ -16,7 +16,7 @@ public interface PostsService extends BaseService<Posts> {
      * @param posts 帖子
      * @param labelId 标签id
      */
-    void SavePosts(Posts posts,Integer labelId,User user);
+    void savePosts(Posts posts,Integer labelId,User user);
     /**
      * 翻页查询帖子
      * @param type

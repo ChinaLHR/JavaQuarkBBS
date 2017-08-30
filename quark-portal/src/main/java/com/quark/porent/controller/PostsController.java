@@ -16,5 +16,8 @@ public class PostsController {
         return "posts/add";
     }
 
-
+    @RequestMapping("/detail")
+    public String detail() {
+        return "posts/detail";
+    }
 }
