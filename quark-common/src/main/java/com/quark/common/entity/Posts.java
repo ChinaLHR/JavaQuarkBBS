@@ -40,10 +40,10 @@ public class Posts implements Serializable {
     private Date initTime;
 
     //是否置顶
-    private boolean top;
+    private Boolean top;
 
     //是否精华
-    private boolean good;
+    private Boolean good;
 
     //与用户的关联关系
     @ManyToOne
@@ -96,19 +96,19 @@ public class Posts implements Serializable {
         this.initTime = initTime;
     }
 
-    public boolean isTop() {
+    public Boolean getTop() {
         return top;
     }
 
-    public void setTop(boolean top) {
+    public void setTop(Boolean top) {
         this.top = top;
     }
 
-    public boolean isGood() {
+    public Boolean getGood() {
         return good;
     }
 
-    public void setGood(boolean good) {
+    public void setGood(Boolean good) {
         this.good = good;
     }
 

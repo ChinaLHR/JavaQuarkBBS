@@ -26,9 +26,8 @@
                         <h5>资源列表</h5>
                     </div>
                     <form class="form-inline">
-                        <button type="button" shiro:hasPermission="/permissions/add" onclick="$('#permissionsModal').modal();" class="btn btn-info" style="float: right; margin-right: 1px;">新增</button>
-                        <button type="button" shiro:hasPermission="/permissions/delete" onclick="delById();" class="btn btn-info" style="float: right; margin-right: 1px;">删除</button>
-                        <button type="button" shiro:hasPermission="/test1" onclick="delById();" class="btn btn-info" style="float: right; margin-right: 1px;">测试</button>
+                        <button type="button" shiro:hasPermission="/permissions/add" onclick="$('#permissionsModal').modal();" class="btn btn-primary" style="float: right; margin-right: 1px;">新增</button>
+                        <button type="button" shiro:hasPermission="/permissions/delete" onclick="delById();" class="btn btn-primary" style="float: right; margin-right: 1px;">删除</button>
                     </form>
                     <table class="table table-bordered data-table" id="datatable" >
                         <thead>

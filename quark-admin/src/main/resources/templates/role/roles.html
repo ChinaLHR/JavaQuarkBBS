@@ -26,9 +26,9 @@
                         <h5>角色列表</h5>
                     </div>
                     <form class="form-inline">
-                        <button type="button" shiro:hasPermission="/roles/add" onclick="$('#addRole').modal();" class="btn btn-info" style="float: right; margin-right: 1px;">新增</button>
-                        <button type="button" shiro:hasPermission="/roles/delete" onclick="delById();" class="btn btn-info" style="float: right; margin-right: 1px;">删除</button>
-                        <button type="button" shiro:hasPermission="/roles/saveRolePermission" onclick="allotPermission();" class="btn btn-info" style="float: right; margin-right: 1px;">分配权限</button>
+                        <button type="button" shiro:hasPermission="/roles/add" onclick="$('#addRole').modal();"class="btn btn-primary" style="float: right; margin-right: 1px;">新增</button>
+                        <button type="button" shiro:hasPermission="/roles/delete" onclick="delById();" class="btn btn-primary" style="float: right; margin-right: 1px;">删除</button>
+                        <button type="button" shiro:hasPermission="/roles/saveRolePermission" onclick="allotPermission();" class="btn btn-primary" style="float: right; margin-right: 1px;">分配权限</button>
                     </form>
                     <div class="widget-content nopadding">
                         <table class="table table-bordered data-table" id="datatable" >

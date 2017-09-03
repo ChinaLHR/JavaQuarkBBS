@@ -84,4 +84,14 @@ public class PageController {
     public String UsersPage(){
         return "user/users";
     }
+
+    @RequestMapping("/postsPage")
+    public String PostsPage(){
+        return "posts/posts";
+    }
+
+    @RequestMapping("/replysPage")
+    public String ReplysPage(){
+        return "reply/replys";
+    }
 }

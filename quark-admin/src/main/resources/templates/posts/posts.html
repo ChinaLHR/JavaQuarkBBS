@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="common/common"></head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1><a href="dashboard.html">Matrix Admin</a></h1>
+</div>
+
+<!--top-Header-menu-->
+<div th:include="common/nav :: nav"></div>
+<div th:include="common/menu :: menu"></div>
+
+<div id="content">
+
+    <div class="container-fluid">
+        <hr/>
+        <div class="row-fluid">
+            <div class="span12">
+
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+                        <h5>帖子列表</h5>
+                    </div>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label>编号:</label>
+                            <input type="text" class="form-control" id="id-search" placeholder="编号"/>
+                        </div>
+                        <div class="form-group">
+                            <label>标题:</label>
+                            <input type="text" class="form-control" id="title-search" placeholder="标题"/>
+                        </div>
+                        <div class="form-group">
+                            <label>用户ID:</label>
+                            <input type="text" class="form-control" id="uid-search" placeholder="用户id"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">类型:</label>
+                            <select id="status-search" class="form-control">
+                                <option value="3">全部</option>
+                                <option value="1">精品</option>
+                                <option value="0">置顶</option>
+                            </select>
+                        </div>
+                        <button type="button" onclick="search();" class="btn btn-primary">查询</button>
+                        <button shiro:hasPermission="/posts/saveTop" type="button" onclick="changeTop();" class="btn btn-primary" style="float: right; margin-right: 1px;">置顶/取消</button>
+                        <button shiro:hasPermission="/posts/saveGood" type="button" onclick="changeGood();" class="btn btn-primary" style="float: right; margin-right: 1px;">加精/取消</button>
+                        <button shiro:hasPermission="/posts/delete" type="button" onclick="delPosts();" class="btn btn-primary" style="float: right; margin-right: 1px;">删除</button>
+                    </form>
+
+                    <div class="widget-content nopadding">
+                        <table class="table table-striped table-bordered" cellspacing="0" width="100%" id="datatable">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" class="checkall"/>
+                                </th>
+                                <th>ID</th>
+                                <th>标题</th>
+                                <th>内容</th>
+                                <th>用户</th>
+                                <th>是否置顶</th>
+                                <th>是否精品</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/js/layer.js}"></script>
+<script type="text/javascript">
+    $(".checkall").click(function () {
+        var check = $(this).prop("checked");
+        $(".checkchild").prop("checked", check);
+    });
+
+    //分页显示DataTable
+    var table;
+    $(document).ready(function () {
+        table = $('#datatable').DataTable({
+            "searching": false,
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            "serverSide": true,
+
+            ajax: function (data, callback, settings) {
+                //封装请求参数
+                var param = getQueryCondition(data);
+
+                $.ajax({
+                    type: "GET",
+                    url: '/posts',
+                    cache: false,  //禁用缓存
+                    data: param,    //传入已封装的参数
+                    dataType: "json",
+                    success: function (result) {
+                        callback(result);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        layer.msg("查询失败");
+                    }
+                });
+            },
+
+            "columns": [
+                {
+                    "sClass": "text-center",
+                    "data": "id",
+                    "render": function (data, type, full, meta) {
+                        return '<input type="checkbox"  class="checkchild"  value="' + data + '" />';
+                    },
+                    "bSortable": false
+                },
+                {"data": "id"},
+                {"data": "title"},
+                {"data": "content"},
+                {"data": "user.username"},
+                {"data": "top"},
+                {"data": "good"},
+            ],
+            columnDefs:[
+                { "orderable": false, "targets": 1 },
+                { "orderable": false, "targets": 2 },
+                { "orderable": false, "targets": 3 },
+                { "orderable": false, "targets": 4 },
+                {
+                    "orderable": false,
+                    "render": function(data, type, row) {
+                        if(data==true){
+                            return '置顶';
+                        }else{
+                            return '非置顶';
+                        }
+                    },
+                    "targets": 5
+                },
+                {
+                    "orderable": false,
+                    "render": function(data, type, row) {
+                        if(data==true){
+                            return "精品";
+                        }else{
+                            return "非精品";
+                        }
+                    },
+                    "targets": 6
+                },
+            ],
+
+        });
+    });
+
+
+    function search() {
+        table.ajax.reload();
+    }
+
+    //封装查询参数
+    function getQueryCondition(data) {
+        var param = {};
+
+        param.id = $("#id-search").val();//查询条件
+        param.title = $("#title-search").val();//查询条件
+        param.uid = $("#uid-search").val();//查询条件
+
+        var status = $("#status-search").val();//查询条件
+        if (status == 1) {
+            param.good = true;
+        }else if (status == 0) {
+            param.top = true;
+        }
+        //组装分页参数
+        param.start = data.start;
+        param.length = data.length;
+        param.draw = data.draw;
+        return param;
+    }
+
+    //置顶操作
+    function changeTop() {
+        //jQuery获取多选按钮的值
+        var id = [];
+        $(".checkchild:checked").each(function(){
+            id.push($(this).val());
+        });
+        if ($(".checkchild:checked").length < 1) {
+            layer.msg('请选择一条数据');
+            return;
+        }
+        var parm = {"id":id};
+        layer.confirm('您确定要执行操作吗？', {
+            btn: ['确认', '取消'] //按钮
+        }, function () {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: 'posts/saveTop',
+                data: parm,
+                dataType:'json',
+                async: false,
+                success: function (data) {
+                    if (data.status == 200) {
+                        layer.msg('操作成功');
+                        table.ajax.reload();
+                    } else {
+                        layer.msg(data.error);
+                    }
+                }
+            });
+        });
+    }
+
+    //加精操作
+    function changeGood() {
+        //jQuery获取多选按钮的值
+        var id = [];
+        $(".checkchild:checked").each(function(){
+            id.push($(this).val());
+        });
+        if ($(".checkchild:checked").length < 1) {
+            layer.msg('请选择一条数据');
+            return;
+        }
+        var parm = {"id":id};
+        layer.confirm('您确定要执行操作吗？', {
+            btn: ['确认', '取消'] //按钮
+        }, function () {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: 'posts/saveGood',
+                data: parm,
+                dataType:'json',
+                async: false,
+                success: function (data) {
+                    if (data.status == 200) {
+                        layer.msg('操作成功');
+                        table.ajax.reload();
+                    } else {
+                        layer.msg(data.error);
+                    }
+                }
+            });
+        });
+    }
+
+    //删除操作
+    function delPosts() {
+        //jQuery获取多选按钮的值
+        var id = [];
+        $(".checkchild:checked").each(function(){
+            id.push($(this).val());
+        });
+        if ($(".checkchild:checked").length < 1) {
+            layer.msg('请选择一条数据');
+            return;
+        }
+        var parm = {"id":id};
+        layer.confirm('您确定要删除这些帖子吗？', {
+            btn: ['确认', '取消'] //按钮
+        }, function () {
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: 'posts/delete',
+                data: parm,
+                dataType:'json',
+                async: false,
+                success: function (data) {
+                    if (data.status == 200) {
+                        layer.msg('操作成功');
+                        table.ajax.reload();
+                    } else {
+                        layer.msg(data.error);
+                    }
+                }
+            });
+        });
+    }
+</script>
+</body>
+</html>

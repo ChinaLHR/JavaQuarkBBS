@@ -75,8 +75,7 @@ public class AdminUserServiceImpl extends BaseServiceImpl<AdminUserDao, AdminUse
         AdminUser adminUser = findOne(uid);
         if (roles == null) {
             adminUser.setRoles(new HashSet<>());
-        }
-        else{
+        } else {
             Set<Role> roleSet = roleService.findAll(Arrays.asList(roles)).stream().collect(toSet());
             adminUser.setRoles(roleSet);
         }
@@ -86,13 +85,14 @@ public class AdminUserServiceImpl extends BaseServiceImpl<AdminUserDao, AdminUse
     @Override
     public void saveAdminEnable(Integer[] ids) {
 
-        findAll(Arrays.asList(ids)).forEach(adminUser -> {
-            if (adminUser.getEnable() == 1) {
-                adminUser.setEnable(0);
+        List<AdminUser> all = findAll(Arrays.asList(ids));
+        for (AdminUser user : all) {
+            if (user.getEnable() == 1) {
+                user.setEnable(0);
             } else {
-                adminUser.setEnable(1);
+                user.setEnable(1);
             }
-            save(adminUser);
-        });
+        }
+        save(all);
     }
 }

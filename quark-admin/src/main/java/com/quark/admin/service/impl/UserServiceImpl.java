@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @Author LHR
@@ -51,13 +52,14 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao,User> implements Us
 
     @Override
     public void saveUserEnable(Integer[] id) {
-        findAll(Arrays.asList(id)).forEach(user -> {
+        List<User> all = findAll(Arrays.asList(id));
+        for (User user :all) {
             if (user.getEnable() == 1) {
                 user.setEnable(0);
             } else {
                 user.setEnable(1);
             }
-            save(user);
-        });
+        }
+        save(all);
     }
 }
