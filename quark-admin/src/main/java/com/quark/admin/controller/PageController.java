@@ -94,4 +94,9 @@ public class PageController {
     public String ReplysPage(){
         return "reply/replys";
     }
+
+    @RequestMapping("/labelsPage")
+    public String LabelsPage(){
+        return "label/labels";
+    }
 }

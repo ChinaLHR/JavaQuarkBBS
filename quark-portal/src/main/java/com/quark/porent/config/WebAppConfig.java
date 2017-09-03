@@ -22,7 +22,11 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor()).addPathPatterns("/posts/add");
+        registry.addInterceptor(loginInterceptor()).addPathPatterns(
+                "/posts/add",
+                "/user/set",
+                "/user/seticon",
+                "user/setpsw");
         super.addInterceptors(registry);
     }
 }

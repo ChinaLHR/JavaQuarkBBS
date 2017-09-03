@@ -23,7 +23,7 @@ public class Label implements Serializable {
 
     //主题数量
     @Column(name = "posts_count")
-    private Integer postsCount;
+    private Integer postsCount = 0;
 
     //详情
     private String details;

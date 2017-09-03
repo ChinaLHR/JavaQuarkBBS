@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="common/common"></head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1><a href="dashboard.html">Matrix Admin</a></h1>
+</div>
+
+<!--top-Header-menu-->
+<div th:include="common/nav :: nav"></div>
+<div th:include="common/menu :: menu"></div>
+
+<div id="content">
+
+    <div class="container-fluid">
+        <hr/>
+        <div class="row-fluid">
+            <div class="span12">
+
+                <div class="widget-box">
+                    <div class="widget-title"><span class="icon"><i class="icon-th"></i></span>
+                        <h5>标签列表</h5>
+                    </div>
+                    <form class="form-inline">
+                        <button type="button" shiro:hasPermission="/labels/add"
+                                onclick="$('#labelsModle').modal();" class="btn btn-primary"
+                                style="float: right; margin-right: 1px;">新增
+                        </button>
+                        <button type="button" shiro:hasPermission="/labels/delete" onclick="deleteLabel();"
+                                class="btn btn-primary" style="float: right; margin-right: 1px;">删除
+                        </button>
+                        <button type="button" shiro:hasPermission="/labels/update" onclick="updateLabel();"
+                                class="btn btn-primary" style="float: right; margin-right: 1px;">修改
+                        </button>
+                    </form>
+                    <table class="table table-bordered data-table" id="datatable">
+                        <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" class="checkall"/>
+                            </th>
+                            <th>ID</th>
+                            <th>标签名称</th>
+                            <th>标签详情</th>
+                            <th>主题数量</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--添加标签弹框-->
+<div class="modal fade" id="labelsModle" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addroleLabel">添加标签</h4>
+            </div>
+            <div class="modal-body">
+                <form id="labelsForm">
+                    <input hidden id="updataid" name="id" value="">
+                    <div class="form-group">
+                        <label  class="control-label">标签名称:</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="请输入标签名称"/>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">标签详情</label>
+                        <input type="text" class="form-control" id="details" name="details"  placeholder="请输入标签详情">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" onclick="addLable();" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="modal fade" id="updateModle" tabindex="-1" role="dialog" aria-labelledby="addroleLabel">-->
+    <!--<div class="modal-dialog" role="document">-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                <!--<h4 class="modal-title" id="updataLabel">添加标签</h4>-->
+            <!--</div>-->
+            <!--<div class="modal-body">-->
+                <!--<form id="updataForm">-->
+                   <!---->
+                    <!--<div class="form-group">-->
+                        <!--<label  class="control-label">标签名称:</label>-->
+                        <!--<input type="text" class="form-control" name="name" id="uname" placeholder="请输入标签名称"/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label  class="control-label">标签详情</label>-->
+                        <!--<input type="text" class="form-control" id="udetails" name="details"  placeholder="请输入标签详情">-->
+                    <!--</div>-->
+                <!--</form>-->
+            <!--</div>-->
+            <!--<div class="modal-footer">-->
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                <!--<button type="button" onclick="addLable();" class="btn btn-primary">Save</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<script th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/js/layer.js}"></script>
+<script type="text/javascript">
+    var table;
+    $(".checkall").click(function () {
+        var check = $(this).prop("checked");
+        $(".checkchild").prop("checked", check);
+    });
+    $(document).ready(function () {
+        table = $('#datatable').DataTable({
+            "searching": false,
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers",
+            "serverSide": true,//开启服务器模式，使用服务器端处理配置datatable
+            "processing": true,//开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
+
+            "ajax": 'labels',
+            "columns": [
+                {
+                    "sClass": "text-center",
+                    "data": "id",
+                    "render": function (data, type, full, meta) {
+                        return '<input type="checkbox"  class="checkchild"  value="' + data + '" />';
+                    },
+                    "bSortable": false
+                },
+                {"data": "id"},
+                {"data": "name"},
+                {"data": "details"},
+                {"data": "postsCount"},
+            ],
+            columnDefs: [
+                {"orderable": false, "targets": 1},
+                {"orderable": false, "targets": 2},
+                {"orderable": false, "targets": 3},
+                {"orderable": false, "targets": 4},
+
+            ],
+
+        });
+
+    });
+
+
+    //删除标签
+    function deleteLabel() {
+        var id = [];
+        $(".checkchild:checked").each(function () {
+            id.push($(this).val());
+        });
+
+        if ($(".checkchild:checked").length < 1)
+        {
+            layer.msg('请选择一条数据');
+            return;
+        }
+        layer.confirm('您确定要删除该标签吗？', {
+            btn: ['确认','取消'] //按钮
+        }, function(){
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url:'labels/delete',
+                data:{id:id},
+                async: false,
+                success: function(data) {
+                    if(data.status == 200){
+                        table.ajax.reload();
+                        layer.msg('删除成功');
+                    }else{
+                        layer.msg(data.error);
+                    }
+                }
+            });
+        });
+
+    }
+    
+    function addLable() {
+        var name = $("#name").val();
+        var details = $("#details").val();
+
+
+        if(name == "" || name == undefined || name == null){
+            return layer.msg('标签名称不能为空', function(){
+            });
+        }
+
+        if(details == "" || details == undefined || details == null){
+            return layer.msg('标签详情不能为空', function(){
+            });
+        }
+
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url:'labels/add',
+            data:$('#labelsForm').serialize(),
+            async: false,
+            success: function(data) {
+                if(data.status == 200){
+                    $('#labelsModle').modal('hide');
+                    table.ajax.reload();
+                    layer.msg('保存成功');
+                }else{
+                    $('#labelsModle').modal('hide');
+                    layer.msg(data.error);
+                }
+            }
+        });
+    }
+    
+    function updateLabel() {
+        var id = $(".checkchild:checked").val();
+        if ($(".checkchild:checked").length < 1)
+        {
+            layer.msg('请选择一条数据');
+            return;
+        }
+        if ($(".checkchild:checked").length > 1)
+        {
+            layer.msg('一次只能修改一条数据');
+            return;
+        }
+
+        $('#labelsModle').modal();
+        $('#updataid').attr('value',id);
+    }
+
+</script>
+</body>
+</html>
