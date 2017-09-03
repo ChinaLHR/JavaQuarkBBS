@@ -25,6 +25,11 @@ public interface UserService extends BaseService<User> {
      */
     boolean checkUserEmail(String email);
 
+    /**
+     * 根据Email查询用户
+     * @param email
+     * @return
+     */
     User findByEmail(String email);
 
     /**
@@ -57,4 +62,29 @@ public interface UserService extends BaseService<User> {
      */
     void LogoutUser(String token);
 
+
+    /**
+     * 修改用户信息
+     * @param token
+     * @param username
+     * @param signature
+     * @param sex
+     */
+    void updateUser(String token,String username,String signature,Integer sex );
+
+
+    /**
+     * 修改用户的头像
+     * @param token
+     * @param icon
+     */
+    void updataUserIcon(String token,String icon);
+
+    /**
+     * 修改用户的密码
+     * @param token
+     * @param oldpsd
+     * @param newpsd
+     */
+    void updateUserPassword(String token,String oldpsd,String newpsd);
 }

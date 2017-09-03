@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>用户密码</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+</head>
+<body>
+
+<div th:include="common/header::header"></div>
+
+<div class="main fly-user-main layui-clear">
+    <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
+        <li class="layui-nav-item ">
+            <a th:href="@{/user/set}">
+                <i class="layui-icon">&#xe620;</i>
+                基本设置
+            </a>
+        </li>
+        <li class="layui-nav-item">
+            <a th:href="@{/user/seticon}">
+                <i class="layui-icon">&#xe620;</i>
+                头像设置
+            </a>
+        </li>
+        <li class="layui-nav-item  layui-this">
+            <a th:href="@{/user/setpsw}">
+                <i class="layui-icon">&#xe620;</i>
+                密码设置
+            </a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="message.html">
+                <i class="layui-icon">&#xe611;</i>
+                我的消息
+            </a>
+        </li>
+    </ul>
+    <div class="fly-panel fly-panel-user" pad20>
+        <div class="layui-tab-content" style="padding: 20px 0;">
+            <div class="layui-form layui-form-pane layui-tab-item layui-show">
+                <form action="">
+                    <div class="layui-form-item">
+                        <label for="L_oldpsd" class="layui-form-label">旧密码</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="L_oldpsd" name="oldpsd" required lay-verify="required" autocomplete="off" value="" class="layui-input">
+                        </div>
+
+                    </div>
+                    <div class="layui-form-item">
+                        <label for="L_newpsd" class="layui-form-label">新密码</label>
+                        <div class="layui-input-inline">
+                            <input type="password" id="L_newpsd" name="newpsd" autocomplete="off" value="" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label for="L_newpsd_r" class="layui-form-label">重复新密码</label>
+                        <div class="layui-input-inline">
+                            <input type="password" id="L_newpsd_r" name="newpsdr" autocomplete="off" value="" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <button class="layui-btn" key="set-mine" lay-filter="*" lay-submit>确认修改</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div th:include="common/footer::footer"></div>
+
+<script>
+    layui.use(['form'],function () {
+        var token = getCookie();
+
+        var form = layui.form,
+            layer = layui.layer;
+
+        form.on('submit(*)',function (data) {
+            var newpsd = data.field.newpsd;
+            var newpsdr =data.field.newpsdr;
+
+            if (newpsd!==newpsdr){
+                layer.msg("重复密码输入错误",{icon:7});
+                return false;
+            }
+
+            $.ajax({
+                url:quark_user_update_psd_api+token,
+                type:'PUT',
+                data:{
+                    newpsd:newpsd,
+                    oldpsd:data.field.oldpsd,
+                },
+                success:function (data) {
+
+                    if (data.status == 200) {
+                        layer.msg("修改成功", {
+                            icon: 1,
+                            time: 1000 //1秒关闭
+                        }, function(){
+                            location.href = "/user/login";
+                        });
+                    } else if (data.status == 400) {
+                        layer.msg(data.error, {icon: 7});
+                    } else {
+                        layer.msg(data.error, {icon: 5});
+                    }
+                }
+
+            },"json");
+            return false;
+        })
+
+    })
+</script>
+
+</body>
+</html>

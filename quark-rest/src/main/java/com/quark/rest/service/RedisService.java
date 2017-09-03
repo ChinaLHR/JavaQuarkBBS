@@ -1,33 +1,42 @@
-package com.quark.rest.utils;
+package com.quark.rest.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.quark.rest.utils.Constants.REDIS_TIME;
-import static com.quark.rest.utils.Constants.REDIS_USER_KEY;
-
 /**
  * @Author LHR
- * Create By 2017/8/21
+ * Create By 2017/8/31
  */
-public class RedisUtils<T> {
+@Service
+public class RedisService<T> {
 
+    @Autowired
     private RedisTemplate redisTemplate;
-
-    public RedisUtils(RedisTemplate redisTemplate) {
-        this.redisTemplate = redisTemplate;
-    }
 
     /**
      * 设置缓存
      * @param key
      * @param t
      */
-    public void CacheSet(String key, T t){
+    public void cacheSet(String key, T t,int time){
         ValueOperations<String, T> operations = redisTemplate.opsForValue();
-        operations.set(REDIS_USER_KEY+key,t,REDIS_TIME, TimeUnit.DAYS);
+        operations.set(key,t,time, TimeUnit.HOURS);
+    }
+
+    /**
+     * 获取缓存并更新
+     * @param key
+     * @return
+     */
+    public T getSetAndUpDate(String key,int time){
+        ValueOperations<String, T> operations = redisTemplate.opsForValue();
+        T t = operations.get(key);
+        if (t!=null) operations.set(key,t,time, TimeUnit.HOURS);
+        return t;
     }
 
     /**
@@ -37,13 +46,16 @@ public class RedisUtils<T> {
      */
     public T getSet(String key){
         ValueOperations<String, T> operations = redisTemplate.opsForValue();
-        T t = operations.get(REDIS_USER_KEY + key);
-        if (t!=null) operations.set(REDIS_USER_KEY+key,t,REDIS_TIME, TimeUnit.DAYS);
+        T t = operations.get(key);
         return t;
     }
 
+    /**
+     * 删除缓存
+     * @param key
+     */
     public void deleteSet(String key){
-        redisTemplate.delete(REDIS_USER_KEY+key);
+        redisTemplate.delete(key);
     }
 
     /**
@@ -53,7 +65,6 @@ public class RedisUtils<T> {
      */
     public boolean hasKey(String key){
         ValueOperations<String, T> operations = redisTemplate.opsForValue();
-        return redisTemplate.hasKey(REDIS_USER_KEY+key);
+        return redisTemplate.hasKey(key);
     }
-
 }

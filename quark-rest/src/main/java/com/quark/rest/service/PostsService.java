@@ -5,6 +5,8 @@ import com.quark.common.entity.Posts;
 import com.quark.common.entity.User;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 /**
  * @Author LHR
  * Create By 2017/8/26
@@ -27,5 +29,10 @@ public interface PostsService extends BaseService<Posts> {
      */
     Page<Posts> getPostsByPage(String type ,String search, int pageNo,int length);
 
-    
+    /**
+     * 获取用户最近发布的10个POSTS
+     * @param user
+     * @return
+     */
+    List<Posts> getPostsByUser(User user);
 }

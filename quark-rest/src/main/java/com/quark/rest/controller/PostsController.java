@@ -47,6 +47,7 @@ public class PostsController extends BaseController {
     @PostMapping
     public QuarkResult CreatePosts(Posts posts, String token, Integer labelId) {
         QuarkResult result = restProcessor(() -> {
+
             if (token == null) return QuarkResult.warn("请先登录！");
 
             User userbytoken = userService.getUserByToken(token);
@@ -69,13 +70,14 @@ public class PostsController extends BaseController {
             @ApiImplicitParam(name = "pageNo", value = "页码[从1开始]", dataType = "int"),
             @ApiImplicitParam(name = "length", value = "返回结果数量[默认20]", dataType = "int")
     })
-    @GetMapping
+    @GetMapping()
     public QuarkPageResult GetPosts(
             @RequestParam(required = false, defaultValue = "") String search,
             @RequestParam(required = false, defaultValue = "") String type,
             @RequestParam(required = false, defaultValue = "1") int pageNo,
             @RequestParam(required = false, defaultValue = "20") int length) {
         try {
+
             if (!type.equals("good") && !type.equals("top") && !type.equals(""))
                 return QuarkPageResult.error("类型错误!");
             Page<Posts> page = postsService.getPostsByPage(type, search, pageNo - 1, length);

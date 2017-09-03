@@ -53,13 +53,13 @@
     </div>
 </div>
 <div th:include="common/footer::footer"></div>
-<script th:src="@{/layui/layui.js}"></script>
-<script th:src="@{/js/jquery-1.11.2.min.js}"></script>
-<script th:src="@{/js/jquery.cookie.js}"></script>
-<script th:src="@{/js/quark_api.js}"></script>
+<!--<script th:src="@{/layui/layui.js}"></script>-->
+<!--<script th:src="@{/js/jquery-1.11.2.min.js}"></script>-->
+<!--<script th:src="@{/js/jquery.cookie.js}"></script>-->
+<!--<script th:src="@{/js/quark_api.js}"></script>-->
 <script>
     //添加option
-    $.get(quark_label_getall, function (data) {
+    $.get(quark_label_getall_api, function (data) {
         var htm = "";
         if (data.status == 200) {
             for (var i = 0; i < data.data.length; i++) {
@@ -103,7 +103,7 @@
                     if (data.status == 200) {
                         layer.msg("发布成功", {
                             icon: 1,
-                            time: 1000 //2秒关闭
+                            time: 1000 //1秒关闭
                         }, function(){
                             location.href = "/index";
                         });

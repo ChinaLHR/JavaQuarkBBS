@@ -23,5 +23,24 @@ public class UserController {
         return "user/register";
     }
 
+    @RequestMapping("/home")
+    public String home(){
+        return "user/home";
+    }
+
+    @RequestMapping("/set")
+    public String setting(){
+        return "user/set";
+    }
+
+    @RequestMapping("/seticon")
+    public String seticon(){
+        return "user/seticon";
+    }
+
+    @RequestMapping("/setpsw")
+    public String setpsw(){
+        return "user/setpsw";
+    }
 
 }

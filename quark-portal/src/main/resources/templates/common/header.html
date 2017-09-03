@@ -22,18 +22,18 @@
 <script th:src="@{/js/jquery-1.11.2.min.js}"></script>
 <script th:src="@{/js/jquery.cookie.js}"></script>
 <script th:src="@{/js/quark_api.js}"></script>
-<script type="text/javascript">
+<script>
     //获取用户信息渲染页面
-        var token =getCookie();
+
         var htm;
-        $.get(quark_getUser_api+token,function (data) {
+        $.get(quark_getUser_api+ getCookie(),function (data) {
             if (data.status == 200){
-                htm =  "<a class='avatar' href='/user/setting'>"+
+                htm =  "<a class='avatar' href='/user/home?id="+data.data.id+"'>"+
                     "<img src='"+data.data.icon+"'>"+
                     "<cite>"+data.data.username+"</cite>"+
                     "</a>"+
                     "<div class='nav'>"+
-                    "<a href='/user/setting'><i class='iconfont icon-shezhi'></i>设置</a>"+
+                    "<a href='/user/set'><i class='iconfont icon-shezhi'></i>设置</a>"+
                     "<a href='' onclick='logout()'><i class='iconfont icon-tuichu' style='top: 0; font-size: 22px;'></i>退了</a>"+
                     "</div>";
             }else{
@@ -46,10 +46,9 @@
 
 //登出操作
         function logout() {
-            var data = getCookie();
 
             $.post(quark_logout_api,{
-                token:data
+                token: getCookie()
             },function (obj) {
                if (obj.status == 200){
                    deleteCookie();
@@ -58,6 +57,7 @@
                    layer.msg(obj.error,{icon:5});
                }
             });
+
 
         }
 </script>

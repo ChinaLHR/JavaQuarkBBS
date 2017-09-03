@@ -11,6 +11,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Configuration
 public class MyAdapter extends WebMvcConfigurerAdapter {
+
+
+    /**
+     * 配置默认路径为文档
+     * @param registry
+     */
     @Override
     public void addViewControllers( ViewControllerRegistry registry ) {
         registry.addViewController( "" ).setViewName( "redirect:/swagger-ui.html" );

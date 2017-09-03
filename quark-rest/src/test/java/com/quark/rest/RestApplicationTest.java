@@ -1,16 +1,15 @@
 package com.quark.rest;
 
 import com.quark.common.dao.AdminUserDao;
-import com.quark.common.entity.Reply;
+import com.quark.common.dao.PostsDao;
 import com.quark.rest.service.PostsService;
+import com.quark.rest.service.RedisService;
 import com.quark.rest.service.ReplyService;
 import com.quark.rest.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -45,17 +44,14 @@ public class RestApplicationTest {
     @Autowired
     AdminUserDao dao;
 
-    @Value( "${Redis_User_Key}" )
-    public String userKey;
+    @Autowired
+    RedisService redisService;
 
+    @Autowired
+    PostsDao postsDao;
     @Test
     public void testDataSource() {
-//        Page<Posts> page = postsService.getPostsByPage("", 0, 20);
-//        List<Posts> content = page.getContent();
-//        System.out.println(content);
-
-        Page<Reply> page = replyService.getReplyByPage(2, 0, 10);
-        System.out.println(page.getContent());
+        userService.updateUserPassword("2a8e48c8-9d09-4ef4-892c-b3436070297c","12345678","123456");
     }
 
 }

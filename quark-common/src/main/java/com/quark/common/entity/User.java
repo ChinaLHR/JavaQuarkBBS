@@ -36,7 +36,7 @@ public class User implements Serializable {
     private String password;
 
     // 头像
-    private String Icon ="http://127.0.0.1/images/upload/default.png";
+    private String icon ="http://127.0.0.1/images/upload/default.png";
 
     // 个人签名
     private String signature;
@@ -52,8 +52,6 @@ public class User implements Serializable {
     //是否被封禁,默认为１：开启
     @Column(nullable = false)
     private Integer enable = 1;
-
-
 
     public Integer getId() {
         return id;
@@ -80,11 +78,11 @@ public class User implements Serializable {
     }
 
     public String getIcon() {
-        return Icon;
+        return icon;
     }
 
     public void setIcon(String icon) {
-        Icon = icon;
+        this.icon = icon;
     }
 
     public String getSignature() {
@@ -133,7 +131,7 @@ public class User implements Serializable {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", Icon='" + Icon + '\'' +
+                ", Icon='" + icon + '\'' +
                 ", signature='" + signature + '\'' +
                 ", initTime=" + initTime +
                 ", sex=" + sex +

@@ -12,6 +12,7 @@ import com.quark.rest.service.PostsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -88,6 +89,14 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao, Posts> implement
         Page<Posts> page = repository.findAll(specification, pageable);
 
         return page;
+    }
+
+    @Override
+    public List<Posts> getPostsByUser(User user) {
+        Sort sort = new Sort(new Sort.Order(Sort.Direction.DESC, "initTime"));
+        Pageable pageable = new PageRequest(0, 10, sort);
+        Page<Posts> page = repository.findByUser(user, pageable);
+        return page.getContent();
     }
 
 
