@@ -15,6 +15,7 @@ var quark_rank_users_api = "http://127.0.0.1:8081/rank/newUsers";
 var quark_user_detail_api = "http://127.0.0.1:8081/user/detail/";
 var quark_user_update_api = "http://127.0.0.1:8081/user/";
 var quark_user_update_psd_api = "http://127.0.0.1:8081/user/password/";
+var quark_label_posts_api = "http://127.0.0.1:8081/posts/label/"
 
 function setCookie(data) {
     var expiresDate= new Date();

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>标签主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+</head>
+<body style="margin-top: 65px;">
+
+
+<div th:include="common/header::header"></div>
+<script id="label" type="text/html">
+    <div class="main fly-home-main">
+        <div class="layui-inline fly-home-jie">
+
+            <div class="fly-panel">
+                <h3 class="fly-panel-title">标签</h3>
+
+                <ul class="jie-row">
+                    {{# layui.each(d.data, function(index, item){ }}
+                    <li>
+                        <button onclick="tolabelDetaiail({{item.id}})" class="layui-btn layui-btn-normal" >{{item.name}}</button>
+                        <i>&nbsp;&nbsp;{{item.details}}</i>
+                        <em>帖子数量:{{item.postsCount}}</em>
+                    </li>
+                    {{# }); }}
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</script>
+<div id="labels"></div>
+
+<div th:include="common/footer::footer"></div>
+<script type="text/javascript">
+
+   function tolabelDetaiail(data) {
+       location.href = "/label/detail?id="+data;
+   }
+
+    layui.use(['laytpl'], function () {
+        var laytpl = layui.laytpl;
+
+        $.get(quark_label_getall_api, function (data) {
+            var label = $("#label").html();
+            laytpl(label).render(data, function (html) {
+                $("#labels").html(html);
+            })
+
+        });
+    })
+
+
+
+</script>
+
+</body>
+</html>

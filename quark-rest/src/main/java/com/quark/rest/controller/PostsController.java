@@ -3,9 +3,11 @@ package com.quark.rest.controller;
 import com.quark.common.base.BaseController;
 import com.quark.common.dto.QuarkPageResult;
 import com.quark.common.dto.QuarkResult;
+import com.quark.common.entity.Label;
 import com.quark.common.entity.Posts;
 import com.quark.common.entity.Reply;
 import com.quark.common.entity.User;
+import com.quark.rest.service.LabelService;
 import com.quark.rest.service.PostsService;
 import com.quark.rest.service.ReplyService;
 import com.quark.rest.service.UserService;
@@ -30,6 +32,9 @@ public class PostsController extends BaseController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LabelService labelService;
 
     @Autowired
     private PostsService postsService;
@@ -99,7 +104,7 @@ public class PostsController extends BaseController {
     public QuarkPageResult GetPostsDetail(
             @PathVariable("postsid") Integer postsid,
             @RequestParam(required = false, defaultValue = "1") int pageNo,
-            @RequestParam(required = false, defaultValue = "20") int length){
+            @RequestParam(required = false, defaultValue = "20") int length) {
         try {
             HashMap<String, Object> map = new HashMap<>();
             Posts posts = postsService.findOne(postsid);
@@ -110,7 +115,30 @@ public class PostsController extends BaseController {
             map.put("replys", page.getContent());
 
             return QuarkPageResult.ok(map, page.getTotalElements(), page.getNumberOfElements());
-        }catch (Exception e){
+        } catch (Exception e) {
+            logger.error("Error Log :" + e.getLocalizedMessage(), e);
+            return QuarkPageResult.error("服务器出现异常");
+        }
+    }
+
+    @ApiOperation("根据labelId获取帖子接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "labelid", value = "标签的id", dataType = "int"),
+            @ApiImplicitParam(name = "pageNo", value = "页码[从1开始]", dataType = "int"),
+            @ApiImplicitParam(name = "length", value = "返回结果数量[默认20]", dataType = "int"),
+    })
+    @GetMapping("/label/{labelid}")
+    public QuarkPageResult GetPostsByLabel(
+            @PathVariable("labelid") Integer labelid,
+            @RequestParam(required = false, defaultValue = "1") int pageNo,
+            @RequestParam(required = false, defaultValue = "20") int length) {
+
+        try {
+            Label label = labelService.findOne(labelid);
+            if (label == null) return QuarkPageResult.error("标签不存在");
+            Page<Posts> page = postsService.getPostsByLabel(label, pageNo - 1, length);
+            return QuarkPageResult.ok(page.getContent(), page.getTotalElements(), page.getNumberOfElements());
+        } catch (Exception e) {
             logger.error("Error Log :" + e.getLocalizedMessage(), e);
             return QuarkPageResult.error("服务器出现异常");
         }

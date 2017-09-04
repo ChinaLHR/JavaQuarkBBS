@@ -11,8 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 
     @RequestMapping("/index")
-    public String indexPage(){
+    public String indexPage() {
         return "index";
+    }
+
+    @RequestMapping("/label")
+    public String labelhome() {
+        return "label/home";
     }
 
 }

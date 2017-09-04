@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>标签详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+</head>
+<body>
+
+<div th:include="common/header::header"></div>
+
+<div class="main layui-clear">
+    <div class="wrap">
+        <div class="content" style="margin-right:0">
+            <script id="posts" type="text/html">
+                <ul class="fly-list">
+                    {{# layui.each(d.data, function(index, item){ }}
+                    <li class="fly-list-li">
+                        <a href="../user/home?id={{item.user.id}}" class="fly-list-avatar">
+                            <img src="{{item.user.icon}}" alt="">
+                        </a>
+                        <h2 class="fly-tip">
+                            <a href="../posts/detail?id={{item.id}}">{{item.title}}</a>
+                            {{ item.top == true ? '<span class="fly-tip-stick">置顶</span>' :'' }}
+                            {{ item.good == true ? '<span class="fly-tip-jing">精帖</span>' : ''}}
+                        </h2>
+                        <p>
+                            <span><a href="../user/home?id={{item.user.id}}">{{item.user.username}}</a></span>
+                            <span>{{item.initTime}}</span>
+                            <span>{{item.label.name}}</span>
+                            <span class="fly-list-hint">
+  <i class="iconfont" title="回答">&#xe60c;</i> {{ item.replyCount }}
+            </span>
+                        </p>
+                    </li>
+                    {{# }); }} {{# if(d.total === 0){ }}
+                    <li class="fly-none">没有任何帖子</li>
+                    {{# } }}
+                </ul>
+            </script>
+            <div id="postss"></div>
+            <div id="pager"></div>
+
+        </div>
+    </div>
+</div>
+
+<div th:include="common/footer::footer"></div>
+<script>
+
+    layui.use(['laypage', 'laytpl'], function () {
+        var laytpl = layui.laytpl,
+            laypage = layui.laypage;
+        loadPosts(laytpl, laypage, 1, true);
+    });
+
+    <!--根据url param 翻页获取信息-->
+    function loadPosts(laytpl, laypage, pageNo, renderpager) {
+        var id = $.getUrlParam('id');
+
+        $.get(quark_label_posts_api + id, {
+            pageNo: pageNo,
+            length: 15,
+        }, function (data) {
+
+            if (data.status == 500) {
+                layer.msg(data.error, {icon: 5});
+                return;
+            }
+            var posts = $("#posts").html();
+            laytpl(posts).render(data, function (html) {
+                $("#postss").html(html);
+            });
+
+            if (!renderpager) return;
+
+            laypage.render({
+                elem: 'pager'
+                , limit: data.total
+                , count: data.pageSize //总页数
+                , jump: function (obj, first) {
+                    //得到了当前页，用于向服务端请求对应数据
+                    if (!first) {
+                        loadPosts(laytpl, laypage, obj.curr, false);
+                        $('body').prop('scrollTop', '0');
+                    }
+                }
+            });
+        });
+    }
+
+
+</script>
+
+</body>
+</html>

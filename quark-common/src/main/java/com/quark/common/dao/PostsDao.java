@@ -1,5 +1,6 @@
 package com.quark.common.dao;
 
+import com.quark.common.entity.Label;
 import com.quark.common.entity.Posts;
 import com.quark.common.entity.User;
 import org.springframework.cache.annotation.CacheConfig;
@@ -25,4 +26,6 @@ public interface PostsDao extends JpaRepository<Posts,Integer> ,JpaSpecification
     List<Object> findHot();
 
     Page<Posts> findByUser(User user, Pageable pageable);
+
+    Page<Posts> findByLabel(Label label,Pageable pageable);
 }

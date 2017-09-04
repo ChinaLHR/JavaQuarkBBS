@@ -62,14 +62,14 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao, Posts> implement
     }
 
     @Override
-    public Page<Posts> getPostsByPage(String type, String search,int pageNo, int length) {
-        List<Sort.Order> orders=new ArrayList<>();
+    public Page<Posts> getPostsByPage(String type, String search, int pageNo, int length) {
+        List<Sort.Order> orders = new ArrayList<>();
         orders.add(new Sort.Order(Sort.Direction.DESC, "top"));
-        orders.add( new Sort.Order(Sort.Direction.DESC, "id"));
+        orders.add(new Sort.Order(Sort.Direction.DESC, "id"));
 
 
         Sort sort = new Sort(orders);
-        PageRequest pageable = new PageRequest(pageNo, length,sort);
+        PageRequest pageable = new PageRequest(pageNo, length, sort);
 
         Specification<Posts> specification = new Specification<Posts>() {
             @Override
@@ -78,9 +78,9 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao, Posts> implement
                 Path<Boolean> $good = root.get("good");
                 Path<String> $title = root.get("title");
                 ArrayList<Predicate> list = new ArrayList<>();
-                if (type!= null&&type.equals("good")) list.add(criteriaBuilder.equal($good, true));
-                if (type!= null&&type.equals("top")) list.add(criteriaBuilder.equal($top, true));
-                if (search!=null&&search!="")  list.add(criteriaBuilder.like($title, "%" + search + "%"));
+                if (type != null && type.equals("good")) list.add(criteriaBuilder.equal($good, true));
+                if (type != null && type.equals("top")) list.add(criteriaBuilder.equal($top, true));
+                if (search != null && search != "") list.add(criteriaBuilder.like($title, "%" + search + "%"));
 
                 Predicate predicate = criteriaBuilder.and(list.toArray(new Predicate[list.size()]));
                 return predicate;
@@ -99,5 +99,14 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao, Posts> implement
         return page.getContent();
     }
 
-
+    @Override
+    public Page<Posts> getPostsByLabel(Label label, int pageNo, int lenght) {
+        List<Sort.Order> orders = new ArrayList<>();
+        orders.add(new Sort.Order(Sort.Direction.DESC, "top"));
+        orders.add(new Sort.Order(Sort.Direction.DESC, "id"));
+        Sort sort = new Sort(orders);
+        Pageable pageable = new PageRequest(pageNo, lenght, sort);
+        Page<Posts> postss = repository.findByLabel(label, pageable);
+        return postss;
+    }
 }

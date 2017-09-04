@@ -1,6 +1,7 @@
 package com.quark.rest.service;
 
 import com.quark.common.base.BaseService;
+import com.quark.common.entity.Label;
 import com.quark.common.entity.Posts;
 import com.quark.common.entity.User;
 import org.springframework.data.domain.Page;
@@ -35,4 +36,12 @@ public interface PostsService extends BaseService<Posts> {
      * @return
      */
     List<Posts> getPostsByUser(User user);
+
+
+    /**
+     * 根据标签分页获取获取Posts
+     * @param label
+     * @return
+     */
+    Page<Posts> getPostsByLabel(Label label,int pageNo,int lenght);
 }
