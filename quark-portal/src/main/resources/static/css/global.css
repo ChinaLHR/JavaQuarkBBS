@@ -102,7 +102,7 @@ html .fly-full{margin-top: 65px;}
 .header .main{position:relative; margin:0 auto; min-height: 0;}
 .logo{position:absolute; top: 13px; left:0; width: 135px; height: 37px; text-indent:-666px; background:url(../images/logo.png) no-repeat;}
 
-.nav{position:absolute; left: 220px; top: 18px;}
+.nav{position:absolute; left: 220px; top: 20px;}
 .nav a{padding: 0 20px; font-size:14px; color:#999;}
 .nav a i{position:relative; top: 5px; padding-right:8px; font-size:18px; font-size: 26px;}
 .nav a .icon-shouye, .nav a .icon-shezhi{top: 2px;}
