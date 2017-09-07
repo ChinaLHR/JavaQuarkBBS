@@ -12,35 +12,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
 
-
     @RequestMapping("/login")
-    public String login(){
+    public String login() {
         return "user/login";
     }
 
     @RequestMapping("/register")
-    public String register(){
+    public String register() {
         return "user/register";
     }
 
     @RequestMapping("/home")
-    public String home(){
+    public String home() {
         return "user/home";
     }
 
     @RequestMapping("/set")
-    public String setting(){
+    public String setting() {
         return "user/set";
     }
 
     @RequestMapping("/seticon")
-    public String seticon(){
+    public String seticon() {
         return "user/seticon";
     }
 
     @RequestMapping("/setpsw")
-    public String setpsw(){
+    public String setpsw() {
         return "user/setpsw";
     }
+
+    @RequestMapping("/message")
+    public String message() { return "user/message"; }
 
 }

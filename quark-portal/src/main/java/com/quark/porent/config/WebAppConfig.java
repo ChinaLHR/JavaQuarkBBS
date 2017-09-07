@@ -26,7 +26,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
                 "/posts/add",
                 "/user/set",
                 "/user/seticon",
-                "user/setpsw");
+                "/user/setpsw",
+                "/user/message");
         super.addInterceptors(registry);
     }
 }

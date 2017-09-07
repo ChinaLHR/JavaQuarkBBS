@@ -3,11 +3,14 @@ package com.quark.rest.service.impl;
 import com.quark.common.base.BaseServiceImpl;
 import com.quark.common.dao.PostsDao;
 import com.quark.common.dao.ReplyDao;
+import com.quark.common.entity.Notification;
 import com.quark.common.entity.Posts;
 import com.quark.common.entity.Reply;
 import com.quark.common.entity.User;
 import com.quark.common.exception.ServiceProcessException;
+import com.quark.rest.service.NotificationService;
 import com.quark.rest.service.ReplyService;
+import com.quark.rest.service.WebSocketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,6 +31,12 @@ public class ReplyServiceImpl extends BaseServiceImpl<ReplyDao, Reply> implement
 
     @Autowired
     private PostsDao postsDao;
+
+    @Autowired
+    private NotificationService notificationService;
+
+    @Autowired
+    private WebSocketService webSocketService;
 
     @Override
     public Page<Reply> getReplyByPage(Integer postsId, int pageNo, int length) {
@@ -68,7 +77,18 @@ public class ReplyServiceImpl extends BaseServiceImpl<ReplyDao, Reply> implement
             reply.setPosts(posts);
             repository.save(reply);
 
-
+            //判断是否是自问自回，如果是则不通知
+            if (posts.getUser().getId()!=user.getId()) {
+                //向消息表中增加信息
+                Notification notification = new Notification();
+                notification.setPosts(posts);
+                notification.setFromuser(user);
+                notification.setTouser(posts.getUser());
+                notification.setInitTime(new Date());
+                notificationService.save(notification);
+                // 使用WebSocket进行1对1通知
+                webSocketService.sendToOne(posts.getUser().getId());
+            }
         } catch (ServiceProcessException e) {
             throw e;
         } catch (Exception e) {

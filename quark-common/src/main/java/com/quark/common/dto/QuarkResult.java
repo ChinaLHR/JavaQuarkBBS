@@ -28,6 +28,16 @@ public class QuarkResult implements Serializable {
      */
     private String error;
 
+    /**
+     * 返回总页数
+     */
+    private long pageSize;
+
+    /**
+     * 本页返回数量
+     */
+    private Integer total;
+
     public Integer getStatus() {
         return status;
     }
@@ -52,8 +62,24 @@ public class QuarkResult implements Serializable {
         this.error = error;
     }
 
+    public long getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(long pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
+
     /**
-     * 请求成功携带数据
+     * 请求成功
      * @param status
      */
     public QuarkResult(Integer status) {
@@ -61,13 +87,27 @@ public class QuarkResult implements Serializable {
     }
 
     /**
-     * 请求成功并携带
+     * 请求成功并携带数据
      * @param status
      * @param data
      */
     public QuarkResult(Integer status, Object data) {
         this.status = status;
         this.data = data;
+    }
+
+    /**
+     * 请求成功被携带参数与页数
+     * @param status
+     * @param data
+     * @param pageSize
+     * @param total
+     */
+    public QuarkResult(Integer status, Object data, long pageSize, Integer total) {
+        this.status = status;
+        this.data = data;
+        this.pageSize = pageSize;
+        this.total = total;
     }
 
     /**
@@ -94,5 +134,7 @@ public class QuarkResult implements Serializable {
         return new QuarkResult(StateEnum.ERROR.getState(),error);
     }
 
-
+    public static QuarkResult ok(Object data,long pageSize,Integer total){
+        return new QuarkResult(StateEnum.SUCCESS.getState(),data,pageSize,total);
+    }
 }

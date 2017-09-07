@@ -40,10 +40,10 @@ public class Posts implements Serializable {
     private Date initTime;
 
     //是否置顶
-    private Boolean top;
+    private boolean top;
 
     //是否精华
-    private Boolean good;
+    private boolean good;
 
     //与用户的关联关系
     @ManyToOne

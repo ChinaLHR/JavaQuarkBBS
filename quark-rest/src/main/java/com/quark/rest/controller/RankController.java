@@ -38,12 +38,12 @@ public class RankController extends BaseController {
     @GetMapping("/topPosts")
     public QuarkResult getTotPosts() {
         QuarkResult result = restProcessor(() -> {
-            List<Object> hot = redisService.getSet(REDIS_RANK_POSTS);
+            List<Object> hot = redisService.getString(REDIS_RANK_POSTS);
             if (hot != null) {
                 return QuarkResult.ok(hot);
             }
             hot = rankService.findPostsRank();
-            redisService.cacheSet(REDIS_RANK_POSTS, hot, 1);
+            redisService.cacheString(REDIS_RANK_POSTS, hot, 1);
             return QuarkResult.ok(hot);
         });
         return result;
@@ -53,11 +53,11 @@ public class RankController extends BaseController {
     @GetMapping("/newUsers")
     public QuarkResult getNewUser() {
         QuarkResult result = restProcessor(() -> {
-            List<Object> users = redisService.getSet(REDIS_RANK_USERS);
+            List<Object> users = redisService.getString(REDIS_RANK_USERS);
             if (users != null) return QuarkResult.ok(users);
 
             users = rankService.findUserRank();
-            redisService.cacheSet(REDIS_RANK_USERS, users, 1);
+            redisService.cacheString(REDIS_RANK_USERS, users, 1);
             return QuarkResult.ok(users);
         });
         return result;

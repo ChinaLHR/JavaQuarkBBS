@@ -1,7 +1,6 @@
 package com.quark.rest.controller;
 
 import com.quark.common.base.BaseController;
-import com.quark.common.dto.QuarkPageResult;
 import com.quark.common.dto.QuarkResult;
 import com.quark.common.entity.Label;
 import com.quark.common.entity.Posts;
@@ -76,21 +75,21 @@ public class PostsController extends BaseController {
             @ApiImplicitParam(name = "length", value = "返回结果数量[默认20]", dataType = "int")
     })
     @GetMapping()
-    public QuarkPageResult GetPosts(
+    public QuarkResult GetPosts(
             @RequestParam(required = false, defaultValue = "") String search,
             @RequestParam(required = false, defaultValue = "") String type,
             @RequestParam(required = false, defaultValue = "1") int pageNo,
             @RequestParam(required = false, defaultValue = "20") int length) {
-        try {
-
+        QuarkResult result = restProcessor(() -> {
             if (!type.equals("good") && !type.equals("top") && !type.equals(""))
-                return QuarkPageResult.error("类型错误!");
+                return QuarkResult.error("类型错误!");
             Page<Posts> page = postsService.getPostsByPage(type, search, pageNo - 1, length);
-            return QuarkPageResult.ok(page.getContent(), page.getTotalElements(), page.getNumberOfElements());
-        } catch (Exception e) {
-            logger.error("Error Log :" + e.getLocalizedMessage(), e);
-            return QuarkPageResult.error("服务器出现异常");
-        }
+            return QuarkResult.ok(page.getContent(), page.getTotalElements(), page.getNumberOfElements());
+
+        });
+
+        return result;
+
     }
 
 
@@ -101,24 +100,23 @@ public class PostsController extends BaseController {
             @ApiImplicitParam(name = "length", value = "返回结果数量[默认20]", dataType = "int")
     })
     @GetMapping("/detail/{postsid}")
-    public QuarkPageResult GetPostsDetail(
+    public QuarkResult GetPostsDetail(
             @PathVariable("postsid") Integer postsid,
             @RequestParam(required = false, defaultValue = "1") int pageNo,
             @RequestParam(required = false, defaultValue = "20") int length) {
-        try {
+        QuarkResult result = restProcessor(() -> {
             HashMap<String, Object> map = new HashMap<>();
             Posts posts = postsService.findOne(postsid);
-            if (posts == null) return QuarkPageResult.error("帖子不存在");
+            if (posts == null) return QuarkResult.error("帖子不存在");
             map.put("posts", posts);
 
             Page<Reply> page = replyService.getReplyByPage(postsid, pageNo - 1, length);
             map.put("replys", page.getContent());
 
-            return QuarkPageResult.ok(map, page.getTotalElements(), page.getNumberOfElements());
-        } catch (Exception e) {
-            logger.error("Error Log :" + e.getLocalizedMessage(), e);
-            return QuarkPageResult.error("服务器出现异常");
-        }
+            return QuarkResult.ok(map, page.getTotalElements(), page.getNumberOfElements());
+        });
+        return result;
+
     }
 
     @ApiOperation("根据labelId获取帖子接口")
@@ -128,20 +126,21 @@ public class PostsController extends BaseController {
             @ApiImplicitParam(name = "length", value = "返回结果数量[默认20]", dataType = "int"),
     })
     @GetMapping("/label/{labelid}")
-    public QuarkPageResult GetPostsByLabel(
+    public QuarkResult GetPostsByLabel(
             @PathVariable("labelid") Integer labelid,
             @RequestParam(required = false, defaultValue = "1") int pageNo,
             @RequestParam(required = false, defaultValue = "20") int length) {
 
-        try {
+        QuarkResult result = restProcessor(() -> {
             Label label = labelService.findOne(labelid);
-            if (label == null) return QuarkPageResult.error("标签不存在");
+            if (label == null) return QuarkResult.error("标签不存在");
             Page<Posts> page = postsService.getPostsByLabel(label, pageNo - 1, length);
-            return QuarkPageResult.ok(page.getContent(), page.getTotalElements(), page.getNumberOfElements());
-        } catch (Exception e) {
-            logger.error("Error Log :" + e.getLocalizedMessage(), e);
-            return QuarkPageResult.error("服务器出现异常");
-        }
+            return QuarkResult.ok(page.getContent(), page.getTotalElements(), page.getNumberOfElements());
+
+        });
+
+        return result;
+
     }
 
 }

@@ -29,7 +29,12 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
 
         String token = CookieUtils.getCookieValue(httpServletRequest, "QUARK_TOKEN");
-
+        if (token==null) {
+            // 跳转到登录页面
+            httpServletResponse.sendRedirect("/user/login");
+            // 返回false
+            return false;
+        }
         User user = userService.getUserByApi(token);
 
         // 取不到用户信息

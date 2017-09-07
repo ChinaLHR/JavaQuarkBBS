@@ -4,6 +4,7 @@ import com.quark.common.base.BaseController;
 import com.quark.common.dto.QuarkResult;
 import com.quark.common.entity.Posts;
 import com.quark.common.entity.User;
+import com.quark.rest.service.NotificationService;
 import com.quark.rest.service.PostsService;
 import com.quark.rest.service.UserService;
 import io.swagger.annotations.Api;
@@ -31,6 +32,9 @@ public class UserController extends BaseController {
 
     @Autowired
     private PostsService postsService;
+
+    @Autowired
+    private NotificationService notificationService;
 
     @ApiOperation("注册接口")
     @ApiImplicitParams({
@@ -91,12 +95,31 @@ public class UserController extends BaseController {
         return result;
     }
 
+    @ApiOperation("根据Token获取用户的信息与通知消息数量")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "token", value = "发送给用户的唯一令牌",dataType = "String"),
+    })
+    @GetMapping("/message/{token}")
+    public QuarkResult getUserAndMessageByToken(@PathVariable String token){
+        QuarkResult result = restProcessor(() -> {
+            HashMap<String, Object> map = new HashMap<>();
+            User user = userService.getUserByToken(token);
+            if (user == null) return QuarkResult.warn("session过期,请重新登录");
+            long count = notificationService.getNotificationCount(user.getId());
+            map.put("user",user);
+            map.put("messagecount",count);
+            return QuarkResult.ok(map);
+        });
+
+        return result;
+    }
+
     @ApiOperation("根据Token修改用户的信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", value = "发送给用户的唯一令牌",dataType = "String"),
             @ApiImplicitParam(name = "username", value = "要修改的用户名",dataType = "String"),
             @ApiImplicitParam(name = "signature", value = "用户签名",dataType = "String"),
-            @ApiImplicitParam(name = "sex", value = "要修改的性别",dataType = "int"),
+            @ApiImplicitParam(name = "sex", value = "要修改的性别：数值0为男，1为女",dataType = "int"),
     })
     @PutMapping("/{token}")
     public QuarkResult updateUser(@PathVariable("token") String token,String username,String signature,Integer sex){
@@ -133,7 +156,6 @@ public class UserController extends BaseController {
     @PostMapping("/logout")
     public QuarkResult logout(String token) {
         QuarkResult result = restProcessor(() -> {
-            System.out.println("登出："+token);
             userService.LogoutUser(token);
             return QuarkResult.ok();
         });

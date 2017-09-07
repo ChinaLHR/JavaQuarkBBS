@@ -1,6 +1,7 @@
 package com.quark.common;
 
 import com.quark.common.dao.LabelDao;
+import com.quark.common.dao.NotificationDao;
 import com.quark.common.dao.PostsDao;
 import com.quark.common.dao.UserDao;
 import org.junit.Test;
@@ -32,8 +33,17 @@ public class CommonApplicationTest {
     @Autowired
     private LabelDao labelDao;
 
+    @Autowired
+    private NotificationDao notificationDao;
+
     @Test
     public void TestDataSource(){
-
+//        long count = notificationDao.getNotificationCount(72);
+//        System.out.println(count);
+//        List<Notification> list = notificationDao.getByTouser(UserDao.findOne(2));
+//        System.out.println(list);
+//        list.forEach(t->{
+//            System.out.println(t.getPosts().getTitle());
+//        });
     }
 }

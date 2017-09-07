@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>我的消息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+</head>
+<body>
+
+<div th:include="common/header::header"></div>
+
+<div class="main fly-user-main layui-clear">
+    <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
+        <li class="layui-nav-item ">
+            <a th:href="@{/user/set}">
+                <i class="layui-icon">&#xe620;</i>
+                基本设置
+            </a>
+        </li>
+        <li class="layui-nav-item ">
+            <a th:href="@{/user/seticon}">
+                <i class="layui-icon">&#xe620;</i>
+                头像设置
+            </a>
+        </li>
+        <li class="layui-nav-item">
+            <a th:href="@{/user/setpsw}">
+                <i class="layui-icon">&#xe620;</i>
+                密码设置
+            </a>
+        </li>
+        <li class="layui-nav-item layui-this">
+            <a th:href="@{/user/setpsw}">
+                <i class="layui-icon">&#xe611;</i>
+                我的消息
+            </a>
+        </li>
+    </ul>
+    <div class="fly-panel fly-panel-user" pad20>
+        <div class="layui-tab layui-tab-brief" lay-filter="user" id="LAY_msg" style="margin-top: 15px;">
+            <button class="layui-btn layui-btn-danger" onclick="deletemsg()" id="LAY_delallmsg">清空全部消息</button>
+            <script type="text/html" id="message">
+                <div id="LAY_minemsg" style="margin-top: 10px;">
+                    <ul class="mine-msg">
+                        {{# layui.each(d.data, function(index, item){ }}
+                        <li>
+                            <blockquote class="layui-elem-quote">
+                                <a href="../user/home?id={{item.fromuser.id}}" target="_blank"><cite>{{item.fromuser.username}}</cite></a>回复了您的帖子<a
+                                    target="_blank"
+                                    href="../posts/detail?id={{item.posts.id}}"><cite>{{item.posts.title}}</cite></a>
+                            </blockquote>
+                            <p><span>回复时间：{{item.initTime}}</span></p>
+                        </li>
+                        {{# }); }}
+                    </ul>
+                </div>
+            </script>
+            <div id="messages"></div>
+        </div>
+    </div>
+
+</div>
+<div th:include="common/footer::footer"></div>
+<script>
+
+    //获取消息
+    var uid = $.getUrlParam('id');
+    if (uid == null) {
+        //如果链接地址没有id的话，就根据token去服务器获取
+        $.get(quark_getUser_api + getCookie(), function (data) {
+            uid = data.data.user.id;
+        })
+    }
+
+    layui.use(['laytpl'], function () {
+
+        var laytpl = layui.laytpl;
+        $.get(quark_notification_api + uid, function (data) {
+            var message = $("#message").html();
+            laytpl(message).render(data, function (html) {
+                $("#messages").html(html);
+            })
+        })
+
+    })
+
+    //删除消息
+    function deletemsg() {
+        $.ajax({
+            url:quark_notification_api+uid,
+            type:'DELETE',
+            success:function (data) {
+                location.reload();
+            }
+        },"json");
+    }
+</script>
+
+</body>
+</html>

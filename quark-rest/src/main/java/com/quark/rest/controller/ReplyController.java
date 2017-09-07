@@ -25,6 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReplyController extends BaseController{
 
     @Autowired
+    private WebSocketController webSocketController;
+
+    @Autowired
     private UserService userService;
 
     @Autowired
@@ -51,4 +54,6 @@ public class ReplyController extends BaseController{
         });
         return result;
     }
+
+
 }

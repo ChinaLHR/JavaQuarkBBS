@@ -13,7 +13,6 @@
         </div>
 
         <div class="nav-user">
-
         </div>
     </div>
 </div>
@@ -22,29 +21,36 @@
 <script th:src="@{/js/jquery-1.11.2.min.js}"></script>
 <script th:src="@{/js/jquery.cookie.js}"></script>
 <script th:src="@{/js/quark_api.js}"></script>
+<script th:src="@{/js/sockjs.min.js}"></script>
+<script th:src="@{/js/stomp.min.js}"></script>
 <script>
     //获取用户信息渲染页面
-
-        var htm;
-        $.get(quark_getUser_api+ getCookie(),function (data) {
-            if (data.status == 200){
-                htm =  "<a class='avatar' href='/user/home?id="+data.data.id+"'>"+
-                    "<img src='"+data.data.icon+"'>"+
-                    "<cite>"+data.data.username+"</cite>"+
-                    "</a>"+
-                    "<div class='nav'>"+
-                    "<a href='/user/set'><i class='iconfont icon-shezhi'></i>设置</a>"+
-                    "<a href='' onclick='logout()'><i class='iconfont icon-tuichu' style='top: 0; font-size: 22px;'></i>退了</a>"+
-                    "</div>";
-            }else{
-                htm ="<a class='unlogin' href='#'><i class='iconfont icon-touxiang'></i></a>"+
-                "<span><a href='/user/login'>登入</a><a href='/user/register'>注册</a></span>";
+    var htm = "";
+    $.get(quark_getUser_api+ getCookie(),function (data) {
+        if (data.status == 200){
+            var count = data.data.messagecount;
+            if (count!=0){
+                htm+="<a class='nav-message' href='../user/message' title=''>"+count+"</a>";
             }
+            htm +="<a class='avatar' href='/user/home?id="+data.data.user.id+"'>"+
+                "<img src='"+data.data.user.icon+"'>"+
+                "<cite>"+data.data.user.username+"</cite>"+
+                "</a>"+
+                "<div class='nav'>"+
+                "<a href='/user/set'><i class='iconfont icon-shezhi'></i>设置</a>"+
+                "<a href='' onclick='logout()'><i class='iconfont icon-tuichu' style='top: 0; font-size: 22px;'></i>退了</a>"+
+                "</div>";
 
-            $(".nav-user").append(htm);
-        });
+            connectWebSocket(data.data.user.id);
+        }else{
+            htm ="<a class='unlogin' href='#'><i class='iconfont icon-touxiang'></i></a>"+
+                "<span><a href='/user/login'>登入</a><a href='/user/register'>注册</a></span>";
+        }
 
-//登出操作
+        $(".nav-user").append(htm);
+    });
+
+        //登出操作
         function logout() {
 
             $.post(quark_logout_api,{
@@ -57,8 +63,29 @@
                    layer.msg(obj.error,{icon:5});
                }
             });
-
-
         }
+
+        //连接服务器webSocket操作
+        function connectWebSocket(id) {
+            var socket = new SockJS(quark_webSocket_api, undefined, {protocols_whitelist: ['websocket']});
+            var stompClient  = Stomp.over(socket);
+
+            //接收到广播推送
+            stompClient.connect({},function (frame) {
+                stompClient.subscribe('/topic/all', function(message){
+                });
+
+                //接收到一对一推送
+                stompClient.subscribe('/user/' + id + '/message', function(message){
+                    if($('.nav-message').length>0) {
+                        $('.nav-message').html(JSON.parse(message.body).notice);
+                    }else{
+                        $(".nav-user").prepend("<a class='nav-message' href='../user/message'>"+JSON.parse(message.body).notice+"</a>");
+                    }
+                });
+
+            })
+        }
+
 </script>
 </div>
