@@ -19,7 +19,7 @@ public interface NotificationDao extends JpaRepository<Notification, Integer> {
     @Query(value = "SELECT count(id) FROM quark_notification n WHERE n.touser_id = ?1 AND n.is_read = 0", nativeQuery = true)
     long getNotificationCount(Integer id);
 
-    List<Notification> getByTouser(User user);
+    List<Notification> getByTouserOrderByInitTimeDesc(User user);
 
     @Modifying
     @Query("update Notification n set n.isRead = true where n.touser = ?1")

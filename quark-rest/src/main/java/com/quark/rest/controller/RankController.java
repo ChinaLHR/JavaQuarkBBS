@@ -34,7 +34,7 @@ public class RankController extends BaseController {
     @Value("${REDIS_RANK_USERS}")
     private String REDIS_RANK_USERS;
 
-    @ApiOperation("获取七天内热帖排行榜")
+    @ApiOperation("获取一个月内热帖排行榜")
     @GetMapping("/topPosts")
     public QuarkResult getTotPosts() {
         QuarkResult result = restProcessor(() -> {
@@ -49,7 +49,7 @@ public class RankController extends BaseController {
         return result;
     }
 
-    @ApiOperation("获取七天内新注册的用户")
+    @ApiOperation("获取一个月内新注册的用户")
     @GetMapping("/newUsers")
     public QuarkResult getNewUser() {
         QuarkResult result = restProcessor(() -> {

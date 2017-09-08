@@ -25,14 +25,14 @@ public class NotificationServiceImpl extends BaseServiceImpl<NotificationDao,Not
 
     @Override
     public List<Notification> findByUser(User user) {
-        List<Notification> list = repository.getByTouser(user);
+        List<Notification> list = repository.getByTouserOrderByInitTimeDesc(user);
         repository.updateByIsRead(user);
         return list;
     }
 
     @Override
     public void deleteByUser(User user) {
-        List<Notification> list = repository.getByTouser(user);
+        List<Notification> list = repository.getByTouserOrderByInitTimeDesc(user);
         repository.deleteInBatch(list);
     }
 }
