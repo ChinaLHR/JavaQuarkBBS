@@ -9,6 +9,8 @@ import java.io.IOException;
 /**
  * @Author LHR
  * Create By 2017/8/24
+ *
+ * 跨域的支持
  */
 @Component
 public class CorsFilter implements Filter {

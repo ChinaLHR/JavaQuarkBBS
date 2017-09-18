@@ -7,6 +7,7 @@ import com.quark.common.entity.Posts;
 import com.quark.common.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,8 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao,Posts> implements
     @Override
     public Page<Posts> findByPage(Posts posts, int pageNo, int length) {
         PageRequest pageable = new PageRequest(pageNo, length);
+        Sort.Order order = new Sort.Order(Sort.Direction.ASC, "id");
+        Sort sort = new Sort(order);
 
         Specification<Posts> specification = new Specification<Posts>() {
 
@@ -33,16 +36,16 @@ public class PostsServiceImpl extends BaseServiceImpl<PostsDao,Posts> implements
             public Predicate toPredicate(Root<Posts> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 Path<Integer> $id = root.get("id");
                 Path<String> $title = root.get("title");
-                Path<User> $userid = root.get("user");
+                Path<User> $user = root.get("user");
                 Path<Boolean> $top = root.get("top");
                 Path<Boolean> $good = root.get("good");
 
                 ArrayList<Predicate> list = new ArrayList<>();
                 if (posts.getId()!=null) list.add(criteriaBuilder.equal($id,posts.getId()));
                 if (posts.getTitle()!=null) list.add(criteriaBuilder.like($title,"%" + posts.getTitle() + "%"));
-                if (posts.getUser()!=null) list.add(criteriaBuilder.equal($userid,posts.getUser()));
-                if (posts.getTop()!=null) list.add(criteriaBuilder.equal($top,posts.getTop()));
-                if (posts.getGood()!=null) list.add(criteriaBuilder.equal($good,posts.getGood()));
+                if (posts.getUser()!=null) list.add(criteriaBuilder.equal($user,posts.getUser()));
+                if (posts.getTop()==true) list.add(criteriaBuilder.equal($top,true));
+                if (posts.getGood()==true) list.add(criteriaBuilder.equal($good,true));
 
                 Predicate predicate = criteriaBuilder.and(list.toArray(new Predicate[list.size()]));
 
