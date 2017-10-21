@@ -3,11 +3,16 @@ package com.quark.rest.service;
 import com.quark.common.base.BaseService;
 import com.quark.common.entity.User;
 
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @Author LHR
  * Create By 2017/8/21
  */
 public interface UserService extends BaseService<User> {
+
+    Set<Integer> loginId = ConcurrentHashMap.<Integer>newKeySet();
 
     /**
      * 验证用户名是否可以使用
@@ -87,4 +92,6 @@ public interface UserService extends BaseService<User> {
      * @param newpsd
      */
     void updateUserPassword(String token,String oldpsd,String newpsd);
+
+
 }
