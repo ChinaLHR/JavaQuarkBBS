@@ -26,9 +26,6 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
     @Autowired
     private RedisService<User> redisService;
 
-//    @Autowired
-//    private RedisService<Integer> redisSocketService;
-
     @Value("${REDIS_USERID_KEY}")
     private String REDIS_USERID_KEY;
 
