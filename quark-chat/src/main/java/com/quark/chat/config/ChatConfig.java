@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
  * @Email : 13435500980@163.com
  */
 @Configuration
-@ComponentScan(basePackages = "com.quark.common")
+@ComponentScan(basePackages = {"com.quark.common","com.quark.chat"})
 public class ChatConfig {
 }

@@ -24,6 +24,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements UserService {
 
     @Autowired
+    private RedisService<Integer> redisSocketService;
+
+    @Autowired
     private RedisService<User> redisService;
 
     @Value("${REDIS_USERID_KEY}")
@@ -68,8 +71,8 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
     public String LoginUser(User user) {
         String token = UUID.randomUUID().toString();
         redisService.cacheString(REDIS_USER_KEY + token, user, REDIS_USER_TIME);
-//        redisSocketService.cacheSet(REDIS_USERID_KEY,user.getId());
-        loginId.add(user.getId());//维护一个登录用户的set
+        redisSocketService.cacheSet(REDIS_USERID_KEY,user.getId());
+//        loginId.add(user.getId());//维护一个登录用户的set
         return token;
     }
 
@@ -83,8 +86,8 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, User> implements U
     public void LogoutUser(String token) {
         User user = getUserByToken(token);
         redisService.deleteString(REDIS_USER_KEY + token);
-//        redisSocketService.deleteSet(REDIS_USERID_KEY,user.getId());
-        loginId.remove(user.getId());//维护一个登录用户的set
+        redisSocketService.deleteSet(REDIS_USERID_KEY,user.getId());
+//        loginId.remove(user.getId());//维护一个登录用户的set
     }
 
     @Override

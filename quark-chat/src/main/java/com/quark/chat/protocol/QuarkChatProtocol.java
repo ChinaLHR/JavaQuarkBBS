@@ -20,14 +20,17 @@ import static com.quark.chat.protocol.QuarkChatType.*;
  * |__ __ __ __|__ __ __ __|__ __ __ __ __ __ __ __ __|
  * |           |           |                          |
  *     Magic         Type             Body
- * |__ __ __ __|__ __ __ __|__ __ __ __ __ __ __ __ __|
+ * |__ __ __ __|__ __ __ __|__ __ __ __ |__ __ __ __ __|
+ *                                      |
+ *                                      |
+ *                 result(auth) msg(msg) uid(userid) name icon time(create time)
  */
 public class QuarkChatProtocol {
 
     /**
      * Maginc
      */
-    private static final short MAGIC = (short) 0xabcd;
+    private static final int MAGIC = 0xabcd;
 
     /**
      * Type
@@ -48,7 +51,7 @@ public class QuarkChatProtocol {
      * @param result
      * @return
      */
-    public static String buildMessageProto(boolean result){
+    public static String buildAuthProto(boolean result){
         HashMap<String, Object> map = new HashMap<>();
         map.put("result", result);
         return buildProto(AUTH_RESPONSE_CODE,map);
@@ -112,7 +115,7 @@ public class QuarkChatProtocol {
         protocol.body = map;
         return JSONObject.toJSONString(protocol);
     }
-    public static short getMAGIC() {
+    public static int getMAGIC() {
         return MAGIC;
     }
 

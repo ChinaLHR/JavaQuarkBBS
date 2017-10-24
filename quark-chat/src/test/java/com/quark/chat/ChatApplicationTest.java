@@ -1,8 +1,11 @@
 package com.quark.chat;
 
+import com.quark.chat.handler.UserAuthHandler;
+import com.quark.chat.service.ChannelManager;
 import com.quark.chat.service.ChatService;
 import com.quark.common.dao.UserDao;
 import com.quark.common.entity.User;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,11 @@ public class ChatApplicationTest {
     @Autowired
     private ChatService chatService;
 
+    @Autowired
+    private ChannelManager manager;
+
+    @Autowired
+    private UserAuthHandler handler;
     @Test
     public void testUserDao() {
         User user = userDao.findOne(2);
@@ -40,8 +48,7 @@ public class ChatApplicationTest {
 
     @Test
     public void testService(){
-        User user = chatService.getUserByToken("737b819b-563a-49d4-9520-5c60da045624");
-        System.out.println(user);
+//       handler.test();
     }
 
 }

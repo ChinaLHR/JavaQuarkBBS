@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class WebSocketService {
 
-//    @Autowired
-//    private RedisService<Integer> redisService;
-
     @Autowired
-    private UserService userService;
+    private RedisService<Integer> redisService;
+
+//    @Autowired
+//    private UserService userService;
 
     @Autowired
     private WebSocketController webSocketController;
@@ -41,9 +41,9 @@ public class WebSocketService {
      * @param id
      */
     public void sendToOne(Integer id){
-        //boolean islogin = redisService.setHasValue(REDIS_USERID_KEY, id);
+        boolean islogin = redisService.setHasValue(REDIS_USERID_KEY, id);
         //判断用户是否已经登录
-        boolean islogin = userService.loginId.contains(id);
+//        boolean islogin = userService.loginId.contains(id);
         if (islogin){
             //查询未查看的通知
             long count = notificationService.getNotificationCount(id);

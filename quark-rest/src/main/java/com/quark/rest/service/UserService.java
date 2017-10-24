@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public interface UserService extends BaseService<User> {
 
-    Set<Integer> loginId = ConcurrentHashMap.<Integer>newKeySet();
+//    Set<Integer> loginId = ConcurrentHashMap.<Integer>newKeySet();
 
     /**
      * 验证用户名是否可以使用

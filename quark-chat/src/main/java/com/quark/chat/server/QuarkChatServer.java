@@ -1,5 +1,8 @@
 package com.quark.chat.server;
 
+import com.quark.chat.handler.MessageHandler;
+import com.quark.chat.handler.UserAuthHandler;
+import com.quark.chat.service.ChannelManager;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -15,7 +18,9 @@ import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -31,6 +36,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @Date : Create in 15:06 2017/10/22
  * @Email : 13435500980@163.com
  */
+@Component
 public class QuarkChatServer implements Server {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -46,6 +52,15 @@ public class QuarkChatServer implements Server {
 
     @Value("${PORT}")
     private int port;
+
+    @Autowired
+    private UserAuthHandler authHandler;
+
+    @Autowired
+    private MessageHandler messageHandler;
+
+    @Autowired
+    private ChannelManager manager;
 
     @PostConstruct
     @Override
@@ -101,7 +116,10 @@ public class QuarkChatServer implements Server {
                                 new HttpServerCodec(),//请求解码器
                                 new HttpObjectAggregator(65536),//将多个消息转换成单一的消息对象
                                 new ChunkedWriteHandler(),  //支持异步发送大的码流
-                                new IdleStateHandler(60, 0, 0) //定时检测链路是否读空闲
+                                new IdleStateHandler(60, 0, 0), //定时检测链路是否读空闲
+                                authHandler,//认证Handler
+                                messageHandler//消息Handler
+
                         );
                     }
                 });
@@ -118,7 +136,7 @@ public class QuarkChatServer implements Server {
                 @Override
                 public void run() {
                     logger.info("scheduleAtFixedRate to close channel");
-                    //TODO 实现关闭失效的Channel
+                    manager.scanNotActiveChannel();
                 }
             },3,60, TimeUnit.SECONDS);//initialDelay：延迟三秒执行，period：任务执行的间隔周期
 
@@ -129,9 +147,9 @@ public class QuarkChatServer implements Server {
                 @Override
                 public void run() {
                     logger.info("scheduleAtFixedRate to ping");
-                    //TODO 实现发送Ping检测
+                    manager.broadPing();
                 }
-            },3,60,TimeUnit.SECONDS);
+            },3,50,TimeUnit.SECONDS);
         }catch (InterruptedException e){
             logger.error("Quark Chat fail ",e);
             Thread.currentThread().interrupt();

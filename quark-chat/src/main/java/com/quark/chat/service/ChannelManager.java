@@ -1,8 +1,7 @@
-package com.quark.chat.handler;
+package com.quark.chat.service;
 
 import com.quark.chat.entity.ChatUser;
 import com.quark.chat.protocol.QuarkChatProtocol;
-import com.quark.chat.service.ChatService;
 import com.quark.chat.utils.BlankUtil;
 import com.quark.chat.utils.NettyUtil;
 import com.quark.common.entity.User;
@@ -55,7 +54,7 @@ public class ChannelManager {
      * @param channel
      * @param token
      */
-    public boolean authUser(Channel channel,String token){
+    public boolean authUser(String token,Channel channel){
 
         User user = chatService.getUserByToken(token);
         if (user==null)return false;
@@ -90,39 +89,18 @@ public class ChannelManager {
     }
 
     /**
-     * 广播普通消息
-     * @param chatUser
-     * @param msg
+     * 广播
+     * @param buildmessage: 经过build的Protocol
      */
-    public void broadMessage(ChatUser chatUser,String msg){
-        if (!BlankUtil.isBlank(msg)){
+    public void broadMessage(String buildmessage){
+        if (!BlankUtil.isBlank(buildmessage)){
             try {
                 rwLock.readLock().lock();
                 Set<Channel> keySet = chatUserMap.keySet();
                 for (Channel ch : keySet) {
                     ChatUser cUser = chatUserMap.get(ch);
                     if (cUser == null || !cUser.isAuth()) continue;
-                    ch.writeAndFlush(new TextWebSocketFrame(QuarkChatProtocol.buildMessageCode(cUser.getUser(),msg)));
-                }
-            }finally {
-                rwLock.readLock().unlock();
-            }
-        }
-    }
-
-    /**
-     * 广播系统消息
-     * @param msg
-     */
-    public void broadSysMessage(String msg){
-        if (!BlankUtil.isBlank(msg)){
-            try {
-                rwLock.readLock().lock();
-                Set<Channel> keySet = chatUserMap.keySet();
-                for (Channel ch : keySet) {
-                    ChatUser cUser = chatUserMap.get(ch);
-                    if (cUser == null || !cUser.isAuth()) continue;
-                    ch.writeAndFlush(new TextWebSocketFrame(QuarkChatProtocol.buildSysMessage(msg)));
+                    ch.writeAndFlush(new TextWebSocketFrame(buildmessage));
                 }
             }finally {
                 rwLock.readLock().unlock();
@@ -175,25 +153,9 @@ public class ChannelManager {
 
    public ChatUser getChatUser(Channel channel){return chatUserMap.get(channel);}
 
-    public AtomicInteger getUserCount() {
-        return userCount;
+    public Integer getUserCount() {
+        return userCount.get();
     }
 
-    /**
-     * 单例实现
-     */
-    private ChannelManager(){}
-
-    private static volatile ChannelManager channelManager;
-
-    public static ChannelManager getInstance(){
-        if (channelManager == null){
-            synchronized (ChannelManager.class) {
-                if (channelManager == null)
-                    channelManager = new ChannelManager();
-            }
-        }
-        return channelManager;
-    }
 
 }
