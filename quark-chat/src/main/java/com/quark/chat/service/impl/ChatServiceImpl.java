@@ -29,4 +29,12 @@ public class ChatServiceImpl extends BaseServiceImpl<UserDao,User> implements Ch
         User user = redisService.getString(REDIS_USER_KEY + token);
         return user;
     }
+
+    @Override
+    public boolean authUser(Integer id) {
+        User user = repository.findOne(id);
+        return user.getEnable() == 1;
+    }
+
+
 }

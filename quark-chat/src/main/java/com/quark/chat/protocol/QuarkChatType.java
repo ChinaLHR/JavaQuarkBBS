@@ -15,7 +15,7 @@ public class QuarkChatType {
     public static final byte AUTH_RESPONSE_CODE = 0x04;//认证消息(server)
     public static final byte MESSAGE_REQUEST_CODE = 0x05;//消息(client)
     public static final byte MESSAGE_RESPONSE_CODE = 0x06;//消息(server)
-    public static final byte SYS_USERCOUNT_CODE = 0x07;//在线人数消息
+    public static final byte SYS_USERSINFO_CODE = 0x07;//在线人数消息
     public static final byte SYS_MESSAGE_CODE = 0x08;//系统消息
     public static final byte SYS_ERRORMESSAGE_CODE = 0x09;//系统错误消息
 }

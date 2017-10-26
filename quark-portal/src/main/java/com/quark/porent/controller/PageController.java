@@ -20,4 +20,8 @@ public class PageController {
         return "label/home";
     }
 
+    @RequestMapping("/chat")
+    public String chathome(){
+        return "chat/home";
+    }
 }

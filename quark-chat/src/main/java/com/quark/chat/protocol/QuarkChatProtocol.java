@@ -5,6 +5,7 @@ import com.quark.chat.utils.DateTimeUtil;
 import com.quark.common.entity.User;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import static com.quark.chat.protocol.QuarkChatType.*;
 
@@ -16,14 +17,17 @@ import static com.quark.chat.protocol.QuarkChatType.*;
  *                QuarkChatProtocol
  *  __ __ __ __ __ __ __ __ __ __ __ ____ __ __ ____ __
  * |           |           |                          |
- *       2           1             Uncertainty
+ *       4           1             Uncertainty
  * |__ __ __ __|__ __ __ __|__ __ __ __ __ __ __ __ __|
  * |           |           |                          |
  *     Magic         Type             Body
- * |__ __ __ __|__ __ __ __|__ __ __ __ |__ __ __ __ __|
- *                                      |
- *                                      |
- *                 result(auth) msg(msg) uid(userid) name icon time(create time)
+ *|__ __ __ __|__ __ __ __|__ __ __ __  __ __ __ __ __|
+ *
+ *
+ *                 auth：result
+ *                 SysyMsg：msg
+ *                 ServerMsg：uid(userid) name icon time(create time)
+ *                 UserInfo：count，Set<userinfo>
  */
 public class QuarkChatProtocol {
 
@@ -69,14 +73,15 @@ public class QuarkChatProtocol {
     }
 
     /**
-     * UserCount
-     * @param count
+     * SysUserInfo
+     * @param users
      * @return
      */
-    public static String buildSysUserCount(Integer count){
+    public static String buildSysUserInfo(Set<User> users){
         HashMap<String, Object> map = new HashMap<>();
-        map.put("msg",count);
-        return buildProto(SYS_USERCOUNT_CODE,map);
+        map.put("count",users.size());
+        map.put("userinfo",users);
+        return buildProto(SYS_USERSINFO_CODE,map);
     }
 
     /**

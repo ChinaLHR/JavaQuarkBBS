@@ -50,7 +50,7 @@ public class MessageHandler extends SimpleChannelInboundHandler<TextWebSocketFra
     @Override
     public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
         manager.removeChannel(ctx.channel());
-        manager.broadMessage(QuarkChatProtocol.buildSysUserCount(manager.getUserCount()));
+        manager.broadMessage(QuarkChatProtocol.buildSysUserInfo(manager.getUsers()));
         super.channelUnregistered(ctx);
     }
 
@@ -64,6 +64,6 @@ public class MessageHandler extends SimpleChannelInboundHandler<TextWebSocketFra
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         logger.error("connection error and close the channel:{}",cause);
         manager.removeChannel(ctx.channel());
-        manager.broadMessage(QuarkChatProtocol.buildSysUserCount(manager.getUserCount()));
+        manager.broadMessage(QuarkChatProtocol.buildSysUserInfo(manager.getUsers()));
     }
 }

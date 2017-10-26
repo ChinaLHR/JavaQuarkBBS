@@ -17,4 +17,10 @@ public interface ChatService extends BaseService<User>{
      */
     User getUserByToken(String token);
 
+    /**
+     * 验证用户
+     * @param id
+     * @return
+     */
+    boolean authUser(Integer id);
 }

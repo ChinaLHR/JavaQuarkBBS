@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Quark聊天室</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/chat.css}">
+</head>
+<body style="margin-top: 65px;">
+<div th:include="common/header::header"></div>
+<div class="chatbox">
+    <div class="chat_top fn-clear">
+        <!-- LOGO usericon username 暂时不写 -->
+        <div class="logo"></div>
+        <div class="uinfo fn-clear">
+            <div class="uface"><img src="" width="40" height="40" alt=""/></div>
+            <div class="uname"></div>
+        </div>
+    </div>
+    <div class="chat_message fn-clear">
+        <div class="chat_left">
+            <div class="message_box" id="message_box">
+                <div class="msg_item fn-clear">
+
+                </div>
+            </div>
+            <div class="write_box">
+                <textarea id="message" name="message" class="write_area" placeholder="说点啥吧..."></textarea>
+                <div class="facebox fn-clear">
+                    <div class="expression"></div>
+                    <div class="chat_type" id="chat_type">群聊</div>
+                    <button name="" class="sub_but">提 交</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 在线用户版块 -->
+        <div class="chat_right">
+            <ul class="user_list" id="userinfo">
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    var pongtype = 0x02;
+    var authtype = 0x03;
+    var messagetype = 0x05;
+    var socket = null;
+    var isAuth = false;
+    //用户登录
+    function userLogin() {
+        if (!window.WebSocket) {
+            window.WebSocket = window.MozWebSocket;
+        }
+        if (window.WebSocket) {
+            window.socket = new WebSocket(quark_chat_webSocket_api);
+            window.socket.onmessage = function (event) {
+                var data = eval("(" + event.data + ")");
+                console.log("onmessage data:" + JSON.stringify(data));
+                switch (data.type) {
+                    case 0x01://ping type
+                        pongInvake();
+                        break;
+                    case 0x04://auth message
+                        isAuth = data.body.result;
+                        if (!isAuth) {
+                            layer.msg("认证失败,请进行用户登录", {
+                                icon: 7,
+                                time: 2000 //1秒关闭
+                            }, function(){
+                                location.href = "/user/login";
+                            });
+                        }
+                        break;
+                    case 0x06://broadcast message
+                        broadcastInvake(data.body);
+                        break;
+                    case 0x07://userinfo message
+                       userInfoInvake(data.body);
+                        break;
+                    case 0x08://sys message
+                        layer.msg(data.body.msg,{icon:7});
+                        break;
+                    case 0x09://error message
+                        layer.msg(data.body.msg,{
+                            icon:5,
+                            time:2000
+                        },function () {
+                            location.href = "/index";
+                        });
+                        break;
+                }
+            };
+            /*WebSocket 关闭*/
+            window.socket.onclose = function (event) {
+                closeInvake(event);
+            };
+
+            /*WebSocket 开启*/
+            window.socket.onopen = function (event) {
+                openInvake(event);
+            };
+        } else {
+            layer.msg("对比起，您的浏览器不支持WebSocket！！！",{
+                icon:5,
+                time:1000},function () {
+                location.href = "/index";
+            });
+        }
+
+    }
+    //userInfoInvake
+    function userInfoInvake(obj) {
+        var htmlData = ' <li class="fn-clear selected"><em>当前在线人数: '+obj.count+'</em></li>';
+        $.each(obj.userinfo,function (index, content) {
+           htmlData+='<li class="fn-clear"><span><a href="user/home?id='+content.id+'" target="view_window"><img src="'+content.icon+'" width="30" height="30"  alt=""/></a></span><em>'+content.username+'</em><small class="online" title="在线"></small></li>';
+        });
+
+        $("#userinfo").html(htmlData);
+    }
+
+    //broadcast
+    function broadcastInvake(obj) {
+                var htmlData = '<div class="msg_item fn-clear">'
+                    + '<div class="uface"><a href="user/home?id='+obj.uid+'" target="view_window"><img src="'+obj.icon+'" width="40" height="40"  alt=""/></a></div>'
+                    + '<div class="item_right">'
+                    + '<div class="msg own">' + obj.msg + '</div>'
+                    + '<div class="name_time">' + obj.name +' · '+ obj.time +'</div>'
+                    + '</div>'
+                    + '</div>';
+                $("#message_box").append(htmlData);
+                $('#message_box').scrollTop($("#message_box")[0].scrollHeight + 20);
+                $("#message").val('');
+    }
+
+    //Pong
+    function pongInvake() {
+        var msg = buildMessage(pongtype, null, null);
+        sendMessage(msg);
+    }
+
+    //构造信息
+    function buildMessage(type, token, msg) {
+        var obj = {};
+        obj.MAGIC = 0xabcd;
+        obj.type = type;
+        obj.token = token;
+        obj.msg = msg;
+        return JSON.stringify(obj);
+    }
+
+    //发送消息
+    function sendMessage(obj) {
+        if (!window.socket) {
+            return;
+        }
+        if (socket.readyState == WebSocket.OPEN || auth) {
+            window.socket.send(obj);
+        } else {
+            layer.msg("连接服务器失败！！！",{
+                icon:5,
+                time:2000},function () {
+                location.href = "/index";
+            });
+        }
+    }
+
+    //关闭操作
+    function closeInvake(event) {
+        window.socket = null;
+        window.isAuth = false;
+        window.userCount = 0;
+        layer.msg("连接出错，返回首页！！！",{
+            icon:5,
+            time:2000},function () {
+            location.href = "/index";
+        });
+    }
+
+    //开启操作
+    function openInvake(event) {
+        var msg = buildMessage(authtype, getCookie(), null);
+        sendMessage(msg);
+    }
+
+    layui.use(['layer'], function () {
+        $('#message_box').scrollTop($("#message_box")[0].scrollHeight + 20);
+
+        $('.sub_but').click(function (event) {
+            var text = $("#message").val();
+            var msg = buildMessage(messagetype,null,text);
+            sendMessage(msg);
+        });
+
+        userLogin();
+    });
+</script>
+</body>
+</html>

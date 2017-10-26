@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -58,10 +59,15 @@ public class ChannelManager {
 
         User user = chatService.getUserByToken(token);
         if (user==null)return false;
+        boolean b = chatService.authUser(user.getId());
+        if (b==false) return false;
         ChatUser chatUser = chatUserMap.get(channel);
         chatUser.setUser(user);
         chatUser.setAuth(true);
         chatUser.setTime(System.currentTimeMillis());
+
+        //增加一个认证用户
+        userCount.incrementAndGet();
         return true;
     }
 
@@ -152,6 +158,14 @@ public class ChannelManager {
     }
 
    public ChatUser getChatUser(Channel channel){return chatUserMap.get(channel);}
+
+   public Set<User> getUsers(){
+       HashSet<User> users = new HashSet<>();
+       for (Channel channel : chatUserMap.keySet()) {
+           users.add(chatUserMap.get(channel).getUser());
+       }
+       return users;
+   }
 
     public Integer getUserCount() {
         return userCount.get();

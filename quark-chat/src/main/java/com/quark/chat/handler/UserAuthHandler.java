@@ -1,10 +1,8 @@
 package com.quark.chat.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.quark.chat.protocol.QuarkChatProtocol;
-import com.quark.chat.protocol.QuarkChatType;
 import com.quark.chat.protocol.QuarkClientProtocol;
 import com.quark.chat.service.ChannelManager;
 import com.quark.chat.utils.NettyUtil;
@@ -76,7 +74,7 @@ public class UserAuthHandler extends SimpleChannelInboundHandler {
                 logger.warn("Netty Server UserAuthHandler: IDLE exception :{}", address);
                 manager.removeChannel(ctx.channel());
                 //广播用户数量
-                manager.broadMessage(QuarkChatProtocol.buildSysUserCount(manager.getUserCount()));
+                manager.broadMessage(QuarkChatProtocol.buildSysUserInfo(manager.getUsers()));
             }
         }
     }
@@ -152,7 +150,7 @@ public class UserAuthHandler extends SimpleChannelInboundHandler {
                 boolean isSuccess = manager.authUser(clientProto.getToken(), channel);
                 manager.broadMessage(QuarkChatProtocol.buildAuthProto(isSuccess));
                 if (isSuccess)
-                    manager.broadMessage(QuarkChatProtocol.buildSysUserCount(manager.getUserCount()));
+                    manager.broadMessage(QuarkChatProtocol.buildSysUserInfo(manager.getUsers()));
                 return;
             case MESSAGE_REQUEST_CODE:
                 break;//普通的消息留给MessageHandler处理
