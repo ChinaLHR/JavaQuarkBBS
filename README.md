@@ -12,7 +12,8 @@
 	1、quark-common :采用了Springdata+MySql实现基础服务抽象,DAO层，Entity以及DTO
 	2、quark-admin：采用springboot+shiro搭建的细粒度的基于URL的权限管理系统，进行帖子管理，回复管理，用户管理等操作
 	3、quark-rest：使用springMVC搭建RESTFul服务，采用WebSocket协议+stomp协议搭建推送服务，实现一对一推送与一对多推送，面向各个客户端
-	4、quark-portal：前台社区系统，使用springMVC进行页面跳转与拦截，采用前后端分离的机制实现。前台展示模块通过http协议访问RESTFulAPI获取数据，使用LayUI，jQuery渲染页面渲染页面
+	4、quark-portal：前台社区系统，使用springMVC进行页面跳转与拦截，采用前后端分离的机制实现。前台展示模块通过http协议访问RESTFulAPI获取数据，
+	使用LayUI，jQuery渲染页面渲染页面
 	5、quark-chat:采用Netty+WebSocket协议搭建的聊天室服务，通过JSON传递数据，Ping-Pong心跳检测机制保证链路可用性。
 	6、使用Redis进行了热点缓存，Ehcache进行数据库的二级缓存提高应用的效率
  ![image](https://raw.githubusercontent.com/ChinaLHR/JavaQuarkBBS/master/resource/images/system1.png)  <br>
@@ -45,11 +46,11 @@
 
 ## WebSocket聊天室
 ### 应用层协议
-
+```
 	                          QuarkChatProtocol
 	    __ __ __ __ __ __ __ ____ __ __ __ __ __ __ __ _ __ __ __  
 	   |                       |           |                     | 
-	               4      		      1          Uncertainty     |
+	               4      		     1          Uncertainty      |
 	   |__ __ __ __ __ __ __ __|__ __ __ __|_ __ __ __ _ __ __ __| 
 	   |                       |           |                     |
 	              Magic             Type            Body         |
@@ -58,12 +59,13 @@
 							   QuarkClientProtocol
 	    __ __ __ __ __ __ __ ____ __ __ __ __ __ __ __ _ __ __ __ __ __ __ __ _ __ __ __   
 	   |                       |           |                     |                      |
-	               4      		      1          Uncertainty     |		Uncertainty	    |
+	               4      		     1          Uncertainty      |		Uncertainty	    |
 	   |__ __ __ __ __ __ __ __|__ __ __ __|_ __ __ __ _ __ __ __|__ __ __ __ _ __ __ __|   
 	   |                       |           |                     |						|
 	              Magic             Type            token        |			msg			|
 	   |__ __ __ __ __ __ __ __|__ __ __ __|_ __ __ __ _ __ __ __|__ __ __ __ _ __ __ __|  
    
+```
 		PING_CODE = 0x01;//Ping消息(client)
 		PONG_CODE = 0x02;//Pong消息(server)
 		AUTH_REQUEST_CODE = 0x03;//认证消息(client)
@@ -72,7 +74,8 @@
 		MESSAGE_RESPONSE_CODE = 0x06;//消息(server)
 		SYS_USERSINFO_CODE = 0x07;//在线人数消息
 		SYS_MESSAGE_CODE = 0x08;//系统消息
-		SYS_ERRORMESSAGE_CODE = 0x09;//系统错误消息	
+		SYS_ERRORMESSAGE_CODE = 0x09;//系统错误消息
+
 ### 通信模型
 ![image](https://raw.githubusercontent.com/ChinaLHR/JavaQuarkBBS/master/resource/images/quark_chat_message.png) 
 
