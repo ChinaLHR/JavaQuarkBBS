@@ -16,7 +16,7 @@
 	使用LayUI，jQuery渲染页面渲染页面
 	5、quark-chat:采用Netty+WebSocket协议搭建的聊天室服务，通过JSON传递数据，Ping-Pong心跳检测机制保证链路可用性。
 	6、使用Redis进行了热点缓存，Ehcache进行数据库的二级缓存提高应用的效率
- ![image](https://raw.githubusercontent.com/ChinaLHR/JavaQuarkBBS/master/resource/images/system1.png)  <br>
+ ![image](https://raw.githubusercontent.com/ChinaLHR/JavaQuarkBBS/master/resource/images/systemv2.png)  <br>
 	
 
 ## 运行环境
