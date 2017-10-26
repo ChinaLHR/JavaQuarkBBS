@@ -46,26 +46,8 @@
 
 ## WebSocket聊天室
 ### 应用层协议
-```
-	                          QuarkChatProtocol
-	    __ __ __ __ __ __ __ ____ __ __ __ __ __ __ __ _ __ __ __  
-	   |                       |           |                     | 
-	               4      		     1          Uncertainty      |
-	   |__ __ __ __ __ __ __ __|__ __ __ __|_ __ __ __ _ __ __ __| 
-	   |                       |           |                     |
-	              Magic             Type            Body         |
-	   |__ __ __ __ __ __ __ __|__ __ __ __|_ __ __ __ _ __ __ __| 
-	 						
-							   QuarkClientProtocol
-	    __ __ __ __ __ __ __ ____ __ __ __ __ __ __ __ _ __ __ __ __ __ __ __ _ __ __ __   
-	   |                       |           |                     |                      |
-	               4      		     1          Uncertainty      |		Uncertainty	    |
-	   |__ __ __ __ __ __ __ __|__ __ __ __|_ __ __ __ _ __ __ __|__ __ __ __ _ __ __ __|   
-	   |                       |           |                     |						|
-	              Magic             Type            token        |			msg			|
-	   |__ __ __ __ __ __ __ __|__ __ __ __|_ __ __ __ _ __ __ __|__ __ __ __ _ __ __ __|  
-   
-```
+![image](https://raw.githubusercontent.com/ChinaLHR/JavaQuarkBBS/master/resource/images/quark_chat_protocol.JPG)
+ 
 		PING_CODE = 0x01;//Ping消息(client)
 		PONG_CODE = 0x02;//Pong消息(server)
 		AUTH_REQUEST_CODE = 0x03;//认证消息(client)
