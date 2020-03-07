@@ -2,11 +2,15 @@
 
  [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
+**⚠ 本项目已停止维护更新**	
+
 ## 简介
+
 	1、JavaQuarkBBS是一款使用Java编写的简易社区系统。
 	2、采用前后端分离的机制实现。前台项目通过http访问RESTFulAPI获取信息渲染页面。
 	3、项目技术分层明显,模块分离，采用springboot构建模块。
-	4、前台页面来自FlyUI的开源社区模板
+	4、前台页面来自FlyUI的开源社区模板。
+
 
 ## 系统结构图
 	1、quark-common :采用了Springdata+MySql实现基础服务抽象,DAO层，Entity以及DTO
